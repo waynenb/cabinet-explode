@@ -1,6 +1,6 @@
-# SUPCON 工业控制柜 · 三维爆炸图
+# SUPCON Nyx通用控制系统 · 三维爆炸图
 
-交互式 Three.js 演示：中控（SUPCON）工业控制柜的三维爆炸视图。整页是仓库根目录的 `index.html`，通过 import map 从 jsDelivr 加载 Three.js，不依赖本地构建。
+交互式 Three.js 演示：中控（SUPCON）Nyx通用控制系统的三维爆炸视图。整页是仓库根目录的 `index.html`，通过 import map 从 jsDelivr 加载 Three.js，不依赖本地构建。
 
 在线地址：<https://waynenb.github.io/cabinet-explode/>
 
