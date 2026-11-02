@@ -394,3 +394,119 @@ p,li,td,th,dd,figcaption,.duo div,.kgrid>div,.points li,blockquote{text-wrap:pre
   .lang-en .h2:not(.s3d .h2){font-size:28px}
   .lang-en .closing h2{font-size:27px}
 }
+
+/* ================= v2: full-screen chapters after "技术价值" ================= */
+.s3d .copy.wide{width:min(540px,44vw)}
+.points.tight{gap:9px;margin-top:20px}
+.points.tight li{font-size:14.5px;line-height:1.6}
+.lead.small{font-size:14px;color:var(--muted);margin-top:18px}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:22px}
+.trio div{padding:12px 14px;border:1px solid var(--line2);border-radius:12px;background:rgba(8,14,24,.55);backdrop-filter:blur(6px)}
+.trio b{display:block;color:#fff;font-weight:500;font-size:15px}
+.trio span{display:block;font-size:11px;letter-spacing:.08em;color:var(--accent);margin-top:2px;text-transform:uppercase}
+.kfig{display:grid;grid-template-columns:1fr 1fr;gap:16px 26px;margin-top:24px}
+.kfig .v{font-family:var(--num);font-size:clamp(26px,2.4vw,36px);font-weight:600;line-height:1.05;
+  background:linear-gradient(180deg,#fff,#8fcaff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.kfig .v small{font-size:.48em;margin-left:3px;-webkit-text-fill-color:#8fcaff}
+.kfig .l{font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.5}
+.kfig>div{border-top:1px solid var(--line);padding-top:10px}
+.kfig.two .v{font-size:clamp(28px,2.7vw,40px)}
+.steps{display:flex;gap:6px;margin-top:22px;flex-wrap:wrap}
+.steps i{font-style:normal;font-size:12px;padding:5px 11px;border-radius:999px;border:1px solid var(--line);color:var(--dim);transition:all .4s}
+.steps i.on{border-color:var(--accent2);color:#fff;background:rgba(47,123,255,.22)}
+.spec-g{display:grid;margin-top:16px}
+.spec-g dl{grid-area:1/1;margin:0;display:grid;grid-template-columns:auto 1fr;gap:10px 18px;align-content:start;
+  opacity:0;visibility:hidden;transform:translateY(14px);transition:opacity .5s var(--ease),transform .5s var(--ease),visibility 0s .5s}
+.spec-g dl.on{opacity:1;visibility:visible;transform:none;transition:opacity .6s var(--ease),transform .6s var(--ease),visibility 0s}
+.spec-g dt{font-size:13px;color:var(--accent);white-space:nowrap;padding-top:2px}
+.spec-g dd{margin:0;font-size:14.5px;color:#c9d4e1;line-height:1.6;border-bottom:1px solid var(--line);padding-bottom:10px}
+.years{list-style:none;padding:0;margin:24px 0 0;display:grid;gap:4px}
+.years li{display:flex;gap:14px;align-items:baseline;color:var(--dim);font-size:14px;transition:color .4s;line-height:1.55}
+.years li b{font-family:var(--num);font-weight:600;font-size:15px;width:3.2em;transition:color .4s}
+.years li.on{color:#fff}.years li.on b{color:var(--accent)}
+.years li.past{color:#9aa7b7}
+.trend{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:5px;counter-reset:tr}
+.trend li{counter-increment:tr;position:relative;padding-left:30px;font-size:14px;line-height:1.55;color:var(--dim);transition:color .4s}
+.trend li:before{content:counter(tr,decimal-leading-zero);position:absolute;left:0;top:.1em;font-family:var(--num);font-size:11px;color:var(--dim)}
+.trend li i{font-style:normal;color:var(--accent);margin:0 4px}
+.trend li.done{color:#c4cfdc}.trend li.on{color:#fff}.trend li.on:before{color:var(--accent)}
+.vm2{display:grid;grid-template-columns:1fr 1fr;gap:14px 22px;margin-top:22px}
+.vm2 h4{margin:0;font-size:12px;letter-spacing:.2em;color:var(--accent);font-weight:500}
+.vm2 p{margin:4px 0 0;font-size:14.5px;color:#c4cfdc;line-height:1.6}
+.contact2{margin-top:26px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px}
+.contact2 .ct{font-size:16px;font-weight:500;width:100%}
+.contact2 .ph{font-size:12px;color:var(--dim)}
+.no-webgl .spec-g dl{grid-area:auto;opacity:1;visibility:visible;transform:none;margin-bottom:18px}
+.no-webgl .steps{display:none}
+.no-webgl .years li,.no-webgl .trend li{color:#c4cfdc}
+
+/* fit to short / small screens */
+@media (max-height:820px) and (min-width:821px){
+  .s3d .h2{font-size:clamp(28px,3vw,40px);margin:12px 0 12px}
+  .s3d .lead{font-size:15px;line-height:1.7}
+  .s3d .points{margin-top:16px;gap:8px}.s3d .points li{font-size:14px;line-height:1.55}
+  .s3d .kpis{margin-top:20px}.s3d .kpi .v{font-size:clamp(30px,3vw,42px)}
+  .kfig{gap:12px 22px;margin-top:16px}.kfig .v{font-size:28px}
+  .spec-g dd{font-size:13.5px;padding-bottom:8px}.spec-g dl{gap:8px 16px}
+  .trend li{font-size:13.5px}
+  .idx{margin-bottom:8px}
+}
+@media (max-width:820px){
+  .s3d .copy{margin-bottom:calc(84px + env(safe-area-inset-bottom))}
+  .s3d .copy.wide{width:auto}
+  .s3d .h2{font-size:clamp(26px,7vw,32px);margin:10px 0 10px}
+  .s3d .lead{font-size:14px;line-height:1.65}
+  .points.tight{margin-top:12px;gap:6px}.points.tight li{font-size:13px;line-height:1.5}
+  .trio{margin-top:14px;gap:6px}.trio div{padding:8px 10px}.trio b{font-size:13.5px}.trio span{font-size:9.5px;letter-spacing:.04em}
+  .chips{margin-top:12px;gap:6px}.chip{font-size:11.5px;padding:3px 9px}
+  .kfig{gap:8px 14px;margin-top:12px}.kfig .v,.kfig.two .v{font-size:22px}.kfig .l{font-size:11.5px;line-height:1.4}.kfig>div{padding-top:6px}
+  .steps{margin-top:12px;gap:4px}.steps i{font-size:11px;padding:3px 8px}
+  .spec-g{margin-top:10px}.spec-g dl{gap:6px 10px}.spec-g dt{font-size:12px}.spec-g dd{font-size:12.5px;line-height:1.5;padding-bottom:6px}
+  .years{margin-top:12px;gap:0}.years li{font-size:12.5px}.years li b{font-size:13px}
+  .trend{margin-top:10px;gap:2px}.trend li{font-size:12.5px;line-height:1.45;padding-left:24px}
+  .vm2{gap:8px 14px;margin-top:12px}.vm2 p{font-size:12.5px;line-height:1.45}
+  .contact2{margin-top:14px;gap:8px 12px}.contact2 .ct{font-size:14px}
+  .s3d .kpis{margin-top:14px;gap:18px}.s3d .kpi .v{font-size:30px}.s3d .kpi .l{font-size:12px;margin-top:4px}
+  .s3d .status{margin-top:14px;font-size:12px;padding:6px 10px}
+  .idx{margin-bottom:6px}
+  .lead.small{margin-top:10px;font-size:12.5px}
+}
+/* v2 3D extras */
+.ms3d{width:176px;transform:translateY(-100%);transition:opacity .35s;pointer-events:none}
+.ms3d .im{height:104px;border-radius:10px 10px 0 0;overflow:hidden;background:#0c1420;border:1px solid rgba(120,190,255,.25);border-bottom:0}
+.ms3d .im img{width:100%;height:100%;object-fit:cover;filter:saturate(.85) brightness(.9)}
+.ms3d .im.none{display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0d1726,#132640)}
+.ms3d .im.none span{font-family:var(--num);font-size:22px;letter-spacing:.08em;color:#4f6b8c}
+.ms3d .tx{padding:7px 12px 9px;background:rgba(8,14,24,.82);border:1px solid rgba(120,190,255,.25);border-radius:0 0 10px 10px;backdrop-filter:blur(8px)}
+.ms3d .tx b{display:block;font-family:var(--num);font-size:22px;font-weight:600;color:#fff;line-height:1.1}
+.ms3d .tx span{display:block;font-size:12px;color:#9fb3c8;margin-top:2px;line-height:1.35}
+.ms3d.on .im,.ms3d.on .tx{border-color:rgba(63,182,255,.75)}
+.ms3d.on .tx b{color:var(--accent)}
+.ms3d.on{box-shadow:0 0 0 0 transparent}
+.tag3d.gauge .cn{font-family:var(--num);font-size:30px;font-weight:600;color:#fff;letter-spacing:0}
+.tag3d.gauge .en{font-size:13px;color:#9fd8ff;text-align:center}
+.tag3d.gauge>.in{transform:translateY(-50%)}
+@media (max-width:820px){
+  .ms3d{width:118px}.ms3d .im{height:66px}.ms3d .tx{padding:5px 8px 6px}.ms3d .tx b{font-size:16px}.ms3d .tx span{font-size:10.5px}
+  .tag3d.gauge .cn{font-size:20px}.tag3d.gauge .en{display:block;font-size:11px}
+}
+/* v2.1: hero fits short viewports; hero tour invite yields to the autoplay pill */
+@media (max-height:820px) and (min-width:821px){
+  .hero-title{font-size:clamp(44px,min(7.2vw,11vh),100px);margin:14px 0 8px}
+  .lang-en .hero-title{font-size:clamp(38px,min(5.4vw,8.6vh),84px)}
+  .hero .ap-invite,#hero .ap-invite{display:none}
+}
+@media (max-width:820px){
+  #hero .ap-invite{display:none}
+  #explode .note{display:none}
+  /* flex: bullets step with the 3D scene; inactive bullets collapse to their titles */
+  #flex .points li{transition:color .3s}
+  #flex .points li:not(.on){font-size:0}
+  #flex .points li:not(.on) b{font-size:13px;line-height:1.5}
+  #flex .points li:not(.on):before{top:10px}
+  #flex .points li.on{font-size:12.5px}
+}
+#flex .points li.on b{color:#e6f3ff}
+@media (max-width:820px){#hero .sticky .copy{margin-bottom:calc(84px + env(safe-area-inset-bottom))!important}}
+.spec-g dd,.vm2 p{text-wrap:balance}
+.lang-en .trio b{font-size:14px;white-space:nowrap}@media (max-width:820px){.lang-en .trio b{font-size:11.5px}}
