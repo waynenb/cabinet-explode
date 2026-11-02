@@ -6,6 +6,8 @@
 
 产品介绍：<https://waynenb.github.io/cabinet-explode/site/>
 
+产品介绍支持 `?autoplay=1`（自动播放导览）和 `?lang=en`（英文版，页内也可切换语言）：<https://waynenb.github.io/cabinet-explode/site/?autoplay=1&lang=en>
+
 ## 操作
 
 - **展开 / 合拢**：将柜内组件沿高度方向分开或收回

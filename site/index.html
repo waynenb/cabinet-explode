@@ -1,13 +1,14 @@
 <!DOCTYPE html>
+
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
 <title>Nyx 通用控制系统 · 中控 SUPCON | Universal Control System</title>
-<meta name="description" content="Nyx 通用控制系统（UCS）：极简架构、工业云实时系统、AI-Inside。更灵活、更可靠、更节省、更智能。">
-<meta name="theme-color" content="#05070b">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect rx='7' width='32' height='32' fill='%232f7bff'/%3E%3Cpath d='M4 26c4-12 20-12 24 0' stroke='white' stroke-width='3' fill='none'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="assets/css/style.css">
+<meta content="Nyx 通用控制系统（UCS）：极简架构、工业云实时系统、AI-Inside。更灵活、更可靠、更节省、更智能。" name="description"/>
+<meta content="#05070b" name="theme-color"/>
+<link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect rx='7' width='32' height='32' fill='%232f7bff'/%3E%3Cpath d='M4 26c4-12 20-12 24 0' stroke='white' stroke-width='3' fill='none'/%3E%3C/svg%3E" rel="icon"/>
+<link href="assets/css/style.css" rel="stylesheet"/>
 <script>
   // WebGL capability check + CDN failure fallback (classic script, runs before the module)
   (function () {
@@ -18,7 +19,7 @@
       if (window.__glStarted && !why) return;
       document.documentElement.classList.add('no-webgl');
       var l = document.getElementById('loader'); if (l) l.classList.add('done');
-      if (why && !document.querySelector('.fallback-msg')) { var m = document.createElement('div'); m.className = 'fallback-msg'; m.textContent = '三维场景不可用，已切换为静态版本'; document.body.appendChild(m); }
+      if (why && !document.querySelector('.fallback-msg')) { var m = document.createElement('div'); m.className = 'fallback-msg'; m.textContent = window.__t ? window.__t('三维场景不可用，已切换为静态版本') : '三维场景不可用，已切换为静态版本'; document.body.appendChild(m); }
     };
     setTimeout(function () { if (!window.__glStarted) window.__fallback(); }, 12000);
   })();
@@ -36,352 +37,420 @@
 <div id="gl"></div>
 <div id="labels"></div>
 <div class="vignette"></div>
-
 <nav class="nav" id="nav">
-  <a class="brand" href="#hero"><i class="mk"></i>中控 · SUPCON<small>Nyx UCS</small></a>
-  <ul>
-    <li><a href="#arch">极简架构</a></li>
-    <li><a href="#flex">核心特性</a></li>
-    <li><a href="#ai">AI 控制</a></li>
-    <li><a href="#specs">技术规格</a></li>
-    <li><a href="#case">应用案例</a></li>
-  </ul>
-  <a class="cta" href="#contact">联系我们</a>
+<a class="brand" data-i18n="0" href="#hero"><i class="mk"></i>中控 · SUPCON<small>Nyx UCS</small></a>
+<ul>
+<li><a data-i18n="1" href="#arch">极简架构</a></li>
+<li><a data-i18n="2" href="#flex">核心特性</a></li>
+<li><a data-i18n="3" href="#ai">AI 控制</a></li>
+<li><a data-i18n="4" href="#specs">技术规格</a></li>
+<li><a data-i18n="5" href="#case">应用案例</a></li>
+</ul>
+<a class="cta" data-i18n="6" href="#contact">联系我们</a>
 </nav>
-
 <main>
 <!-- ============ HERO ============ -->
-<section class="s3d" id="hero" data-stage="hero" style="height:170vh">
-  <div class="sticky">
-    <div class="copy">
-      <div class="eyebrow reveal">通用控制系统 UCS</div>
-      <h1 class="hero-title reveal d1"><span class="nm grad">Nyx</span>通用控制系统<span class="en">UNIVERSAL CONTROL SYSTEM</span></h1>
-      <p class="hero-sub reveal d2">迈向无限控制的未来自动化</p>
-      <p class="hero-tag reveal d3">让工业更智能，让客户更成功</p>
-      <div class="btns reveal d4"><a class="btn pri" href="#arch">探索 Nyx</a><a class="btn sec" href="#specs">技术规格</a></div>
-    </div>
-    <div class="fallback fallback-photo"><img src="assets/img/nyx-cabinet.jpg" alt="Nyx 控制数据中心机柜"></div>
-  </div>
-  <div class="scrollhint"><i></i>SCROLL</div>
+<section class="s3d" data-stage="hero" id="hero" style="height:170vh">
+<div class="sticky">
+<div class="copy">
+<div class="eyebrow reveal" data-i18n="7">通用控制系统 UCS</div>
+<h1 class="hero-title reveal d1" data-i18n="8"><span class="nm grad">Nyx</span>通用控制系统<span class="en">UNIVERSAL CONTROL SYSTEM</span></h1>
+<p class="hero-sub reveal d2" data-i18n="9">迈向无限控制的未来自动化</p>
+<p class="hero-tag reveal d3" data-i18n="10">让工业更智能，让客户更成功</p>
+<div class="btns reveal d4"><a class="btn pri" data-i18n="11" href="#arch">探索 Nyx</a><a class="btn sec" data-i18n="4" href="#specs">技术规格</a></div>
+<button aria-label="开始自动播放导览" class="ap-invite reveal d4" data-ap-play="" data-i18n="12" data-i18n-aria-label="176" type="button"><span class="ring"><svg viewbox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"></path></svg></span><span><b>自动播放导览</b><em>Auto Tour · 约 1.5 分钟</em></span></button>
+</div>
+<div class="fallback fallback-photo"><img alt="Nyx 控制数据中心机柜" data-i18n-alt="175" src="assets/img/nyx-cabinet.jpg"/></div>
+</div>
+<div class="scrollhint"><i></i>SCROLL</div>
 </section>
-
 <!-- ============ VALUES ============ -->
-<section class="s3d" id="values" data-stage="values" style="height:160vh">
-  <div class="sticky">
-    <div class="copy">
-      <div class="idx">01 · <b>UCS 核心价值</b></div>
-      <h2 class="h2 reveal">新特征，<br><span class="grad">继承传统。</span></h2>
-      <div class="duo reveal d1">
-        <div><h4>新特征</h4>极简架构，工业云实时系统、云计算、AI-Inside，敏捷、开放、长生命周期</div>
-        <div><h4>继承传统</h4>高可靠，高安全，高稳定、内建网络安全设计</div>
-      </div>
-      <div class="pillars reveal d2">
-        <div><b>01</b>更灵活</div><div><b>02</b>更可靠</div><div><b>03</b>更节省</div><div><b>04</b>更智能</div><div><b>05</b>更人性</div>
-      </div>
-    </div>
-  </div>
+<section class="s3d" data-stage="values" id="values" style="height:160vh">
+<div class="sticky">
+<div class="copy">
+<div class="idx" data-i18n="13">01 · <b>UCS 核心价值</b></div>
+<h2 class="h2 reveal" data-i18n="14">新特征，<br/><span class="grad">继承传统。</span></h2>
+<div class="duo reveal d1">
+<div><h4 data-i18n="15">新特征</h4><span data-i18n="16">极简架构，工业云实时系统、云计算、AI-Inside，敏捷、开放、长生命周期</span></div>
+<div><h4 data-i18n="17">继承传统</h4><span data-i18n="18">高可靠，高安全，高稳定、内建网络安全设计</span></div>
+</div>
+<div class="pillars reveal d2">
+<div data-i18n="19"><b>01</b>更灵活</div><div data-i18n="20"><b>02</b>更可靠</div><div data-i18n="21"><b>03</b>更节省</div><div data-i18n="22"><b>04</b>更智能</div><div data-i18n="23"><b>05</b>更人性</div>
+</div>
+</div>
+</div>
 </section>
-
 <!-- ============ ARCHITECTURE ============ -->
-<section class="s3d" id="arch" data-stage="arch" style="height:240vh">
-  <div class="sticky">
-    <div class="copy">
-      <div class="idx">02 · <b>UCS 极简架构</b></div>
-      <h2 class="h2 reveal">计算 · 连接 · 感知<br><span class="grad">全光网络，直达现场。</span></h2>
-      <p class="lead reveal d1">控制数据中心通过全光工业网，直连 APL / SmartEIO 接线箱与现场仪表，构建全数字化智能现场。</p>
-      <ul class="points reveal d2">
-        <li><b>计算</b> — 控制数据中心</li>
-        <li><b>连接</b> — 全光工业网</li>
-        <li><b>感知</b> — APL / SmartEIO 接线箱 · 仪表</li>
-      </ul>
-      <div class="chips reveal d3"><span class="chip">网络化 I/O 系统</span><span class="chip">APL</span><span class="chip">SmartEIO</span><span class="chip">Wireless</span><span class="chip">Gateway</span><span class="chip">IPv6</span></div>
-    </div>
-  </div>
+<section class="s3d" data-stage="arch" id="arch" style="height:240vh">
+<div class="sticky">
+<div class="copy">
+<div class="idx" data-i18n="24">02 · <b>UCS 极简架构</b></div>
+<h2 class="h2 reveal" data-i18n="25">计算 · 连接 · 感知<br/><span class="grad">全光网络，直达现场。</span></h2>
+<p class="lead reveal d1" data-i18n="26">控制数据中心通过全光工业网，直连 APL / SmartEIO 接线箱与现场仪表，构建全数字化智能现场。</p>
+<ul class="points reveal d2">
+<li data-i18n="27"><b>计算</b> — 控制数据中心</li>
+<li data-i18n="28"><b>连接</b> — 全光工业网</li>
+<li data-i18n="29"><b>感知</b> — APL / SmartEIO 接线箱 · 仪表</li>
+</ul>
+<div class="chips reveal d3" data-i18n="30"><span class="chip">网络化 I/O 系统</span><span class="chip">APL</span><span class="chip">SmartEIO</span><span class="chip">Wireless</span><span class="chip">Gateway</span><span class="chip">IPv6</span></div>
+</div>
+</div>
 </section>
-
 <!-- ============ EXPLODED ============ -->
-<section class="s3d" id="explode" data-stage="explode" style="height:280vh">
-  <div class="sticky">
-    <div class="copy">
-      <div class="idx">03 · <b>控制数据中心</b></div>
-      <h2 class="h2 reveal">高可靠的<br><span class="grad">数据中心。</span></h2>
-      <p class="lead reveal d1">标准机柜交付，支持设计转换。关键部件全面冗余，全数据中心软硬件诊断。</p>
-      <ul class="points reveal d2">
-        <li>关键部件冗余：<b>电源、风扇、硬盘、网卡</b>等</li>
-        <li>环境诊断 · 服务器硬件健康状态</li>
-        <li>NyxOS 关键模块监测及日志审计 · 控制服务的监测守护</li>
-        <li>软件定义存储网络，高容错，自动切除故障硬盘</li>
-      </ul>
-      <div class="kpis reveal d3"><div class="kpi"><div class="v"><span data-count="99.999" data-dec="3">99.999</span><small>%</small></div><div class="l">硬件可用性</div></div></div>
-      <p class="note" style="margin-top:22px">* 三维模型为示意，非实际产品结构</p>
-    </div>
-  </div>
+<section class="s3d" data-stage="explode" id="explode" style="height:280vh">
+<div class="sticky">
+<div class="copy">
+<div class="idx" data-i18n="31">03 · <b>控制数据中心</b></div>
+<h2 class="h2 reveal" data-i18n="32">高可靠的<br/><span class="grad">数据中心。</span></h2>
+<p class="lead reveal d1" data-i18n="33">标准机柜交付，支持设计转换。关键部件全面冗余，全数据中心软硬件诊断。</p>
+<ul class="points reveal d2">
+<li data-i18n="34">关键部件冗余：<b>电源、风扇、硬盘、网卡</b>等</li>
+<li data-i18n="35">环境诊断 · 服务器硬件健康状态</li>
+<li data-i18n="36">NyxOS 关键模块监测及日志审计 · 控制服务的监测守护</li>
+<li data-i18n="37">软件定义存储网络，高容错，自动切除故障硬盘</li>
+</ul>
+<div class="kpis reveal d3"><div class="kpi"><div class="v"><span data-count="99.999" data-dec="3">99.999</span><small>%</small></div><div class="l" data-i18n="38">硬件可用性</div></div></div>
+<p class="note" data-i18n="39" style="margin-top:22px">* 三维模型为示意，非实际产品结构</p>
+</div>
+</div>
 </section>
-
 <!-- ============ FLEX ============ -->
-<section class="s3d" id="flex" data-stage="flex" style="height:260vh">
-  <div class="sticky">
-    <div class="copy">
-      <div class="idx">04 · <b>更灵活</b></div>
-      <h2 class="h2 reveal">便捷扩展，<br><span class="grad">便捷部署。</span></h2>
-      <ul class="points reveal d1">
-        <li><b>操作节点便捷扩展</b> — 操作节点在控制数据中心内为模块化部署，可一键拷贝；定义 IP 后即可在瘦客户端 Web 访问</li>
-        <li><b>现场节点便捷扩展</b> — 机柜间无需新增任何部件；现场完成接线后即可接入全光网络；点位可分配至任意控制服务</li>
-        <li><b>算力便捷扩展</b> — 部署新服务器后一键扩容、自动安装，10 分钟内实现控制数据中心算力、内存以及存储的扩展</li>
-        <li><b>便捷交付、一键部署</b> — 云组态、多人组态；应用仓库快捷部署；无需每一台操作站工程师站升级；无需考虑过多软硬件耦合性</li>
-      </ul>
-      <div class="kpis reveal d2">
-        <div class="kpi"><div class="v"><span data-count="10">10</span><small>分钟内</small></div><div class="l">算力 · 内存 · 存储扩展</div></div>
-        <div class="kpi"><div class="v"><span data-count="60">60</span><small>+ 年</small></div><div class="l">工厂寿命</div></div>
-      </div>
-    </div>
-  </div>
+<section class="s3d" data-stage="flex" id="flex" style="height:260vh">
+<div class="sticky">
+<div class="copy">
+<div class="idx" data-i18n="40">04 · <b>更灵活</b></div>
+<h2 class="h2 reveal" data-i18n="41">便捷扩展，<br/><span class="grad">便捷部署。</span></h2>
+<ul class="points reveal d1">
+<li data-i18n="42"><b>操作节点便捷扩展</b> — 操作节点在控制数据中心内为模块化部署，可一键拷贝；定义 IP 后即可在瘦客户端 Web 访问</li>
+<li data-i18n="43"><b>现场节点便捷扩展</b> — 机柜间无需新增任何部件；现场完成接线后即可接入全光网络；点位可分配至任意控制服务</li>
+<li data-i18n="44"><b>算力便捷扩展</b> — 部署新服务器后一键扩容、自动安装，10 分钟内实现控制数据中心算力、内存以及存储的扩展</li>
+<li data-i18n="45"><b>便捷交付、一键部署</b> — 云组态、多人组态；应用仓库快捷部署；无需每一台操作站工程师站升级；无需考虑过多软硬件耦合性</li>
+</ul>
+<div class="kpis reveal d2">
+<div class="kpi"><div class="v" data-i18n="46"><span data-count="10">10</span><small>分钟内</small></div><div class="l" data-i18n="47">算力 · 内存 · 存储扩展</div></div>
+<div class="kpi"><div class="v" data-i18n="48"><span data-count="60">60</span><small>+ 年</small></div><div class="l" data-i18n="49">工厂寿命</div></div>
+</div>
+</div>
+</div>
 </section>
-
 <!-- ============ RELIABLE ============ -->
-<section class="s3d" id="rel" data-stage="rel" style="height:280vh">
-  <div class="sticky">
-    <div class="copy">
-      <div class="idx">05 · <b>更可靠</b></div>
-      <h2 class="h2 reveal">冗余方式，<br><span class="grad">从 1:1 到 1:N。</span></h2>
-      <p class="lead reveal d1">高可靠、高可用性设计。控制硬件与控制服务均实现 1:N 冗余，监控和协调关键的实时任务。</p>
-      <ul class="points reveal d2">
-        <li><b>单周期无干扰切换</b></li>
-        <li><b>多态冗余</b> — 热 · 温 · 冷</li>
-        <li><b>备用节点按需自动生成</b></li>
-      </ul>
-      <div class="status" id="relStatus"><i></i><span>控制服务 A 运行于 Node0 · 热备 A′ · 冷备 A″</span></div>
-    </div>
-  </div>
+<section class="s3d" data-stage="rel" id="rel" style="height:280vh">
+<div class="sticky">
+<div class="copy">
+<div class="idx" data-i18n="50">05 · <b>更可靠</b></div>
+<h2 class="h2 reveal" data-i18n="51">冗余方式，<br/><span class="grad">从 1:1 到 1:N。</span></h2>
+<p class="lead reveal d1" data-i18n="52">高可靠、高可用性设计。控制硬件与控制服务均实现 1:N 冗余，监控和协调关键的实时任务。</p>
+<ul class="points reveal d2">
+<li data-i18n="53"><b>单周期无干扰切换</b></li>
+<li data-i18n="54"><b>多态冗余</b> — 热 · 温 · 冷</li>
+<li data-i18n="55"><b>备用节点按需自动生成</b></li>
+</ul>
+<div class="status" data-i18n="56" id="relStatus"><i></i><span>控制服务 A 运行于 Node0 · 热备 A′ · 冷备 A″</span></div>
+</div>
+</div>
 </section>
-
 <!-- ============ SAVE ============ -->
-<section class="s3d" id="save" data-stage="save" style="height:260vh">
-  <div class="sticky">
-    <div class="copy">
-      <div class="idx">06 · <b>更节省</b></div>
-      <h2 class="h2 reveal">更少的柜，<br><span class="grad">更少的线。</span></h2>
-      <p class="lead reveal d1">从客户端、控制数据中心，到 SmartEIO / APL 现场接线箱与常规 / APL 现场仪表 —— 传统架构中的 IO 柜、端子板柜、隔离栅柜层级不再出现。</p>
-      <div class="kpis reveal d2" id="saveKpis">
-        <div class="kpi"><div class="v"><span class="live" data-to="90">0</span><small>%↓</small></div><div class="l">机柜空间</div></div>
-        <div class="kpi"><div class="v"><span class="live" data-to="80">0</span><small>%↓</small></div><div class="l">线缆</div></div>
-        <div class="kpi"><div class="v"><span class="live" data-to="50">0</span><small>%↓</small></div><div class="l">项目周期</div></div>
-      </div>
-    </div>
-  </div>
+<section class="s3d" data-stage="save" id="save" style="height:260vh">
+<div class="sticky">
+<div class="copy">
+<div class="idx" data-i18n="57">06 · <b>更节省</b></div>
+<h2 class="h2 reveal" data-i18n="58">更少的柜，<br/><span class="grad">更少的线。</span></h2>
+<p class="lead reveal d1" data-i18n="59">从客户端、控制数据中心，到 SmartEIO / APL 现场接线箱与常规 / APL 现场仪表 —— 传统架构中的 IO 柜、端子板柜、隔离栅柜层级不再出现。</p>
+<div class="kpis reveal d2" id="saveKpis">
+<div class="kpi"><div class="v"><span class="live" data-to="90">0</span><small>%↓</small></div><div class="l" data-i18n="60">机柜空间</div></div>
+<div class="kpi"><div class="v"><span class="live" data-to="80">0</span><small>%↓</small></div><div class="l" data-i18n="61">线缆</div></div>
+<div class="kpi"><div class="v"><span class="live" data-to="50">0</span><small>%↓</small></div><div class="l" data-i18n="62">项目周期</div></div>
+</div>
+</div>
+</div>
 </section>
-
 <!-- ============ AI ============ -->
-<section class="s3d" id="ai" data-stage="ai" style="height:260vh">
-  <div class="sticky">
-    <div class="copy">
-      <div class="idx">07 · <b>更智能</b></div>
-      <h2 class="h2 reveal">Nyx × AI 控制<br><span class="grad">= 提高生产力。</span></h2>
-      <p class="lead reveal d1">GPU 赋能的控制引擎 <b style="color:#fff">NyxEngine</b>。</p>
-      <ul class="points reveal d2">
-        <li><b>AI-PID</b> — 回路级的自主运行</li>
-        <li><b>AI 预测性维护</b> — 设备平台的有效结合</li>
-        <li><b>AI 辅助编程</b> — 工业专用 GenAI</li>
-        <li><b>AI 未来画笔</b> — 回路级数据未来趋势预测</li>
-      </ul>
-    </div>
-  </div>
+<section class="s3d" data-stage="ai" id="ai" style="height:260vh">
+<div class="sticky">
+<div class="copy">
+<div class="idx" data-i18n="63">07 · <b>更智能</b></div>
+<h2 class="h2 reveal" data-i18n="64">Nyx × AI 控制<br/><span class="grad">= 提高生产力。</span></h2>
+<p class="lead reveal d1" data-i18n="65">GPU 赋能的控制引擎 <b style="color:#fff">NyxEngine</b>。</p>
+<ul class="points reveal d2">
+<li data-i18n="66"><b>AI-PID</b> — 回路级的自主运行</li>
+<li data-i18n="67"><b>AI 预测性维护</b> — 设备平台的有效结合</li>
+<li data-i18n="68"><b>AI 辅助编程</b> — 工业专用 GenAI</li>
+<li data-i18n="69"><b>AI 未来画笔</b> — 回路级数据未来趋势预测</li>
+</ul>
+</div>
+</div>
 </section>
 <!-- ============ TECH VALUE ============ -->
 <section class="solid" id="value">
-  <div class="fadein-top"></div>
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="eyebrow">Technology Value</div>
-      <h2 class="h2">UCS 系统的<span class="grad">技术价值</span></h2>
-      <p class="lead">从全数字化智能现场，到统一数据模型、AI-Inside，最终迈向自主运行。</p>
-    </div>
-    <div class="tv">
-      <div class="stackviz reveal d1">
-        <div class="layer top"><div class="big">自主运行</div>
-          <div class="row" style="justify-content:center"><i>自控率</i><i>平稳度</i><i>操作频次</i><i>报警频次</i><i>运维效率</i><i>……</i></div></div>
-        <div class="layer l2"><h5>AI-INSIDE</h5>
-          <div class="row"><i>报警管理</i><i>AI-PID</i><i>AI 报警预测</i><i>态势感知 HMI</i><i>视觉 AI</i><i>IDM</i><i>AI 编程</i></div></div>
-        <div class="layer l3"><h5>OT 数据 <span>OPC UA 信息模型</span></h5>
-          <div class="row"><i>S-DIM 统一数据模型</i></div></div>
-        <div class="layer l4"><h5>网络化 I/O 系统 <span>IPv6</span></h5>
-          <div class="row"><i>APL</i><i>SmartEIO</i><i>Wireless</i><i>Gateway</i></div>
-          <div class="note" style="margin-top:10px;letter-spacing:.2em">全数字化智能现场</div></div>
-      </div>
-      <div class="tv-side">
-        <div class="tv-card reveal d1"><h4>时间序列大模型 TPT</h4><p>智能数据 · 算法 · 算力 → 时间序列大模型 TPT</p></div>
-        <div class="tv-card reveal d2"><h4>智能数据<small>INTELLIGENT DATA</small></h4></div>
-        <div class="tv-card reveal d3"><h4>算法<small>AI ALGORITHM</small></h4></div>
-        <div class="tv-card reveal d4"><h4>算力<small>COMPUTING POWER</small></h4></div>
-      </div>
-    </div>
-  </div>
+<div class="fadein-top"></div>
+<div class="wrap">
+<div class="sec-head reveal">
+<div class="eyebrow">Technology Value</div>
+<h2 class="h2" data-i18n="70">UCS 系统的<span class="grad">技术价值</span></h2>
+<p class="lead" data-i18n="71">从全数字化智能现场，到统一数据模型、AI-Inside，最终迈向自主运行。</p>
+</div>
+<div class="tv">
+<div class="stackviz reveal d1">
+<div class="layer top"><div class="big" data-i18n="72">自主运行</div>
+<div class="row" data-i18n="73" style="justify-content:center"><i>自控率</i><i>平稳度</i><i>操作频次</i><i>报警频次</i><i>运维效率</i><i>……</i></div></div>
+<div class="layer l2"><h5>AI-INSIDE</h5>
+<div class="row" data-i18n="74"><i>报警管理</i><i>AI-PID</i><i>AI 报警预测</i><i>态势感知 HMI</i><i>视觉 AI</i><i>IDM</i><i>AI 编程</i></div></div>
+<div class="layer l3"><h5 data-i18n="75">OT 数据 <span>OPC UA 信息模型</span></h5>
+<div class="row" data-i18n="76"><i>S-DIM 统一数据模型</i></div></div>
+<div class="layer l4"><h5 data-i18n="77">网络化 I/O 系统 <span>IPv6</span></h5>
+<div class="row"><i>APL</i><i>SmartEIO</i><i>Wireless</i><i>Gateway</i></div>
+<div class="note" data-i18n="78" style="margin-top:10px;letter-spacing:.2em">全数字化智能现场</div></div>
+</div>
+<div class="tv-side">
+<div class="tv-card reveal d1"><h4 data-i18n="79">时间序列大模型 TPT</h4><p data-i18n="80">智能数据 · 算法 · 算力 → 时间序列大模型 TPT</p></div>
+<div class="tv-card reveal d2"><h4 data-i18n="81">智能数据<small>INTELLIGENT DATA</small></h4></div>
+<div class="tv-card reveal d3"><h4 data-i18n="82">算法<small>AI ALGORITHM</small></h4></div>
+<div class="tv-card reveal d4"><h4 data-i18n="83">算力<small>COMPUTING POWER</small></h4></div>
+</div>
+</div>
+</div>
 </section>
-
 <!-- ============ PLATFORM ============ -->
 <section class="solid alt" id="platform">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="eyebrow">Platform</div>
-      <h2 class="h2">Universal Control System <span class="grad">(Nyx)</span></h2>
-      <p class="lead">NyxOS — Cloud Base Real-time Control。实时控制、过程监控、应用服务分层构建，零信任网络安全策略贯穿始终；上层融合时间序列大模型 TPT。</p>
-    </div>
-    <div class="arch reveal d1">
-      <div class="tpt">
-        <h5>时间序列大模型 TPT</h5>
-        <div class="row"><span class="cell hl">自主优化</span><span class="cell hl">自主监督</span><span class="cell hl">知识问答</span><span class="cell hl">数据分析</span><span class="cell hl">运行报告</span></div>
-        <div class="row b"><span class="cell">先进控制</span><span class="cell">操作导航</span><span class="cell">报警管理</span><span class="cell">PID 整定</span></div>
-      </div>
-      <div class="nyx">
-        <h5>Universal Control System (Nyx)</h5>
-        <div class="lyr"><span>应用服务</span><div class="cells"><span class="cell">IDM</span><span class="cell">OPC UA</span><span class="cell">历史数据</span></div></div>
-        <div class="lyr"><span>过程监控</span><div class="cells"><span class="cell">高性能 HMI</span><span class="cell">报警 &amp; 事件</span><span class="cell">第三方通信</span></div></div>
-        <div class="lyr"><span>实时控制</span><div class="cells"><span class="cell">IEC 61131-3</span><span class="cell">AI-PID</span><span class="cell">AI-ST</span></div></div>
-        <div class="os">NyxOS — Cloud Base Real-time Control</div>
-        <div class="io"><span class="cell">APL</span><span class="cell">SmartEIO</span><span class="cell">I/O</span></div>
-      </div>
-      <div class="zt">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#38d39f" stroke-width="1.5"><path d="M12 2l8 3v6c0 5-3.4 9.3-8 11-4.6-1.7-8-6-8-11V5l8-3z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>
-        零信任网络<br>安全策略<small>网络安全<br>防护体系</small>
-      </div>
-    </div>
-  </div>
+<div class="wrap">
+<div class="sec-head reveal">
+<div class="eyebrow">Platform</div>
+<h2 class="h2">Universal Control System <span class="grad">(Nyx)</span></h2>
+<p class="lead" data-i18n="84">NyxOS — Cloud Base Real-time Control。实时控制、过程监控、应用服务分层构建，零信任网络安全策略贯穿始终；上层融合时间序列大模型 TPT。</p>
+</div>
+<div class="arch reveal d1">
+<div class="tpt">
+<h5 data-i18n="79">时间序列大模型 TPT</h5>
+<div class="row" data-i18n="85"><span class="cell hl">自主优化</span><span class="cell hl">自主监督</span><span class="cell hl">知识问答</span><span class="cell hl">数据分析</span><span class="cell hl">运行报告</span></div>
+<div class="row b" data-i18n="86"><span class="cell">先进控制</span><span class="cell">操作导航</span><span class="cell">报警管理</span><span class="cell">PID 整定</span></div>
+</div>
+<div class="nyx">
+<h5>Universal Control System (Nyx)</h5>
+<div class="lyr"><span data-i18n="87">应用服务</span><div class="cells" data-i18n="88"><span class="cell">IDM</span><span class="cell">OPC UA</span><span class="cell">历史数据</span></div></div>
+<div class="lyr"><span data-i18n="89">过程监控</span><div class="cells" data-i18n="90"><span class="cell">高性能 HMI</span><span class="cell">报警 &amp; 事件</span><span class="cell">第三方通信</span></div></div>
+<div class="lyr"><span data-i18n="91">实时控制</span><div class="cells"><span class="cell">IEC 61131-3</span><span class="cell">AI-PID</span><span class="cell">AI-ST</span></div></div>
+<div class="os">NyxOS — Cloud Base Real-time Control</div>
+<div class="io"><span class="cell">APL</span><span class="cell">SmartEIO</span><span class="cell">I/O</span></div>
+</div>
+<div class="zt" data-i18n="92">
+<svg fill="none" stroke="#38d39f" stroke-width="1.5" viewbox="0 0 24 24"><path d="M12 2l8 3v6c0 5-3.4 9.3-8 11-4.6-1.7-8-6-8-11V5l8-3z"></path><path d="M8.5 12l2.5 2.5 4.5-5"></path></svg>
+        零信任网络<br/>安全策略<small>网络安全<br/>防护体系</small>
+</div>
+</div>
+</div>
 </section>
-
 <!-- ============ SPECS ============ -->
 <section class="solid" id="specs">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="eyebrow">Specifications</div>
-      <h2 class="h2">关键数据与<span class="grad">技术规格</span></h2>
-    </div>
-    <div class="kgrid reveal d1">
-      <div><div class="v"><span data-count="99.999" data-dec="3">99.999</span><small>%</small></div><div><div class="l">硬件可用性</div><div class="s">关键部件冗余</div></div></div>
-      <div><div class="v">1:N</div><div><div class="l">控制冗余方式</div><div class="s">由 1:1 转化为 1:N</div></div></div>
-      <div><div class="v"><span data-count="10">10</span><small>分钟内</small></div><div><div class="l">一键扩容</div><div class="s">算力、内存以及存储的扩展</div></div></div>
-      <div><div class="v"><span data-count="60">60</span><small>+ 年</small></div><div><div class="l">工厂寿命</div><div class="s">控制服务 · Nyx 系统 · 服务器硬件</div></div></div>
-      <div><div class="v dn"><span data-count="90">90</span><small>%</small></div><div><div class="l">机柜空间</div><div class="s">更节省</div></div></div>
-      <div><div class="v dn"><span data-count="80">80</span><small>%</small></div><div><div class="l">线缆</div><div class="s">更节省</div></div></div>
-      <div><div class="v dn"><span data-count="50">50</span><small>%</small></div><div><div class="l">项目周期</div><div class="s">更节省</div></div></div>
-      <div><div class="v">GPU</div><div><div class="l">控制引擎 NyxEngine</div><div class="s">GPU 赋能</div></div></div>
-    </div>
-    <table class="spec reveal d2">
-      <tr><th>系统架构</th><td>极简架构：控制数据中心 + 全光工业网 + APL / SmartEIO 现场接线箱 + 现场仪表</td></tr>
-      <tr><th>系统平台</th><td>NyxOS — Cloud Base Real-time Control；工业云实时系统、云计算、AI-Inside</td></tr>
-      <tr><th>控制引擎</th><td>GPU 赋能的控制引擎 NyxEngine</td></tr>
-      <tr><th>实时控制</th><td>IEC 61131-3 · AI-PID · AI-ST · C++ / Python</td></tr>
-      <tr><th>过程监控</th><td>高性能 HMI · 报警 &amp; 事件 · 历史趋势 · 第三方通信</td></tr>
-      <tr><th>应用服务</th><td>IDM · OPC UA · 历史数据 · 全域诊断 · AI-Inside Apps</td></tr>
-      <tr><th>冗余设计</th><td>控制硬件 <em>1:N</em> 冗余、控制服务 <em>1:N</em> 冗余；单周期无干扰切换；多态冗余（热 / 温 / 冷）；备用节点按需自动生成</td></tr>
-      <tr><th>可用性</th><td>硬件可用性达 <em>99.999%</em>；关键部件冗余：电源、风扇、硬盘、网卡等</td></tr>
-      <tr><th>诊断</th><td>环境诊断；服务器硬件健康状态；NyxOS 关键模块监测及日志审计；控制服务的监测守护</td></tr>
-      <tr><th>存储</th><td>软件定义存储网络，高容错；自动切除故障硬盘</td></tr>
-      <tr><th>现场 I/O</th><td>网络化 I/O 系统：APL · SmartEIO · Wireless · Gateway；IPv6；全光网络接入</td></tr>
-      <tr><th>数据模型</th><td>S-DIM 统一数据模型；OPC UA 信息模型</td></tr>
-      <tr><th>网络安全</th><td>零信任网络安全策略；内建网络安全设计</td></tr>
-      <tr><th>访问方式</th><td>瘦客户端 Web 访问；客户端 · 移动设备</td></tr>
-      <tr><th>工程与交付</th><td>标准机柜交付，支持设计转换；云组态、多人组态；应用仓库快捷部署</td></tr>
-      <tr><th>AI 能力</th><td>AI-PID · AI 预测性维护 · AI 辅助编程 · AI 未来画笔；时间序列大模型 TPT</td></tr>
-    </table>
-  </div>
+<div class="wrap">
+<div class="sec-head reveal">
+<div class="eyebrow">Specifications</div>
+<h2 class="h2" data-i18n="93">关键数据与<span class="grad">技术规格</span></h2>
+</div>
+<div class="kgrid reveal d1">
+<div><div class="v"><span data-count="99.999" data-dec="3">99.999</span><small>%</small></div><div><div class="l" data-i18n="38">硬件可用性</div><div class="s" data-i18n="94">关键部件冗余</div></div></div>
+<div><div class="v">1:N</div><div><div class="l" data-i18n="95">控制冗余方式</div><div class="s" data-i18n="96">由 1:1 转化为 1:N</div></div></div>
+<div><div class="v" data-i18n="46"><span data-count="10">10</span><small>分钟内</small></div><div><div class="l" data-i18n="97">一键扩容</div><div class="s" data-i18n="98">算力、内存以及存储的扩展</div></div></div>
+<div><div class="v" data-i18n="48"><span data-count="60">60</span><small>+ 年</small></div><div><div class="l" data-i18n="49">工厂寿命</div><div class="s" data-i18n="99">控制服务 · Nyx 系统 · 服务器硬件</div></div></div>
+<div><div class="v dn"><span data-count="90">90</span><small>%</small></div><div><div class="l" data-i18n="60">机柜空间</div><div class="s" data-i18n="100">更节省</div></div></div>
+<div><div class="v dn"><span data-count="80">80</span><small>%</small></div><div><div class="l" data-i18n="61">线缆</div><div class="s" data-i18n="100">更节省</div></div></div>
+<div><div class="v dn"><span data-count="50">50</span><small>%</small></div><div><div class="l" data-i18n="62">项目周期</div><div class="s" data-i18n="100">更节省</div></div></div>
+<div><div class="v">GPU</div><div><div class="l" data-i18n="101">控制引擎 NyxEngine</div><div class="s" data-i18n="102">GPU 赋能</div></div></div>
+</div>
+<table class="spec reveal d2">
+<tr><th data-i18n="103">系统架构</th><td data-i18n="104">极简架构：控制数据中心 + 全光工业网 + APL / SmartEIO 现场接线箱 + 现场仪表</td></tr>
+<tr><th data-i18n="105">系统平台</th><td data-i18n="106">NyxOS — Cloud Base Real-time Control；工业云实时系统、云计算、AI-Inside</td></tr>
+<tr><th data-i18n="107">控制引擎</th><td data-i18n="108">GPU 赋能的控制引擎 NyxEngine</td></tr>
+<tr><th data-i18n="91">实时控制</th><td>IEC 61131-3 · AI-PID · AI-ST · C++ / Python</td></tr>
+<tr><th data-i18n="89">过程监控</th><td data-i18n="109">高性能 HMI · 报警 &amp; 事件 · 历史趋势 · 第三方通信</td></tr>
+<tr><th data-i18n="87">应用服务</th><td data-i18n="110">IDM · OPC UA · 历史数据 · 全域诊断 · AI-Inside Apps</td></tr>
+<tr><th data-i18n="111">冗余设计</th><td data-i18n="112">控制硬件 <em>1:N</em> 冗余、控制服务 <em>1:N</em> 冗余；单周期无干扰切换；多态冗余（热 / 温 / 冷）；备用节点按需自动生成</td></tr>
+<tr><th data-i18n="113">可用性</th><td data-i18n="114">硬件可用性达 <em>99.999%</em>；关键部件冗余：电源、风扇、硬盘、网卡等</td></tr>
+<tr><th data-i18n="115">诊断</th><td data-i18n="116">环境诊断；服务器硬件健康状态；NyxOS 关键模块监测及日志审计；控制服务的监测守护</td></tr>
+<tr><th data-i18n="117">存储</th><td data-i18n="118">软件定义存储网络，高容错；自动切除故障硬盘</td></tr>
+<tr><th data-i18n="119">现场 I/O</th><td data-i18n="120">网络化 I/O 系统：APL · SmartEIO · Wireless · Gateway；IPv6；全光网络接入</td></tr>
+<tr><th data-i18n="121">数据模型</th><td data-i18n="122">S-DIM 统一数据模型；OPC UA 信息模型</td></tr>
+<tr><th data-i18n="123">网络安全</th><td data-i18n="124">零信任网络安全策略；内建网络安全设计</td></tr>
+<tr><th data-i18n="125">访问方式</th><td data-i18n="126">瘦客户端 Web 访问；客户端 · 移动设备</td></tr>
+<tr><th data-i18n="127">工程与交付</th><td data-i18n="128">标准机柜交付，支持设计转换；云组态、多人组态；应用仓库快捷部署</td></tr>
+<tr><th data-i18n="129">AI 能力</th><td data-i18n="130">AI-PID · AI 预测性维护 · AI 辅助编程 · AI 未来画笔；时间序列大模型 TPT</td></tr>
+</table>
+</div>
 </section>
-
 <!-- ============ CASE ============ -->
 <section class="solid alt" id="case">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="eyebrow">Case Study</div>
-      <h2 class="h2">某氯碱公司<br><span class="grad">数字化工厂示范项目</span></h2>
-    </div>
-    <div class="case">
-      <div class="case-hero reveal d1">
-        <h3>工业 AI + 自主运行</h3>
-        <div class="prod"><span><b>30</b>万吨 氯碱</span><span><b>3.5</b>万吨 钾碱</span><span><b>7.5</b>万吨 双氧水和 TMAH</span><span>共计 <b data-count="15000">15000</b>点</span></div>
-        <div class="big">
-          <div><div class="v"><span data-count="60">60</span>%</div><div class="l">降低建设成本</div></div>
-          <div><div class="v"><span data-count="67">67</span>%</div><div class="l">提升人效</div></div>
-        </div>
-      </div>
-      <div class="case-list">
-        <div class="it reveal d2"><h4>全面规模应用</h4><p>首个<b>万点以上</b>规模 UCS 项目</p></div>
-        <div class="it reveal d3"><h4>融合应用</h4><p>UCS + TPT 融合应用，更智能、更节省</p></div>
-        <div class="it reveal d4"><h4>广泛的适配场景</h4><p>进口系统全面替代：<b>7000</b> 点西门子、<b>4000</b> 点艾默生</p></div>
-        <div class="it reveal d5"><h4>数据基座</h4><p>融合“运行、设备、质量、模拟”四大数据基座</p></div>
-      </div>
-    </div>
-  </div>
+<div class="wrap">
+<div class="sec-head reveal">
+<div class="eyebrow">Case Study</div>
+<h2 class="h2" data-i18n="131">某氯碱公司<br/><span class="grad">数字化工厂示范项目</span></h2>
+</div>
+<div class="case">
+<div class="case-hero reveal d1">
+<h3 data-i18n="132">工业 AI + 自主运行</h3>
+<div class="prod" data-i18n="133"><span><b>30</b>万吨 氯碱</span><span><b>3.5</b>万吨 钾碱</span><span><b>7.5</b>万吨 双氧水和 TMAH</span><span>共计 <b data-count="15000">15000</b>点</span></div>
+<div class="big">
+<div><div class="v"><span data-count="60">60</span>%</div><div class="l" data-i18n="134">降低建设成本</div></div>
+<div><div class="v"><span data-count="67">67</span>%</div><div class="l" data-i18n="135">提升人效</div></div>
+</div>
+</div>
+<div class="case-list">
+<div class="it reveal d2"><h4 data-i18n="136">全面规模应用</h4><p data-i18n="137">首个<b>万点以上</b>规模 UCS 项目</p></div>
+<div class="it reveal d3"><h4 data-i18n="138">融合应用</h4><p data-i18n="139">UCS + TPT 融合应用，更智能、更节省</p></div>
+<div class="it reveal d4"><h4 data-i18n="140">广泛的适配场景</h4><p data-i18n="141">进口系统全面替代：<b>7000</b> 点西门子、<b>4000</b> 点艾默生</p></div>
+<div class="it reveal d5"><h4 data-i18n="142">数据基座</h4><p data-i18n="143">融合“运行、设备、质量、模拟”四大数据基座</p></div>
+</div>
+</div>
+</div>
 </section>
-
 <!-- ============ HERITAGE ============ -->
 <section class="solid" id="heritage">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="eyebrow">Heritage</div>
-      <h2 class="h2">中控控制系统<span class="grad">里程碑</span></h2>
-    </div>
-    <div class="timeline reveal d1">
-      <div class="tl"><div class="img"></div><div class="dot"></div><div class="y">1993</div><div class="n">JX-100</div></div>
-      <div class="tl"><div class="img"><img src="assets/img/jx-300x.jpg" alt="JX-300X" loading="lazy"></div><div class="dot"></div><div class="y">1996</div><div class="n">JX-300X</div></div>
-      <div class="tl"><div class="img"><img src="assets/img/ecs-100.jpg" alt="ECS-100" loading="lazy"></div><div class="dot"></div><div class="y">2001</div><div class="n">ECS-100</div></div>
-      <div class="tl"><div class="img"><img src="assets/img/jx-300xp.jpg" alt="JX-300XP" loading="lazy"></div><div class="dot"></div><div class="y">2005</div><div class="n">JX-300XP</div></div>
-      <div class="tl"><div class="img"><img src="assets/img/ecs-700.jpg" alt="ECS-700" loading="lazy"></div><div class="dot"></div><div class="y">2007</div><div class="n">ECS-700</div></div>
-      <div class="tl"><div class="img"><img src="assets/img/omc.jpg" alt="OMC" loading="lazy"></div><div class="dot"></div><div class="y">2021</div><div class="n">OMC · SmartEIO、APL</div></div>
-      <div class="tl now"><div class="img"><img src="assets/img/nyx-2024.jpg" alt="Nyx" loading="lazy"></div><div class="dot"></div><div class="y">2024</div><div class="n">Nyx</div></div>
-    </div>
-    <div class="stats">
-      <div class="stat reveal"><div class="v"><span data-count="30000">30,000</span><small>+ 家</small></div><div class="l">为超过 30,000 家企业提供服务</div></div>
-      <div class="stat reveal d1"><div class="v">No.1</div><div class="l">自 2011 年以来，中国市场占有率第一</div></div>
-      <div class="stat reveal d2"><div class="v"><span data-count="56.3" data-dec="1">56.3</span><small>%</small></div><div class="l">化工 · 中国工业市场份额</div></div>
-      <div class="stat reveal d3"><div class="v"><span data-count="49.3" data-dec="1">49.3</span><small>%</small></div><div class="l">石油 · 中国工业市场份额</div></div>
-    </div>
-    <p class="muted reveal" style="margin-top:28px;font-size:14px">18 套千万吨级炼油项目和 28 套大型乙烯项目</p>
-    <div class="sec-head reveal" style="margin:110px 0 0">
-      <div class="eyebrow">Trends</div>
-      <h2 class="h2" style="font-size:clamp(26px,3vw,40px)">工业控制系统的发展趋势</h2>
-      <p class="lead">建设“更智能、更高效生产”的智慧工厂。</p>
-    </div>
-    <div class="trends reveal d1">
-      <div>从封闭式系统<b>向开放式系统</b></div>
-      <div>从单机<b>到虚拟化集群控制</b></div>
-      <div>从传统架构<b>向数字化、智能化、网络化</b></div>
-      <div>从传统感知<b>到图像识别智能决策</b></div>
-      <div>从传统 UI<b>到 Web 化展示千人千面</b></div>
-      <div>从单装置监控<b>到管控一体化集成</b></div>
-      <div>从传统的数据采集展示<b>到数字孪生</b></div>
-      <div>从设备维护<b>到预测性维修</b></div>
-      <div>从传统经验知识模型<b>到 AI 大模型</b></div>
-    </div>
-  </div>
+<div class="wrap">
+<div class="sec-head reveal">
+<div class="eyebrow">Heritage</div>
+<h2 class="h2" data-i18n="144">中控控制系统<span class="grad">里程碑</span></h2>
+</div>
+<div class="timeline reveal d1">
+<div class="tl"><div class="img"></div><div class="dot"></div><div class="y">1993</div><div class="n">JX-100</div></div>
+<div class="tl"><div class="img"><img alt="JX-300X" loading="lazy" src="assets/img/jx-300x.jpg"/></div><div class="dot"></div><div class="y">1996</div><div class="n">JX-300X</div></div>
+<div class="tl"><div class="img"><img alt="ECS-100" loading="lazy" src="assets/img/ecs-100.jpg"/></div><div class="dot"></div><div class="y">2001</div><div class="n">ECS-100</div></div>
+<div class="tl"><div class="img"><img alt="JX-300XP" loading="lazy" src="assets/img/jx-300xp.jpg"/></div><div class="dot"></div><div class="y">2005</div><div class="n">JX-300XP</div></div>
+<div class="tl"><div class="img"><img alt="ECS-700" loading="lazy" src="assets/img/ecs-700.jpg"/></div><div class="dot"></div><div class="y">2007</div><div class="n">ECS-700</div></div>
+<div class="tl"><div class="img"><img alt="OMC" loading="lazy" src="assets/img/omc.jpg"/></div><div class="dot"></div><div class="y">2021</div><div class="n" data-i18n="145">OMC · SmartEIO、APL</div></div>
+<div class="tl now"><div class="img"><img alt="Nyx" loading="lazy" src="assets/img/nyx-2024.jpg"/></div><div class="dot"></div><div class="y">2024</div><div class="n">Nyx</div></div>
+</div>
+<div class="stats">
+<div class="stat reveal"><div class="v" data-i18n="146"><span data-count="30000">30,000</span><small>+ 家</small></div><div class="l" data-i18n="147">为超过 30,000 家企业提供服务</div></div>
+<div class="stat reveal d1"><div class="v">No.1</div><div class="l" data-i18n="148">自 2011 年以来，中国市场占有率第一</div></div>
+<div class="stat reveal d2"><div class="v"><span data-count="56.3" data-dec="1">56.3</span><small>%</small></div><div class="l" data-i18n="149">化工 · 中国工业市场份额</div></div>
+<div class="stat reveal d3"><div class="v"><span data-count="49.3" data-dec="1">49.3</span><small>%</small></div><div class="l" data-i18n="150">石油 · 中国工业市场份额</div></div>
+</div>
+<p class="muted reveal" data-i18n="151" style="margin-top:28px;font-size:14px">18 套千万吨级炼油项目和 28 套大型乙烯项目</p>
+<div class="sec-head reveal" style="margin:110px 0 0">
+<div class="eyebrow">Trends</div>
+<h2 class="h2" data-i18n="152" style="font-size:clamp(26px,3vw,40px)">工业控制系统的发展趋势</h2>
+<p class="lead" data-i18n="153">建设“更智能、更高效生产”的智慧工厂。</p>
+</div>
+<div class="trends reveal d1">
+<div data-i18n="154">从封闭式系统<b>向开放式系统</b></div>
+<div data-i18n="155">从单机<b>到虚拟化集群控制</b></div>
+<div data-i18n="156">从传统架构<b>向数字化、智能化、网络化</b></div>
+<div data-i18n="157">从传统感知<b>到图像识别智能决策</b></div>
+<div data-i18n="158">从传统 UI<b>到 Web 化展示千人千面</b></div>
+<div data-i18n="159">从单装置监控<b>到管控一体化集成</b></div>
+<div data-i18n="160">从传统的数据采集展示<b>到数字孪生</b></div>
+<div data-i18n="161">从设备维护<b>到预测性维修</b></div>
+<div data-i18n="162">从传统经验知识模型<b>到 AI 大模型</b></div>
+</div>
+</div>
 </section>
-
 <!-- ============ CLOSING ============ -->
 <section class="closing" id="contact">
-  <div class="arc"></div>
-  <div class="wrap" style="position:relative">
-    <div class="eyebrow reveal">中控 · SUPCON</div>
-    <h2 class="reveal d1" style="margin-top:20px">让工业更智能，<br><span class="grad">让客户更成功。</span></h2>
-    <div class="vm">
-      <div class="reveal d1"><h4>愿景</h4><p>成为工业AI全球领先企业，用AI推动工业可持续发展</p></div>
-      <div class="reveal d2"><h4>使命</h4><p>让工业更智能，让客户更成功</p></div>
-      <div class="reveal d3"><h4>价值观</h4><p>客户至上、合作创新、自律诚信、自我驱动</p></div>
-      <div class="reveal d4"><h4>员工理念</h4><p>开心、充实、有价值、受尊重</p></div>
-    </div>
-    <div class="contact reveal">
-      <div style="font-size:20px;font-weight:500">了解 Nyx 通用控制系统</div>
-      <a class="btn pri" href="#contact" onclick="return false">联系我们</a>
-      <div class="ph">联系方式待补充 · Contact details placeholder</div>
-    </div>
-  </div>
+<div class="arc"></div>
+<div class="wrap" style="position:relative">
+<div class="eyebrow reveal" data-i18n="163">中控 · SUPCON</div>
+<h2 class="reveal d1" data-i18n="164" style="margin-top:20px">让工业更智能，<br/><span class="grad">让客户更成功。</span></h2>
+<div class="vm">
+<div class="reveal d1"><h4 data-i18n="165">愿景</h4><p data-i18n="166">成为工业AI全球领先企业，用AI推动工业可持续发展</p></div>
+<div class="reveal d2"><h4 data-i18n="167">使命</h4><p data-i18n="10">让工业更智能，让客户更成功</p></div>
+<div class="reveal d3"><h4 data-i18n="168">价值观</h4><p data-i18n="169">客户至上、合作创新、自律诚信、自我驱动</p></div>
+<div class="reveal d4"><h4 data-i18n="170">员工理念</h4><p data-i18n="171">开心、充实、有价值、受尊重</p></div>
+</div>
+<div class="contact reveal">
+<div data-i18n="172" style="font-size:20px;font-weight:500">了解 Nyx 通用控制系统</div>
+<a class="btn pri" data-i18n="6" href="#contact" onclick="return false">联系我们</a>
+<div class="ph" data-i18n="173">联系方式待补充 · Contact details placeholder</div>
+</div>
+</div>
 </section>
 </main>
 <footer>
-  <div class="wrap">
-    <span>中控 · SUPCON — Nyx 通用控制系统</span>
-    <span class="stock">股票代码：688777.SH ｜ SUPCON.SW</span>
-  </div>
+<div class="wrap" data-i18n="174">
+<span>中控 · SUPCON — Nyx 通用控制系统</span>
+<span class="stock">股票代码：688777.SH ｜ SUPCON.SW</span>
+</div>
 </footer>
-
 <script>
+window.__I18N_EN = ["<i class=\"mk\"></i>SUPCON<small>Nyx UCS</small>", "Architecture", "Key Features", "AI Control", "Specifications", "Case Study", "Contact Us", "Universal Control System · UCS", "<span class=\"nm grad\">Nyx</span>Universal Control System<span class=\"en\">UCS · SUPCON</span>", "Toward the future of automation with infinite control", "Making industry smarter, making customers more successful", "Explore Nyx", "<span class=\"ring\"><svg viewBox=\"0 0 24 24\"><path d=\"M8 5.5v13l11-6.5z\"></path></svg></span><span><b>Start the Auto Tour</b><em>Auto Tour · approx. 1.5 min</em></span>", "01 · <b>UCS Core Values</b>", "New capabilities,<br/><span class=\"grad\">proven heritage.</span>", "New capabilities", "Simplified architecture, industrial cloud real-time system, cloud computing, AI-Inside; agile, open, long lifecycle", "Proven heritage", "High reliability, high security, high stability, built-in cybersecurity design", "<b>01</b>Flexible", "<b>02</b>Reliable", "<b>03</b>Efficient", "<b>04</b>Intelligent", "<b>05</b>Human-centric", "02 · <b>UCS Simplified Architecture</b>", "Compute. Connect. Sense.<br/><span class=\"grad\">All-optical, straight to the field.</span>", "The control data center connects directly to APL / SmartEIO junction boxes and field instruments over an all-optical industrial network, building a fully digital, intelligent field.", "<b>Compute</b> — Control data center", "<b>Connect</b> — All-optical industrial network", "<b>Sense</b> — APL / SmartEIO junction boxes · Instruments", "<span class=\"chip\">Networked I/O System</span><span class=\"chip\">APL</span><span class=\"chip\">SmartEIO</span><span class=\"chip\">Wireless</span><span class=\"chip\">Gateway</span><span class=\"chip\">IPv6</span>", "03 · <b>Control Data Center</b>", "A highly reliable<br/><span class=\"grad\">data center.</span>", "Delivered in standard cabinets, with support for design conversion. Full redundancy of key components, and hardware and software diagnostics across the entire data center.", "Key component redundancy: <b>power supplies, fans, hard drives, NICs</b>, and more", "Environmental diagnostics · Server hardware health status", "Monitoring and log auditing of key NyxOS modules · Supervision of control services", "Software-defined storage network, highly fault-tolerant, with automatic isolation of failed drives", "Hardware availability", "* 3D model is illustrative and does not represent the actual product structure", "04 · <b>Flexible</b>", "Easy to expand,<br/><span class=\"grad\">easy to deploy.</span>", "<b>Easy expansion of operator nodes</b> — Operator nodes are deployed modularly inside the control data center and can be cloned in one click; once an IP is defined, they are accessible via web on a thin client", "<b>Easy expansion of field nodes</b> — No additional components are needed between cabinets; once wired on site, nodes join the all-optical network, and points can be assigned to any control service", "<b>Easy expansion of computing power</b> — After a new server is deployed, one-click expansion and automatic installation scale the control data center's compute, memory and storage within 10 minutes", "<b>Easy delivery, one-click deployment</b> — Cloud engineering and multi-user engineering; fast deployment from the application repository; no need to upgrade every operator and engineering station; minimal concern over hardware–software coupling", "<span data-count=\"10\">10</span><small>min</small>", "Compute · Memory · Storage expansion", "<span data-count=\"60\">60</span><small>+ yrs</small>", "Plant lifecycle", "05 · <b>Reliable</b>", "Redundancy,<br/><span class=\"grad\">from 1:1 to 1:N.</span>", "Designed for high reliability and high availability. Both control hardware and control services achieve 1:N redundancy, monitoring and coordinating critical real-time tasks.", "<b>Bumpless single-cycle switchover</b>", "<b>Multi-state redundancy</b> — Hot · Warm · Cold", "<b>Standby nodes generated automatically on demand</b>", "<i></i><span>Control service A runs on Node0 · Hot standby A′ · Cold standby A″</span>", "06 · <b>Efficient</b>", "Fewer cabinets,<br/><span class=\"grad\">less cabling.</span>", "From clients and the control data center to SmartEIO / APL field junction boxes and conventional / APL field instruments — the IO cabinet, terminal board cabinet and isolation barrier cabinet layers of traditional architectures are gone.", "Cabinet space", "Cabling", "Project schedule", "07 · <b>Intelligent</b>", "Nyx × AI control<br/><span class=\"grad\">= higher productivity.</span>", "The GPU-powered control engine <b style=\"color:#fff\">NyxEngine</b>.", "<b>AI-PID</b> — Loop-level autonomous operation", "<b>AI predictive maintenance</b> — Effective integration with equipment platforms", "<b>AI-assisted programming</b> — Industry-specific GenAI", "<b>AI Future Brush</b> — Future trend prediction of loop-level data", "The technology value<span class=\"grad\"> of UCS</span>", "From a fully digital, intelligent field, to a unified data model and AI-Inside, and ultimately to autonomous operation.", "Autonomous operation", "<i>Automatic control rate</i><i>Stability</i><i>Operation frequency</i><i>Alarm frequency</i><i>O&amp;M efficiency</i><i>…</i>", "<i>Alarm management</i><i>AI-PID</i><i>AI alarm prediction</i><i>Situational awareness HMI</i><i>Vision AI</i><i>IDM</i><i>AI programming</i>", "OT data <span>OPC UA information model</span>", "<i>S-DIM unified data model</i>", "Networked I/O system <span>IPv6</span>", "Fully digital, intelligent field", "Time-series foundation model TPT", "Intelligent data · Algorithms · Computing power → time-series foundation model TPT", "Intelligent data<small>INTELLIGENT DATA</small>", "Algorithms<small>AI ALGORITHM</small>", "Computing power<small>COMPUTING POWER</small>", "NyxOS — Cloud Base Real-time Control. Real-time control, process monitoring and application services are built in layers, with a zero-trust network security strategy throughout; the time-series foundation model TPT is integrated on top.", "<span class=\"cell hl\">Autonomous optimization</span><span class=\"cell hl\">Autonomous supervision</span><span class=\"cell hl\">Knowledge Q&amp;A</span><span class=\"cell hl\">Data analysis</span><span class=\"cell hl\">Operation reports</span>", "<span class=\"cell\">Advanced control</span><span class=\"cell\">Operation navigation</span><span class=\"cell\">Alarm management</span><span class=\"cell\">PID tuning</span>", "Application services", "<span class=\"cell\">IDM</span><span class=\"cell\">OPC UA</span><span class=\"cell\">Historical data</span>", "Process monitoring", "<span class=\"cell\">High-performance HMI</span><span class=\"cell\">Alarms &amp; events</span><span class=\"cell\">Third-party communication</span>", "Real-time control", "<svg fill=\"none\" stroke=\"#38d39f\" stroke-width=\"1.5\" viewBox=\"0 0 24 24\"><path d=\"M12 2l8 3v6c0 5-3.4 9.3-8 11-4.6-1.7-8-6-8-11V5l8-3z\"></path><path d=\"M8.5 12l2.5 2.5 4.5-5\"></path></svg> Zero-trust network<br/>security strategy<small>Network security<br/>protection</small>", "Key figures &amp;<span class=\"grad\"> specifications</span>", "Key component redundancy", "Control redundancy", "From 1:1 to 1:N", "One-click expansion", "Compute, memory and storage expansion", "Control services · Nyx system · Server hardware", "Efficient", "Control engine NyxEngine", "GPU-powered", "Architecture", "Simplified architecture: control data center + all-optical industrial network + APL / SmartEIO field junction boxes + field instruments", "Platform", "NyxOS — Cloud Base Real-time Control; industrial cloud real-time system, cloud computing, AI-Inside", "Control engine", "GPU-powered control engine NyxEngine", "High-performance HMI · Alarms &amp; events · Historical trends · Third-party communication", "IDM · OPC UA · Historical data · Plant-wide diagnostics · AI-Inside Apps", "Redundancy", "<em>1:N</em> redundancy for control hardware and <em>1:N</em> for control services; bumpless single-cycle switchover; multi-state redundancy (hot / warm / cold); standby nodes generated automatically on demand", "Availability", "Hardware availability of <em>99.999%</em>; key component redundancy: power supplies, fans, hard drives, NICs, and more", "Diagnostics", "Environmental diagnostics; server hardware health status; monitoring and log auditing of key NyxOS modules; supervision of control services", "Storage", "Software-defined storage network, highly fault-tolerant; automatic isolation of failed drives", "Field I/O", "Networked I/O system: APL · SmartEIO · Wireless · Gateway; IPv6; all-optical network access", "Data model", "S-DIM unified data model; OPC UA information model", "Cybersecurity", "Zero-trust network security strategy; built-in cybersecurity design", "Access", "Web access via thin client; clients · mobile devices", "Engineering &amp; delivery", "Delivered in standard cabinets with support for design conversion; cloud engineering, multi-user engineering; fast deployment from the application repository", "AI capabilities", "AI-PID · AI predictive maintenance · AI-assisted programming · AI Future Brush; time-series foundation model TPT", "A chlor-alkali company<br/><span class=\"grad\">digital factory showcase</span>", "Industrial AI + autonomous operation", "<span><b>300,000</b> t chlor-alkali</span><span><b>35,000</b> t potash</span><span><b>75,000</b> t hydrogen peroxide &amp; TMAH</span><span><b data-count=\"15000\">15,000</b> points in total</span>", "Lower construction cost", "Higher staff productivity", "Full-scale deployment", "The first UCS project with <b>more than 10,000 points</b>", "Integrated application", "UCS + TPT integrated application — smarter and more efficient", "Broad applicability", "Full replacement of imported systems: <b>7,000</b> Siemens points and <b>4,000</b> Emerson points", "Data foundation", "Integrates four data foundations: operations, equipment, quality and simulation", "SUPCON control system<span class=\"grad\"> milestones</span>", "OMC · SmartEIO, APL", "<span data-count=\"30000\">30,000</span><small>+</small>", "Serving more than 30,000 enterprises", "No. 1 market share in China since 2011", "Chemicals · China industrial market share", "Petroleum · China industrial market share", "18 ten-million-ton refining projects and 28 large ethylene projects", "Trends in industrial control systems", "Building smart factories for smarter, more efficient production.", "From closed systems <b>to open systems</b>", "From standalone units <b>to virtualized cluster control</b>", "From traditional architectures <b>to digital, intelligent and networked</b>", "From conventional sensing <b>to image recognition and intelligent decisions</b>", "From traditional UI <b>to web-based, personalized views</b>", "From single-unit monitoring <b>to integrated management and control</b>", "From traditional data acquisition and display <b>to digital twins</b>", "From equipment maintenance <b>to predictive maintenance</b>", "From traditional empirical knowledge models <b>to large AI models</b>", "SUPCON", "Making industry smarter,<br/><span class=\"grad\">making customers more successful.</span>", "Vision", "To become a global leader in industrial AI, using AI to drive the sustainable development of industry", "Mission", "Values", "Customer first, collaborative innovation, self-discipline and integrity, self-motivation", "Employee philosophy", "Happy, fulfilled, valued, respected", "Discover the Nyx Universal Control System", "Contact details to be added · Contact details placeholder", "<span>SUPCON — Nyx Universal Control System</span> <span class=\"stock\">Stock code: 688777.SH | SUPCON.SW</span>", "Nyx control data center cabinet", "Start the auto tour"];
+/* ===== i18n: 中 / EN ===== */
+(function () {
+  var EN = window.__I18N_EN || [];
+  var JS = {
+    // 3D labels (main lines)
+    '全光网络交换': 'All-optical Network Switching', '服务器集群 · NyxOS': 'Server Cluster · NyxOS', '冗余电源': 'Redundant Power', '散热 · 风扇': 'Cooling · Fans',
+    '控制数据中心': 'Control Data Center', '全光工业网': 'All-optical Industrial Network', 'APL / SmartEIO 接线箱': 'APL / SmartEIO Junction Box', '现场仪表': 'Field Instruments',
+    '服务器硬件': 'Server Hardware', 'Nyx 系统 · NyxOS': 'Nyx System · NyxOS', '控制服务 · 工厂组态': 'Control Services · Plant Configuration', '一键扩容 · 自动安装': 'One-click Expansion · Auto Install',
+    '监控和协调关键的实时任务': 'Monitors & Coordinates Critical Real-time Tasks', '✕ 故障': '✕ Fault',
+    'IO柜': 'IO Cabinet', '端子板柜': 'Terminal Board Cabinet', '隔离栅柜': 'Isolation Barrier Cabinet',
+    'Nyx 控制数据中心': 'Nyx Control Data Center', 'SmartEIO / APL 现场接线箱': 'SmartEIO / APL Field Junction Box',
+    'AI 预测性维护': 'AI Predictive Maintenance', 'AI 辅助编程': 'AI-assisted Programming', 'AI 未来画笔': 'AI Future Brush',
+    'GPU 赋能的控制引擎 NyxEngine': 'GPU-powered Control Engine NyxEngine',
+    '控制服务 A · 热': 'Control Service A · Hot', '控制服务 A′ · 温': 'Control Service A′ · Warm', '控制服务 A″ · 冷': 'Control Service A″ · Cold', '空闲资源': 'Idle Resource',
+    // reliability status line
+    '控制服务 A 运行于 Node0 · A′ 温备 · A″ 冷备': 'Control service A runs on Node0 · A′ warm standby · A″ cold standby',
+    'Node0 故障 —— 单周期无干扰切换': 'Node0 fault — bumpless single-cycle switchover',
+    'Node1 接管控制服务 A · 多态冗余': 'Node1 takes over control service A · multi-state redundancy',
+    '备用节点按需自动生成 · 1:N 冗余': 'Standby node generated automatically on demand · 1:N redundancy',
+    // misc
+    '三维场景不可用，已切换为静态版本': '3D scene unavailable — showing the static version',
+    // autoplay
+    '自动播放': 'Auto Play', '暂停': 'Pause', '上一章': 'Previous chapter', '下一章': 'Next chapter', '暂停自动播放': 'Pause auto play', '自动播放控制': 'Auto play controls', '跳到 ': 'Go to '
+  };
+  var SUB = { // 3D label sub-lines that contain Chinese
+    'Compute · 计算': 'Compute', 'Connect · 连接': 'Connect', 'Sense · 感知': 'Sense', '10 分钟内': 'Within 10 minutes',
+    '回路级的自主运行': 'Loop-level autonomous operation', '设备平台的有效结合': 'Integrated with equipment platforms',
+    '工业专用 GenAI': 'Industry-specific GenAI', '回路级数据未来趋势预测': 'Loop-level future trend prediction'
+  };
+  var META = {
+    zh: { title: 'Nyx 通用控制系统 · 中控 SUPCON | Universal Control System', desc: 'Nyx 通用控制系统（UCS）：极简架构、工业云实时系统、AI-Inside。更灵活、更可靠、更节省、更智能。' },
+    en: { title: 'Nyx Universal Control System · SUPCON', desc: 'Nyx Universal Control System (UCS): simplified architecture, industrial cloud real-time system, AI-Inside. More flexible, more reliable, more efficient, more intelligent.' }
+  };
+  var HAN = /[\u3400-\u9fff]/;
+  var doc = document.documentElement, KEY = 'nyx-lang';
+  var q = (location.search.match(/[?&]lang=(en|zh)\b/i) || [])[1];
+  var saved = null; try { saved = localStorage.getItem(KEY); } catch (e) {}
+  var lang = (q || saved || 'zh').toLowerCase() === 'en' ? 'en' : 'zh';
+  window.__lang = lang;
+  window.__t = function (s) { return window.__lang === 'en' && JS[s] !== undefined ? JS[s] : s; };
+  window.__ts = function (s) { if (window.__lang !== 'en' || !s) return s; if (SUB[s] !== undefined) return SUB[s]; if (JS[s] !== undefined) return JS[s]; return HAN.test(s) ? s : ''; };
+
+  var els = [].slice.call(document.querySelectorAll('[data-i18n]'));
+  els.forEach(function (el) { el.__zh = el.innerHTML; });
+  var ATTR = ['alt', 'aria-label', 'title', 'placeholder'], attrEls = [];
+  ATTR.forEach(function (a) { [].forEach.call(document.querySelectorAll('[data-i18n-' + a + ']'), function (el) { attrEls.push({ el: el, a: a, zh: el.getAttribute(a), i: +el.getAttribute('data-i18n-' + a) }); }); });
+  var metaDesc = document.querySelector('meta[name="description"]');
+
+  /* toggle in nav */
+  var nav = document.getElementById('nav'), sw = document.createElement('div');
+  sw.className = 'lang'; sw.setAttribute('role', 'group'); sw.setAttribute('aria-label', 'Language');
+  sw.innerHTML = '<i class="lang-th"></i><button type="button" data-lang="zh" lang="zh-CN">中</button><button type="button" data-lang="en" lang="en">EN</button>';
+  var cta = nav && nav.querySelector('.cta'); if (nav) nav.insertBefore(sw, cta || null);
+
+  function anchor() {
+    var secs = document.querySelectorAll('main > section'), y = scrollY;
+    for (var i = 0; i < secs.length; i++) { var s = secs[i], top = s.offsetTop, h = s.offsetHeight; if (top + h > y) return { s: s, f: (y - top) / Math.max(1, h) }; }
+    return null;
+  }
+  function apply(l, opts) {
+    opts = opts || {};
+    var a = opts.keep ? anchor() : null;
+    lang = window.__lang = l;
+    doc.lang = l === 'en' ? 'en' : 'zh-CN';
+    doc.classList.toggle('lang-en', l === 'en');
+    els.forEach(function (el) { var v = l === 'en' ? EN[+el.getAttribute('data-i18n')] : el.__zh; if (v != null && el.innerHTML !== v) el.innerHTML = v; });
+    attrEls.forEach(function (o) { o.el.setAttribute(o.a, l === 'en' ? (EN[o.i] || o.zh) : o.zh); });
+    document.title = META[l].title; if (metaDesc) metaDesc.setAttribute('content', META[l].desc);
+    var fm = document.querySelector('.fallback-msg'); if (fm) fm.textContent = window.__t('三维场景不可用，已切换为静态版本');
+    [].forEach.call(sw.querySelectorAll('button'), function (b) { var on = b.getAttribute('data-lang') === l; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
+    sw.classList.toggle('is-en', l === 'en');
+    if (a) { var target = a.s.offsetTop + a.f * a.s.offsetHeight; if (Math.abs(target - scrollY) > 1) { var sb = doc.style.scrollBehavior; doc.style.scrollBehavior = 'auto'; scrollTo(0, target); doc.style.scrollBehavior = sb; } }
+    if (opts.save) { try { localStorage.setItem(KEY, l); } catch (e) {} }
+    if (opts.save) { try { var u = new URL(location.href); if (u.searchParams.has('lang')) { u.searchParams.set('lang', l); history.replaceState(null, '', u); } } catch (e) {} }
+    try { dispatchEvent(new CustomEvent('langchange', { detail: l })); } catch (e) {}
+  }
+  sw.addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b) return; var l = b.getAttribute('data-lang'); if (l !== lang) apply(l, { save: true, keep: true }); if (e.detail) b.blur(); });
+  window.__setLang = function (l) { apply(l === 'en' ? 'en' : 'zh', { save: true, keep: true }); };
+  apply(lang, {});
+})();
+
 (function () {
   var nav = document.getElementById('nav'), bar = document.getElementById('progress');
   function fmt(v, dec, sep) { var s = v.toFixed(dec); if (sep) s = s.replace(/\B(?=(\d{3})+(?!\d))/g, ','); return s; }
@@ -398,7 +467,7 @@
   var save = document.getElementById('save'), lives = save ? save.querySelectorAll('.live') : [];
   function onScroll() {
     var y = window.scrollY, h = document.documentElement.scrollHeight - innerHeight;
-    nav.classList.toggle('solid', y > 40); bar.style.width = (h > 0 ? y / h * 100 : 0) + '%';
+    nav.classList.toggle('scrolled', y > 40); bar.style.width = (h > 0 ? y / h * 100 : 0) + '%';
     if (save) {
       var r = save.getBoundingClientRect(), k = -r.top / Math.max(1, r.height - innerHeight);
       var e = Math.min(1, Math.max(0, (k - 0.15) / 0.65)); e = e < .5 ? 4 * e * e * e : 1 - Math.pow(-2 * e + 2, 3) / 2;
@@ -408,6 +477,203 @@
   }
   addEventListener('scroll', onScroll, { passive: true }); onScroll();
   if (document.documentElement.classList.contains('no-webgl')) { var l = document.getElementById('loader'); if (l) l.classList.add('done'); }
+})();
+
+/* ===== Autoplay / tour mode ===== */
+(function () {
+  var doc = document.documentElement;
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var CH = [
+    { ids: ['hero', 'values'], cn: '开场', en: 'Intro' },
+    { ids: ['arch'], cn: '架构', en: 'Architecture' },
+    { ids: ['explode'], cn: '数据中心', en: 'Data Center' },
+    { ids: ['flex'], cn: '更灵活', en: 'Flexible' },
+    { ids: ['rel'], cn: '更可靠', en: 'Reliable' },
+    { ids: ['save'], cn: '更节省', en: 'Efficient' },
+    { ids: ['ai'], cn: '更智能', en: 'Intelligent' },
+    { ids: ['value'], cn: '技术价值', en: 'Tech Value' },
+    { ids: ['platform'], cn: '平台', en: 'Platform' },
+    { ids: ['specs'], cn: '技术规格', en: 'Specs' },
+    { ids: ['case'], cn: '应用案例', en: 'Case Study' },
+    { ids: ['heritage'], cn: '里程碑', en: 'Milestones' },
+    { ids: ['contact'], cn: '愿景', en: 'Vision' }
+  ].filter(function (c) { return document.getElementById(c.ids[0]); });
+
+  var L = function (x) { return window.__t ? window.__t(x) : x; }, en = function () { return window.__lang === 'en'; };
+  /* ---------- UI ---------- */
+  var ui = document.createElement('div');
+  ui.className = 'ap'; ui.id = 'autoplay'; ui.setAttribute('role', 'region'); ui.setAttribute('aria-label', '自动播放控制');
+  var I = {
+    play: '<svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg>',
+    pause: '<svg viewBox="0 0 24 24"><path d="M7 5h3.6v14H7zM13.4 5H17v14h-3.6z"/></svg>',
+    prev: '<svg viewBox="0 0 24 24"><path d="M6 5h2v14H6zM19 5.5v13L9.5 12z"/></svg>',
+    next: '<svg viewBox="0 0 24 24"><path d="M16 5h2v14h-2zM5 5.5v13L14.5 12z"/></svg>'
+  };
+  ui.innerHTML =
+    '<button type="button" class="ap-b ap-prev" aria-label="上一章">' + I.prev + '</button>' +
+    '<button type="button" class="ap-main" aria-label="自动播放"><span class="ap-ic">' + I.play + '</span><span class="ap-txt">自动播放</span></button>' +
+    '<button type="button" class="ap-b ap-next" aria-label="下一章">' + I.next + '</button>' +
+    '<div class="ap-info"><div class="ap-ch"><b class="ap-n">01</b><span class="ap-name">开场</span><em class="ap-en">Intro</em></div>' +
+    '<div class="ap-bar">' + CH.map(function (c, i) { return '<button type="button" class="ap-seg" data-i="' + i + '" title="' + c.cn + '" aria-label="跳到 ' + c.cn + '"><i></i></button>'; }).join('') + '</div></div>';
+  document.body.appendChild(ui);
+  var fade = document.createElement('div'); fade.className = 'ap-fade'; document.body.appendChild(fade);
+  var $ = function (s) { return ui.querySelector(s); };
+  var mainBtn = $('.ap-main'), ic = $('.ap-ic'), txt = $('.ap-txt'), nEl = $('.ap-n'), nameEl = $('.ap-name'), enEl = $('.ap-en');
+  var segs = [].slice.call(ui.querySelectorAll('.ap-seg')), fills = segs.map(function (s) { return s.firstChild; });
+
+  /* ---------- timeline ---------- */
+  var vh = innerHeight, segsT = [], marks = [], total = 0;
+  function topOf(el) { var y = 0; while (el) { y += el.offsetTop; el = el.offsetParent; } return y; }
+  function build() {
+    vh = innerHeight;
+    var maxY = doc.scrollHeight - vh, sp = reduce ? 1.35 : 1;
+    segsT = []; marks = []; total = 0;
+    var y = 0;
+    function push(y1, dur, ci, kind) { y1 = Math.max(0, Math.min(maxY, y1)); segsT.push({ y0: y, y1: y1, t0: total, dur: dur * sp, ci: ci, kind: kind }); total += dur * sp; y = y1; }
+    CH.forEach(function (c, ci) {
+      var first = document.getElementById(c.ids[0]), last = document.getElementById(c.ids[c.ids.length - 1]);
+      var s0 = ci === 0 ? 0 : topOf(first), lastTop = topOf(last), lh = last.offsetHeight;
+      var is3d = first.classList.contains('s3d') && !doc.classList.contains('no-webgl');
+      marks.push(s0);
+      if (ci === 0) push(0, 2.6, ci, 'hold');                       // let the hero reveal play
+      else push(s0, Math.min(2.4, Math.max(1.3, Math.abs(s0 - y) / vh * 1.5)), ci, 'move');
+      var e = is3d ? lastTop + lh - vh : lastTop + Math.max(0, lh - vh * 0.82);
+      if (ci === CH.length - 1) e = maxY;
+      var d = Math.abs(e - y) / vh;
+      if (d > 0.02) push(e, is3d ? Math.max(3.5, d * 3.1) : Math.max(2.2, d * 3.6), ci, 'travel');
+      push(e, is3d ? 2.2 : (ci === CH.length - 1 ? 3.2 : 1.4), ci, 'hold');
+    });
+  }
+  function ease(u) { u = u < 0 ? 0 : u > 1 ? 1 : u; return u < .5 ? 2 * u * u : 1 - Math.pow(-2 * u + 2, 2) / 2; }
+  function yAt(s, u) {
+    if (reduce && s.kind === 'travel') { var n = Math.max(1, Math.round(Math.abs(s.y1 - s.y0) / vh)); u = Math.floor(u * n + 1e-6) / n; }
+    else if (reduce) u = u >= 1 ? 1 : 0;
+    return s.y0 + (s.y1 - s.y0) * (s.kind === 'travel' ? (reduce ? u : (u * .25 + ease(u) * .75)) : ease(u));
+  }
+
+  /* ---------- state ---------- */
+  var playing = false, t = 0, raf = 0, lastTs = 0, expectY = -1, looping = false, wake = null;
+  function segAt(tt) { for (var i = 0; i < segsT.length; i++) if (tt < segsT[i].t0 + segsT[i].dur) return segsT[i]; return null; }
+  function setY(y) { expectY = Math.round(y); doc.style.scrollBehavior = 'auto'; scrollTo(0, y); }
+  function relax() { if (!playing) doc.style.scrollBehavior = ''; }
+  function chapterAtY(y) { var c = 0; for (var i = 0; i < marks.length; i++) if (y >= marks[i] - vh * 0.35) c = i; return c; }
+  function timeForY(y) {           // resume: first segment that still moves past y
+    for (var i = 0; i < segsT.length; i++) { var s = segsT[i];
+      if (s.y1 > y + 2 && s.y0 <= y + 2) { var f = s.y1 === s.y0 ? 0 : (y - s.y0) / (s.y1 - s.y0); return s.t0 + Math.max(0, Math.min(.98, f)) * s.dur; }
+      if (s.y0 > y + 2) return s.t0; }
+    return -1;
+  }
+  function tick(ts) {
+    raf = requestAnimationFrame(tick);
+    var dt = lastTs ? Math.min(0.25, (ts - lastTs) / 1000) : 0; lastTs = ts;
+    if (looping || document.hidden) return;
+    t += dt;
+    if (t >= total) { loop(); return; }
+    var s = segAt(t); if (!s) return;
+    var y = yAt(s, Math.min(1, (t - s.t0) / s.dur));
+    if (Math.abs(y - scrollY) > 0.5) setY(y);
+    paint(s.ci, (t - segsT.filter(function (q) { return q.ci === s.ci; })[0].t0) / chDur(s.ci));
+  }
+  function chDur(ci) { return segsT.reduce(function (a, q) { return a + (q.ci === ci ? q.dur : 0); }, 0) || 1; }
+  function loop() {
+    looping = true; fade.classList.add('on');
+    setTimeout(function () {
+      setY(0); t = 0;
+      setTimeout(function () { fade.classList.remove('on'); looping = false; lastTs = 0; }, 450);
+    }, 900);
+  }
+  function play(fromStart) {
+    build();
+    if (fromStart) t = 0; else { t = timeForY(scrollY); if (t < 0) t = 0; }
+    if (t === 0 && scrollY > 4) { if (!fromStart) setY(0); }
+    playing = true; lastTs = 0; ui.classList.add('on'); doc.classList.add('ap-playing');
+    ic.innerHTML = I.pause; txt.textContent = L('暂停'); mainBtn.setAttribute('aria-label', L('暂停自动播放'));
+    if (!raf) raf = requestAnimationFrame(tick);
+    try { if ('wakeLock' in navigator && !wake) navigator.wakeLock.request('screen').then(function (w) { wake = w; w.addEventListener('release', function () { wake = null; }); }, function () {}); } catch (e) {}
+  }
+  function pause() {
+    if (!playing) return;
+    playing = false; cancelAnimationFrame(raf); raf = 0; ui.classList.remove('on'); doc.classList.remove('ap-playing');
+    ic.innerHTML = I.play; txt.textContent = L('自动播放'); mainBtn.setAttribute('aria-label', L('自动播放'));
+    if (looping) { looping = false; fade.classList.remove('on'); }
+    ui.classList.add('paused-flash'); setTimeout(function () { ui.classList.remove('paused-flash'); }, 700);
+    if (wake) { try { wake.release(); } catch (e) {} wake = null; }
+    relax();
+  }
+  function toggle() { playing ? pause() : play(false); }
+  function jump(ci) {
+    build(); ci = Math.max(0, Math.min(CH.length - 1, ci));
+    var target = marks[ci];
+    if (playing) { var s = segsT.filter(function (q) { return q.ci === ci; })[0]; t = ci === 0 ? 0 : s.t0 + s.dur * 0.999; }
+    animateTo(target);
+  }
+  var animRaf = 0;
+  function animateTo(y1) {
+    cancelAnimationFrame(animRaf);
+    var y0 = scrollY, t0 = performance.now(), dur = reduce ? 0 : Math.min(1400, 500 + Math.abs(y1 - y0) / vh * 120);
+    var wasPlaying = playing; if (wasPlaying) { cancelAnimationFrame(raf); raf = 0; }
+    (function st(now) {
+      var u = dur ? Math.max(0, Math.min(1, (now - t0) / dur)) : 1; setY(y0 + (y1 - y0) * ease(u));
+      if (u < 1) animRaf = requestAnimationFrame(st);
+      else if (wasPlaying && playing) { lastTs = 0; raf = requestAnimationFrame(tick); } else relax();
+    })(t0);
+  }
+
+  /* ---------- paint progress ---------- */
+  var lastCi = -1;
+  function paint(ci, f) {
+    fills.forEach(function (el, i) { el.style.transform = 'scaleX(' + (i < ci ? 1 : i > ci ? 0 : Math.max(0.04, Math.min(1, f))) + ')'; });
+    if (ci !== lastCi) { lastCi = ci; segs.forEach(function (s, i) { s.classList.toggle('cur', i === ci); });
+      nEl.textContent = (ci < 9 ? '0' : '') + (ci + 1); nameEl.textContent = en() ? CH[ci].en : CH[ci].cn; enEl.textContent = en() ? '' : CH[ci].en;
+      ui.querySelector('.ap-ch').classList.remove('swap'); void ui.offsetWidth; ui.querySelector('.ap-ch').classList.add('swap'); }
+  }
+  function paintFromScroll() {
+    if (playing) return;
+    var y = scrollY, ci = chapterAtY(y), a = marks[ci], b = ci + 1 < marks.length ? marks[ci + 1] : doc.scrollHeight - vh;
+    paint(ci, b > a ? (y - a) / (b - a) : 1);
+  }
+
+  /* ---------- events ---------- */
+  [].forEach.call(ui.querySelectorAll('button'), function (b) { b.addEventListener('click', function (e) { if (e.detail) b.blur(); }); });
+  mainBtn.addEventListener('click', toggle);
+  $('.ap-prev').addEventListener('click', function () { build(); var y = scrollY, c = chapterAtY(y); jump(y - marks[c] > vh * 0.5 ? c : c - 1); });
+  $('.ap-next').addEventListener('click', function () { build(); var y = scrollY, c = chapterAtY(y) + 1; while (c < marks.length - 1 && marks[c] <= y + 10) c++; jump(c); });
+  segs.forEach(function (s) { s.addEventListener('click', function () { jump(+s.dataset.i); }); });
+  [].forEach.call(document.querySelectorAll('[data-ap-play]'), function (b) { b.addEventListener('click', function (e) { e.preventDefault(); play(scrollY < vh * 0.5); }); });
+
+  function userIntent(e) { if (!playing) return; if (e && e.target && e.target.closest && e.target.closest('.ap, [data-ap-play], .lang')) return; cancelAnimationFrame(animRaf); pause(); }
+  addEventListener('wheel', userIntent, { passive: true });
+  addEventListener('touchstart', userIntent, { passive: true });
+  addEventListener('pointerdown', function (e) { if (e.pointerType === 'mouse' && e.button !== 0) return; userIntent(e); }, { passive: true });
+  addEventListener('keydown', function (e) {
+    var tag = (e.target.tagName || '').toLowerCase();
+    if (tag === 'input' || tag === 'textarea' || e.target.isContentEditable) return;
+    if (e.code === 'Space' || e.key === ' ') { if (tag === 'button' || tag === 'a') return; e.preventDefault(); toggle(); return; }
+    if (['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', 'Home', 'End', 'Escape'].indexOf(e.key) >= 0) userIntent(e);
+  });
+  addEventListener('scroll', function () {
+    if (playing && expectY >= 0 && Math.abs(scrollY - expectY) > 60 && !looping) pause(); // scrollbar drag etc.
+    paintFromScroll();
+  }, { passive: true });
+  var rt; addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { if (playing) { build(); t = Math.max(0, timeForY(scrollY)); } else build(); paintFromScroll(); }, 200); });
+  document.addEventListener('visibilitychange', function () { lastTs = 0; });
+
+  function relang() {
+    ui.setAttribute('aria-label', L('自动播放控制'));
+    $('.ap-prev').setAttribute('aria-label', L('上一章')); $('.ap-next').setAttribute('aria-label', L('下一章'));
+    txt.textContent = L(playing ? '暂停' : '自动播放'); mainBtn.setAttribute('aria-label', L(playing ? '暂停自动播放' : '自动播放'));
+    segs.forEach(function (s, i) { var n = en() ? CH[i].en : CH[i].cn; s.title = n; s.setAttribute('aria-label', L('跳到 ') + n); });
+    lastCi = -1; if (playing) { var s = segAt(t); if (s) paint(s.ci, 0.04); } else paintFromScroll();
+  }
+  addEventListener('langchange', function () { build(); if (playing) { var nt = timeForY(scrollY); if (nt >= 0) t = nt; } relang(); });
+  /* ---------- boot ---------- */
+  build(); relang();
+  window.__autoplay = { play: play, pause: pause, toggle: toggle, jump: jump, get playing() { return playing; }, get t() { return t; }, get total() { return total; }, get marks() { return marks.map(Math.round); }, chapters: CH.map(function (c) { return c.cn; }) };
+  if (/[?&]autoplay=(1|true|yes)\b/i.test(location.search)) {
+    doc.classList.add('ap-kiosk');
+    var go = function () { play(true); };
+    var waited = 0, iv = setInterval(function () { waited += 200; if (window.__ready || doc.classList.contains('no-webgl') || waited > 8000) { clearInterval(iv); setTimeout(go, 600); } }, 200);
+  }
 })();
 </script>
 <script type="module">
@@ -504,16 +770,24 @@ function edges(geo, color, opacity, parent) { const l = new THREE.LineSegments(n
 
 /* labels */
 const labels = [];
+const T = s => (window.__t ? window.__t(s) : s);
+const TS = s => (window.__ts ? window.__ts(s) : s);
+function paintLabel(L) {
+  L.cnEl.textContent = T(L.cn0);
+  if (L.enEl) { const e = TS(L.en0); L.enEl.textContent = e; L.enEl.style.display = e ? '' : 'none'; }
+}
 function label(parent, pos, cn, en = '', cls = '', show = () => 1, stage = null) {
   const el = document.createElement('div'); el.className = 'tag3d ' + cls;
   const stem = '<div class="stem"></div>';
-  const card = `<div class="card"><div class="cn">${cn}</div>${en ? `<div class="en">${en}</div>` : ''}</div>`;
+  const card = `<div class="card"><div class="cn"></div>${en ? '<div class="en"></div>' : ''}</div>`;
   el.innerHTML = `<div class="in">${cls.includes('side') ? stem + card : card + (cls.includes('plain') ? '' : stem)}</div>`;
   const o = new CSS2DObject(el); o.position.copy(pos); parent.add(o);
-  const L = { o, el, show, stage, cnEl: el.querySelector('.cn'), enEl: el.querySelector('.en'), last: -1 };
+  const L = { o, el, show, stage, cnEl: el.querySelector('.cn'), enEl: el.querySelector('.en'), last: -1, cn0: cn, en0: en };
+  paintLabel(L);
   labels.push(L); return L;
 }
-function setText(L, cn, en) { if (L.cnEl.textContent !== cn) L.cnEl.textContent = cn; if (en !== undefined && L.enEl && L.enEl.textContent !== en) L.enEl.textContent = en; }
+function setText(L, cn, en) { if (L.cn0 !== cn || L.lang !== window.__lang) { L.cn0 = cn; L.lang = window.__lang; if (en !== undefined) L.en0 = en; paintLabel(L); } }
+addEventListener('langchange', () => labels.forEach(paintLabel));
 
 /* ---------------------------------------------------------------- scroll state */
 const secEls = [...document.querySelectorAll('.s3d')];
@@ -867,7 +1141,7 @@ function frame() {
   relL.fail.show = () => relOp * fail * (1 - idle0);
   if (relStatus) {
     const st = kC < 0.3 ? ['控制服务 A 运行于 Node0 · A′ 温备 · A″ 冷备', false] : kC < 0.44 ? ['Node0 故障 —— 单周期无干扰切换', true] : kC < 0.6 ? ['Node1 接管控制服务 A · 多态冗余', false] : ['备用节点按需自动生成 · 1:N 冗余', false];
-    if (relStatus.dataset.s !== st[0]) { relStatus.dataset.s = st[0]; relStatus.querySelector('span').textContent = st[0]; relStatus.classList.toggle('bad', st[1]); }
+    const sk = st[0] + '|' + (window.__lang || ''); if (relStatus.dataset.s !== sk || !relStatus.querySelector('span').textContent) { relStatus.dataset.s = sk; relStatus.querySelector('span').textContent = T(st[0]); relStatus.classList.toggle('bad', st[1]); }
   }
 
   /* --- stage D: savings */
