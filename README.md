@@ -4,6 +4,8 @@
 
 在线地址：<https://waynenb.github.io/cabinet-explode/>
 
+产品介绍：<https://waynenb.github.io/cabinet-explode/site/>
+
 ## 操作
 
 - **展开 / 合拢**：将柜内组件沿高度方向分开或收回
