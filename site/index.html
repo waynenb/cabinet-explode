@@ -58,9 +58,9 @@
 <p class="hero-sub reveal d2" data-i18n="9">迈向无限控制的未来自动化</p>
 <p class="hero-tag reveal d3" data-i18n="10">让工业更智能，让客户更成功</p>
 <div class="btns reveal d4"><a class="btn pri" data-i18n="11" href="#arch">探索 Nyx</a><a class="btn sec" data-i18n="4" href="#specs">技术规格</a></div>
-<button aria-label="开始自动播放导览" class="ap-invite reveal d4" data-ap-play="" data-i18n="12" data-i18n-aria-label="194" type="button"><span class="ring"><svg viewbox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"></path></svg></span><span><b>自动播放导览</b><em>Auto Tour · 约 1.5 分钟</em></span></button>
+<button aria-label="开始自动播放导览" class="ap-invite reveal d4" data-ap-play="" data-i18n="12" data-i18n-aria-label="218" type="button"><span class="ring"><svg viewbox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"></path></svg></span><span><b>自动播放导览</b><em>Auto Tour · 约 1.5 分钟</em></span></button>
 </div>
-<div class="fallback fallback-photo"><img alt="Nyx 控制数据中心机柜" data-i18n-alt="193" src="assets/img/nyx-cabinet.jpg"/></div>
+<div class="fallback fallback-photo"><img alt="Nyx 控制数据中心机柜" data-i18n-alt="217" src="assets/img/nyx-cabinet.jpg"/></div>
 </div>
 <div class="scrollhint"><i></i>SCROLL</div>
 </section>
@@ -127,7 +127,7 @@
 <li data-i18n="45"><b>便捷交付、一键部署</b> — 云组态、多人组态；应用仓库快捷部署；无需每一台操作站工程师站升级；无需考虑过多软硬件耦合性</li>
 </ul>
 <div class="kpis reveal d2">
-<div class="kpi"><div class="v" data-i18n="46"><span data-count="10">10</span><small>分钟内</small></div><div class="l" data-i18n="47">算力 · 内存 · 存储扩展</div></div>
+<div class="kpi kpi-auto"><div class="v" data-i18n="46">自动化<small>集群扩展</small></div><div class="l" data-i18n="47">一键扩容、自动安装</div></div>
 </div>
 </div>
 </div>
@@ -179,18 +179,67 @@
 </div>
 </div>
 </section>
+<section class="s3d" data-stage="rl" id="rl" style="height:260vh">
+<div class="sticky">
+<div class="copy">
+<div class="idx" data-i18n="68">08 · <b>强化学习</b></div>
+<h2 class="h2 reveal" data-i18n="69">强化学习，<br/><span class="grad">闭环优化。</span></h2>
+<p class="lead reveal d1" data-i18n="70">强化学习控制智能体与回路实时交互：评估控制策略、生成控制策略，并持续实时更新。</p>
+<div class="trio tw reveal d2">
+<div data-i18n="71"><b>适应动态工况</b><span>Adaptive</span></div>
+<div data-i18n="72"><b>提升回路自控率</b><span>Loop Autonomy</span></div>
+<div data-i18n="73"><b>减少 PID 整定工作量</b><span>Less Tuning</span></div>
+</div>
+<ul class="points reveal d3">
+<li data-i18n="74"><b>强化学习控制智能体</b> — 控制策略评估神经网络 · 控制策略生成神经网络 · 实时更新</li>
+<li data-i18n="75"><b>智能控制输出</b> — PID（可选），作用于被控回路</li>
+<li data-i18n="76"><b>奖励与评估模块</b> — 回路性能识别器，对比目标，反馈回路信号</li>
+</ul>
+</div>
+</div>
+</section>
+<section class="s3d" data-stage="genai" id="genai" style="height:260vh">
+<div class="sticky">
+<div class="copy">
+<div class="idx" data-i18n="77">09 · <b>生成式 AI</b></div>
+<h2 class="h2 reveal" data-i18n="78">生成式 AI，<br/><span class="grad">开发控制逻辑。</span></h2>
+<p class="lead reveal d1" data-i18n="79">上传控制逻辑文件或用自然语言描述需求，由 AI 生成代码。</p>
+<ul class="points reveal d2">
+<li data-i18n="80"><b>上传控制逻辑文件，AI 生成代码</b> — SFC、步骤配置、设计文档</li>
+<li data-i18n="81"><b>自然语言，AI 生成代码</b> — 输入提示词，生成并审查代码</li>
+<li data-i18n="82"><b>工业控制专用私有大模型</b></li>
+</ul>
+<div class="chips reveal d3" data-i18n="83"><span class="chip">SFC</span><span class="chip">步骤配置</span><span class="chip">设计文档</span><span class="chip">提示词</span><span class="chip">生成</span><span class="chip">代码审查</span></div>
+</div>
+</div>
+</section>
+<section class="s3d" data-stage="predict" id="predict" style="height:260vh">
+<div class="sticky">
+<div class="copy">
+<div class="idx" data-i18n="84">10 · <b>趋势与报警预测</b></div>
+<h2 class="h2 reveal" data-i18n="85">未来趋势，<br/><span class="grad">报警预测。</span></h2>
+<p class="lead reveal d1" data-i18n="86">实时控制器（Nyx）提供实时趋势，AI 预测模型在线训练，生成回路的未来趋势与报警预测。</p>
+<ul class="points reveal d2">
+<li data-i18n="87"><b>回路趋势与报警预测</b> — 基于控制目标的 AI 预测模型 · 在线实时模型训练 · 实时预测</li>
+<li data-i18n="88"><b>应用于</b> — 未来趋势 · 即将发生的报警提醒 · 操作结果预测</li>
+<li data-i18n="89"><b>数字孪生</b> — 并行操作与控制</li>
+</ul>
+<div class="chips reveal d3" data-i18n="90"><span class="chip">最佳实践推荐</span><span class="chip">未来过程趋势 / 状态预测</span><span class="chip">未来报警与事件预测</span></div>
+</div>
+</div>
+</section>
 <!-- ============ TECH VALUE (stack) ============ -->
 <section class="s3d" data-stage="value" id="value" style="height:260vh">
 <div class="sticky">
 <div class="copy">
-<div class="idx" data-i18n="68">08 · <b>技术价值</b></div>
-<h2 class="h2 reveal" data-i18n="69">UCS 系统的<br/><span class="grad">技术价值。</span></h2>
-<p class="lead reveal d1" data-i18n="70">从全数字化智能现场，到统一数据模型、AI-Inside，最终迈向自主运行。</p>
+<div class="idx" data-i18n="91">11 · <b>技术价值</b></div>
+<h2 class="h2 reveal" data-i18n="92">UCS 系统的<br/><span class="grad">技术价值。</span></h2>
+<p class="lead reveal d1" data-i18n="93">从全数字化智能现场，到统一数据模型、AI-Inside，最终迈向自主运行。</p>
 <ul class="points tight reveal d2">
-<li data-i18n="71"><b>自主运行</b> — 自控率 · 平稳度 · 操作频次 · 报警频次 · 运维效率</li>
-<li data-i18n="72"><b>AI-Inside</b> — 报警管理 · AI-PID · AI 报警预测 · 态势感知 HMI · 视觉 AI · IDM · AI 编程</li>
-<li data-i18n="73"><b>OT 数据</b> — S-DIM 统一数据模型 · OPC UA 信息模型</li>
-<li data-i18n="74"><b>网络化 I/O 系统</b> — APL · SmartEIO · Wireless · Gateway · IPv6</li>
+<li data-i18n="94"><b>自主运行</b> — 自控率 · 平稳度 · 操作频次 · 报警频次 · 运维效率</li>
+<li data-i18n="95"><b>AI-Inside</b> — 报警管理 · AI-PID · AI 报警预测 · 态势感知 HMI · 视觉 AI · IDM · AI 编程</li>
+<li data-i18n="96"><b>OT 数据</b> — S-DIM 统一数据模型 · OPC UA 信息模型</li>
+<li data-i18n="97"><b>网络化 I/O 系统</b> — APL · SmartEIO · Wireless · Gateway · IPv6</li>
 </ul>
 </div>
 </div>
@@ -199,15 +248,15 @@
 <section class="s3d" data-stage="tpt" id="tpt" style="height:240vh">
 <div class="sticky">
 <div class="copy">
-<div class="idx" data-i18n="75">09 · <b>时间序列大模型</b></div>
-<h2 class="h2 reveal" data-i18n="76">数据 · 算法 · 算力，<br/><span class="grad">汇聚为 TPT。</span></h2>
-<p class="lead reveal d1" data-i18n="77">智能数据、算法与算力融合，形成时间序列大模型 TPT，在 Nyx 平台上层融合。</p>
+<div class="idx" data-i18n="98">12 · <b>时间序列大模型</b></div>
+<h2 class="h2 reveal" data-i18n="99">数据 · 算法 · 算力，<br/><span class="grad">汇聚为 TPT。</span></h2>
+<p class="lead reveal d1" data-i18n="100">智能数据、算法与算力融合，形成时间序列大模型 TPT，在 Nyx 平台上层融合。</p>
 <div class="trio reveal d2">
-<div data-i18n="78"><b>智能数据</b><span>Intelligent Data</span></div>
-<div data-i18n="79"><b>算法</b><span>AI Algorithm</span></div>
-<div data-i18n="80"><b>算力</b><span>Computing Power</span></div>
+<div data-i18n="101"><b>智能数据</b><span>Intelligent Data</span></div>
+<div data-i18n="102"><b>算法</b><span>AI Algorithm</span></div>
+<div data-i18n="103"><b>算力</b><span>Computing Power</span></div>
 </div>
-<div class="chips reveal d3" data-i18n="81"><span class="chip">自主优化</span><span class="chip">自主监督</span><span class="chip">知识问答</span><span class="chip">数据分析</span><span class="chip">运行报告</span><span class="chip">先进控制</span><span class="chip">操作导航</span><span class="chip">报警管理</span><span class="chip">PID 整定</span></div>
+<div class="chips reveal d3" data-i18n="104"><span class="chip">自主优化</span><span class="chip">自主监督</span><span class="chip">知识问答</span><span class="chip">数据分析</span><span class="chip">运行报告</span><span class="chip">先进控制</span><span class="chip">操作导航</span><span class="chip">报警管理</span><span class="chip">PID 整定</span></div>
 </div>
 </div>
 </section>
@@ -215,16 +264,17 @@
 <section class="s3d" data-stage="platform" id="platform" style="height:260vh">
 <div class="sticky">
 <div class="copy">
-<div class="idx" data-i18n="82">10 · <b>平台架构</b></div>
+<div class="idx" data-i18n="105">13 · <b>平台架构</b></div>
 <h2 class="h2 reveal">Universal Control<br/><span class="grad">System (Nyx)</span></h2>
-<p class="lead reveal d1" data-i18n="83">NyxOS — Cloud Base Real-time Control。实时控制、过程监控、应用服务分层构建。</p>
+<p class="lead reveal d1" data-i18n="106">NyxOS — Cloud-based Real-time Operating System。实时控制、过程监控、应用服务分层构建。</p>
 <ul class="points tight reveal d2">
-<li data-i18n="84"><b>应用服务</b> — IDM · OPC UA · 历史数据</li>
-<li data-i18n="85"><b>过程监控</b> — 高性能 HMI · 报警 &amp; 事件 · 第三方通信</li>
-<li data-i18n="86"><b>实时控制</b> — IEC 61131-3 · AI-PID · AI-ST</li>
-<li data-i18n="87"><b>NyxOS</b> — 接入 APL · SmartEIO · I/O</li>
+<li data-i18n="107"><b>应用服务</b> — IDM · OPC UA · 历史数据</li>
+<li data-i18n="108"><b>过程监控</b> — 高性能 HMI · 报警 &amp; 事件 · 第三方通信</li>
+<li data-i18n="109"><b>实时控制</b> — IEC 61131-3 · AI-PID · AI-ST</li>
+<li data-i18n="110"><b>NyxOS</b> — 实时操作系统，调度和管理容器化控制服务与计算资源</li>
+<li data-i18n="111"><b>网络化 I/O 系统</b> — 连接 Ethernet-APL · SmartEIO I/O · 现场总线</li>
 </ul>
-<div class="status reveal d3" data-i18n="88"><i></i><span>零信任网络安全策略，贯穿始终</span></div>
+<div class="status reveal d3" data-i18n="112"><i></i><span>零信任网络安全策略，贯穿始终</span></div>
 </div>
 </div>
 </section>
@@ -232,17 +282,16 @@
 <section class="s3d" data-stage="figures" id="specs" style="height:250vh">
 <div class="sticky">
 <div class="copy wide">
-<div class="idx" data-i18n="89">11 · <b>关键数据</b></div>
-<h2 class="h2 reveal" data-i18n="90">关键数据<br/><span class="grad">与技术规格。</span></h2>
+<div class="idx" data-i18n="113">14 · <b>关键数据</b></div>
+<h2 class="h2 reveal" data-i18n="114">关键数据<br/><span class="grad">与技术规格。</span></h2>
 <div class="kfig reveal d1">
-<div><div class="v"><span data-count="99.999" data-dec="3">99.999</span><small>%</small></div><div class="l" data-i18n="91">硬件可用性 · 关键部件冗余</div></div>
-<div><div class="v">1:N</div><div class="l" data-i18n="92">控制冗余 · 由 1:1 转化为 1:N</div></div>
-<div><div class="v" data-i18n="46"><span data-count="10">10</span><small>分钟内</small></div><div class="l" data-i18n="93">一键扩容 · 算力、内存、存储</div></div>
-<div><div class="v" data-i18n="94"><span data-count="15000">15000</span><small>点</small></div><div class="l" data-i18n="95">首个万点以上规模 UCS 项目</div></div>
-<div><div class="v"><span data-count="90">90</span><small>%</small></div><div class="l" data-i18n="96">机柜空间更节省</div></div>
-<div><div class="v"><span data-count="80">80</span><small>%</small></div><div class="l" data-i18n="97">线缆更节省</div></div>
-<div><div class="v"><span data-count="50">50</span><small>%</small></div><div class="l" data-i18n="98">项目周期更节省</div></div>
-<div><div class="v">GPU</div><div class="l" data-i18n="99">控制引擎 NyxEngine</div></div>
+<div><div class="v"><span data-count="99.999" data-dec="3">99.999</span><small>%</small></div><div class="l" data-i18n="115">硬件可用性 · 关键部件冗余</div></div>
+<div><div class="v">1:N</div><div class="l" data-i18n="116">控制冗余 · 由 1:1 转化为 1:N</div></div>
+<div><div class="v" data-i18n="117"><span data-count="10">10</span><small>分钟内</small></div><div class="l" data-i18n="118">一键扩容 · 算力、内存、存储</div></div>
+<div><div class="v"><span data-count="90">90</span><small>%</small></div><div class="l" data-i18n="119">机柜空间更节省</div></div>
+<div><div class="v"><span data-count="80">80</span><small>%</small></div><div class="l" data-i18n="120">线缆更节省</div></div>
+<div><div class="v"><span data-count="50">50</span><small>%</small></div><div class="l" data-i18n="121">项目周期更节省</div></div>
+<div class="span2"><div class="v">GPU</div><div class="l" data-i18n="122">控制引擎 NyxEngine</div></div>
 </div>
 </div>
 </div>
@@ -251,33 +300,33 @@
 <section class="s3d" data-stage="spec" id="spectable" style="height:340vh">
 <div class="sticky">
 <div class="copy wide">
-<div class="idx" data-i18n="100">12 · <b>技术规格</b></div>
-<h2 class="h2 reveal" data-i18n="101">技术规格，<br/><span class="grad">分四组看。</span></h2>
-<div class="steps reveal d1" data-i18n="102" data-steps="4"><i class="on">架构与平台</i><i>监控与冗余</i><i>诊断与数据</i><i>安全与交付</i></div>
+<div class="idx" data-i18n="123">15 · <b>技术规格</b></div>
+<h2 class="h2 reveal" data-i18n="124">技术规格，<br/><span class="grad">分四组看。</span></h2>
+<div class="steps reveal d1" data-i18n="125" data-steps="4"><i class="on">架构与平台</i><i>监控与冗余</i><i>诊断与数据</i><i>安全与交付</i></div>
 <div class="spec-g reveal d2">
 <dl class="on">
-<dt data-i18n="103">系统架构</dt><dd data-i18n="104">控制数据中心 + 全光工业网 + APL / SmartEIO 现场接线箱 + 现场仪表</dd>
-<dt data-i18n="105">系统平台</dt><dd data-i18n="106">NyxOS — Cloud Base Real-time Control；工业云实时系统、云计算、AI-Inside</dd>
-<dt data-i18n="107">控制引擎</dt><dd data-i18n="108">GPU 赋能的控制引擎 NyxEngine</dd>
-<dt data-i18n="109">实时控制</dt><dd>IEC 61131-3 · AI-PID · AI-ST · C++ / Python</dd>
+<dt data-i18n="126">系统架构</dt><dd data-i18n="127">控制数据中心 + 全光工业网 + APL / SmartEIO 现场接线箱 + 现场仪表</dd>
+<dt data-i18n="128">系统平台</dt><dd data-i18n="129">NyxOS — Cloud-based Real-time Operating System；工业云实时系统、云计算、AI-Inside</dd>
+<dt data-i18n="130">控制引擎</dt><dd data-i18n="131">GPU 赋能的控制引擎 NyxEngine</dd>
+<dt data-i18n="132">实时控制</dt><dd>IEC 61131-3 · AI-PID · AI-ST · C++ / Python</dd>
 </dl>
 <dl>
-<dt data-i18n="110">过程监控</dt><dd data-i18n="111">高性能 HMI · 报警 &amp; 事件 · 历史趋势 · 第三方通信</dd>
-<dt data-i18n="112">应用服务</dt><dd data-i18n="113">IDM · OPC UA · 历史数据 · 全域诊断 · AI-Inside Apps</dd>
-<dt data-i18n="114">冗余设计</dt><dd data-i18n="115">控制硬件 1:N 冗余、控制服务 1:N 冗余；单周期无干扰切换；多态冗余（热 / 温 / 冷）；备用节点按需自动生成</dd>
-<dt data-i18n="116">可用性</dt><dd data-i18n="117">99.999%；关键部件冗余：电源、风扇、硬盘、网卡等</dd>
+<dt data-i18n="133">过程监控</dt><dd data-i18n="134">高性能 HMI · 报警 &amp; 事件 · 历史趋势 · 第三方通信</dd>
+<dt data-i18n="135">应用服务</dt><dd data-i18n="136">IDM · OPC UA · 历史数据 · 全域诊断 · AI-Inside Apps</dd>
+<dt data-i18n="137">冗余设计</dt><dd data-i18n="138">控制硬件 1:N 冗余、控制服务 1:N 冗余；单周期无干扰切换；多态冗余（热 / 温 / 冷）；备用节点按需自动生成</dd>
+<dt data-i18n="139">可用性</dt><dd data-i18n="140">99.999%；关键部件冗余：电源、风扇、硬盘、网卡等</dd>
 </dl>
 <dl>
-<dt data-i18n="118">诊断</dt><dd data-i18n="119">环境诊断；服务器硬件健康状态；NyxOS 关键模块监测及日志审计；控制服务的监测守护</dd>
-<dt data-i18n="120">存储</dt><dd data-i18n="121">软件定义存储网络，高容错；自动切除故障硬盘</dd>
-<dt data-i18n="122">现场 I/O</dt><dd data-i18n="123">网络化 I/O 系统：APL · SmartEIO · Wireless · Gateway；IPv6；全光网络接入</dd>
-<dt data-i18n="124">数据模型</dt><dd data-i18n="125">S-DIM 统一数据模型；OPC UA 信息模型</dd>
+<dt data-i18n="141">诊断</dt><dd data-i18n="142">环境诊断；服务器硬件健康状态；NyxOS 关键模块监测及日志审计；控制服务的监测守护</dd>
+<dt data-i18n="143">存储</dt><dd data-i18n="144">软件定义存储网络，高容错；自动切除故障硬盘</dd>
+<dt data-i18n="145">现场 I/O</dt><dd data-i18n="146">网络化 I/O 系统：APL · SmartEIO · Wireless · Gateway；IPv6；全光网络接入</dd>
+<dt data-i18n="147">数据模型</dt><dd data-i18n="148">S-DIM 统一数据模型；OPC UA 信息模型</dd>
 </dl>
 <dl>
-<dt data-i18n="126">网络安全</dt><dd data-i18n="127">零信任网络安全策略；内建网络安全设计</dd>
-<dt data-i18n="128">访问方式</dt><dd data-i18n="129">瘦客户端 Web 访问；客户端 · 移动设备</dd>
-<dt data-i18n="130">工程与交付</dt><dd data-i18n="131">标准机柜交付，支持设计转换；云组态、多人组态；应用仓库快捷部署</dd>
-<dt data-i18n="132">AI 能力</dt><dd data-i18n="133">AI-PID · AI 预测性维护 · AI 辅助编程 · AI 未来画笔；时间序列大模型 TPT</dd>
+<dt data-i18n="149">网络安全</dt><dd data-i18n="150">零信任网络安全策略；内建网络安全设计</dd>
+<dt data-i18n="151">访问方式</dt><dd data-i18n="152">瘦客户端 Web 访问；客户端 · 移动设备</dd>
+<dt data-i18n="153">工程与交付</dt><dd data-i18n="154">标准机柜交付，支持设计转换；云组态、多人组态；应用仓库快捷部署</dd>
+<dt data-i18n="155">AI 能力</dt><dd data-i18n="156">AI-PID · AI 预测性维护 · AI 辅助编程 · AI 未来画笔；时间序列大模型 TPT</dd>
 </dl>
 </div>
 </div>
@@ -287,13 +336,13 @@
 <section class="s3d" data-stage="case" id="case" style="height:260vh">
 <div class="sticky">
 <div class="copy">
-<div class="idx" data-i18n="134">13 · <b>应用案例</b></div>
-<h2 class="h2 reveal" data-i18n="135">某氯碱公司<br/><span class="grad">数字化工厂示范项目。</span></h2>
-<p class="lead reveal d1" data-i18n="136">工业 AI + 自主运行：30 万吨氯碱、3.5 万吨钾碱、7.5 万吨双氧水和 TMAH。</p>
+<div class="idx" data-i18n="157">16 · <b>应用案例</b></div>
+<h2 class="h2 reveal" data-i18n="158">某氯碱公司<br/><span class="grad">数字化工厂示范项目。</span></h2>
+<p class="lead reveal d1" data-i18n="159">工业 AI + 自主运行：30 万吨氯碱、3.5 万吨钾碱、7.5 万吨双氧水和 TMAH。</p>
 <div class="kpis reveal d2">
-<div class="kpi"><div class="v" data-i18n="94"><span data-count="15000">15000</span><small>点</small></div><div class="l" data-i18n="137">共计 I/O 点数</div></div>
-<div class="kpi"><div class="v"><span data-count="60">60</span><small>%</small></div><div class="l" data-i18n="138">降低建设成本</div></div>
-<div class="kpi"><div class="v"><span data-count="67">67</span><small>%</small></div><div class="l" data-i18n="139">提升人效</div></div>
+<div class="kpi"><div class="v" data-i18n="160"><span data-count="15000">15000</span><small>点</small></div><div class="l" data-i18n="161">共计 I/O 点数</div></div>
+<div class="kpi"><div class="v"><span data-count="60">60</span><small>%</small></div><div class="l" data-i18n="162">降低建设成本</div></div>
+<div class="kpi"><div class="v"><span data-count="67">67</span><small>%</small></div><div class="l" data-i18n="163">提升人效</div></div>
 </div>
 </div>
 </div>
@@ -302,17 +351,17 @@
 <section class="s3d" data-stage="swap" id="case2" style="height:260vh">
 <div class="sticky">
 <div class="copy">
-<div class="idx" data-i18n="140">14 · <b>案例亮点</b></div>
-<h2 class="h2 reveal" data-i18n="141">进口系统，<br/><span class="grad">全面替代。</span></h2>
+<div class="idx" data-i18n="164">17 · <b>案例亮点</b></div>
+<h2 class="h2 reveal" data-i18n="165">传统 DCS，<br/><span class="grad">全面替代。</span></h2>
 <ul class="points tight reveal d1">
-<li data-i18n="142"><b>全面规模应用</b> — 首个万点以上规模 UCS 项目</li>
-<li data-i18n="143"><b>广泛的适配场景</b> — 进口系统全面替代：7000 点、4000 点两套进口系统</li>
-<li data-i18n="144"><b>融合应用</b> — UCS + TPT 融合应用，更智能、更节省</li>
-<li data-i18n="145"><b>数据基座</b> — 融合“运行、设备、质量、模拟”四大数据基座</li>
+<li data-i18n="166"><b>全面规模应用</b> — 首个万点以上规模 UCS 项目</li>
+<li data-i18n="167"><b>广泛的适配场景</b> — 传统 DCS 全面替代：7000 点、4000 点两套传统 DCS</li>
+<li data-i18n="168"><b>融合应用</b> — UCS + TPT 融合应用，更智能、更节省</li>
+<li data-i18n="169"><b>数据基座</b> — 融合“运行、设备、质量、模拟”四大数据基座</li>
 </ul>
 <div class="kpis reveal d2">
-<div class="kpi"><div class="v" data-i18n="146"><span data-count="7000">7000</span><small>点</small></div><div class="l" data-i18n="147">进口系统 A 替代</div></div>
-<div class="kpi"><div class="v" data-i18n="148"><span data-count="4000">4000</span><small>点</small></div><div class="l" data-i18n="149">进口系统 B 替代</div></div>
+<div class="kpi"><div class="v" data-i18n="170"><span data-count="7000">7000</span><small>点</small></div><div class="l" data-i18n="171">传统 DCS A 替代</div></div>
+<div class="kpi"><div class="v" data-i18n="172"><span data-count="4000">4000</span><small>点</small></div><div class="l" data-i18n="173">传统 DCS B 替代</div></div>
 </div>
 </div>
 </div>
@@ -321,16 +370,16 @@
 <section class="s3d" data-stage="time" id="heritage" style="height:400vh">
 <div class="sticky">
 <div class="copy">
-<div class="idx" data-i18n="150">15 · <b>里程碑</b></div>
-<h2 class="h2 reveal" data-i18n="151">中控控制系统<br/><span class="grad">里程碑。</span></h2>
-<p class="lead reveal d1" data-i18n="152">从 1993 年的 JX-100，到 2024 年的 Nyx 通用控制系统。</p>
+<div class="idx" data-i18n="174">18 · <b>里程碑</b></div>
+<h2 class="h2 reveal" data-i18n="175">中控控制系统<br/><span class="grad">里程碑。</span></h2>
+<p class="lead reveal d1" data-i18n="176">从 1993 年的 JX-100，到 2024 年的 Nyx 通用控制系统。</p>
 <ol class="years reveal d2" id="msYears">
 <li class="on"><b>1993</b><span>JX-100</span></li>
 <li><b>1996</b><span>JX-300X</span></li>
 <li><b>2001</b><span>ECS-100</span></li>
 <li><b>2005</b><span>JX-300XP</span></li>
 <li><b>2007</b><span>ECS-700</span></li>
-<li data-i18n="153"><b>2021</b><span>OMC · SmartEIO、APL</span></li>
+<li data-i18n="177"><b>2021</b><span>OMC · SmartEIO、APL</span></li>
 <li><b>2024</b><span>Nyx</span></li>
 </ol>
 </div>
@@ -340,15 +389,15 @@
 <section class="s3d" data-stage="market" id="market" style="height:240vh">
 <div class="sticky">
 <div class="copy">
-<div class="idx" data-i18n="154">16 · <b>市场地位</b></div>
-<h2 class="h2 reveal" data-i18n="155">为超过 30,000 家<br/><span class="grad">企业提供服务。</span></h2>
+<div class="idx" data-i18n="178">19 · <b>市场地位</b></div>
+<h2 class="h2 reveal" data-i18n="179">为超过 30,000 家<br/><span class="grad">企业提供服务。</span></h2>
 <div class="kfig two reveal d1">
-<div><div class="v" data-i18n="156"><span data-count="30000">30,000</span><small>+ 家</small></div><div class="l" data-i18n="157">服务企业</div></div>
-<div><div class="v">No.1</div><div class="l" data-i18n="158">自 2011 年以来，中国市场占有率第一</div></div>
-<div><div class="v"><span data-count="56.3" data-dec="1">56.3</span><small>%</small></div><div class="l" data-i18n="159">化工 · 中国工业市场份额</div></div>
-<div><div class="v"><span data-count="49.3" data-dec="1">49.3</span><small>%</small></div><div class="l" data-i18n="160">石油 · 中国工业市场份额</div></div>
+<div><div class="v" data-i18n="180"><span data-count="30000">30,000</span><small>+ 家</small></div><div class="l" data-i18n="181">服务企业</div></div>
+<div><div class="v">No.1</div><div class="l" data-i18n="182">自 2011 年以来，中国市场占有率第一</div></div>
+<div><div class="v"><span data-count="56.3" data-dec="1">56.3</span><small>%</small></div><div class="l" data-i18n="183">化工 · 中国工业市场份额</div></div>
+<div><div class="v"><span data-count="49.3" data-dec="1">49.3</span><small>%</small></div><div class="l" data-i18n="184">石油 · 中国工业市场份额</div></div>
 </div>
-<p class="lead small reveal d2" data-i18n="161">18 套千万吨级炼油项目和 28 套大型乙烯项目</p>
+<p class="lead small reveal d2" data-i18n="185">18 套千万吨级炼油项目和 28 套大型乙烯项目</p>
 </div>
 </div>
 </section>
@@ -356,19 +405,19 @@
 <section class="s3d" data-stage="trend" id="trends" style="height:300vh">
 <div class="sticky">
 <div class="copy">
-<div class="idx" data-i18n="162">17 · <b>发展趋势</b></div>
-<h2 class="h2 reveal" data-i18n="163">工业控制系统的<br/><span class="grad">发展趋势。</span></h2>
-<p class="lead reveal d1" data-i18n="164">建设“更智能、更高效生产”的智慧工厂。</p>
+<div class="idx" data-i18n="186">20 · <b>发展趋势</b></div>
+<h2 class="h2 reveal" data-i18n="187">工业控制系统的<br/><span class="grad">发展趋势。</span></h2>
+<p class="lead reveal d1" data-i18n="188">建设“更智能、更高效生产”的智慧工厂。</p>
 <ol class="trend reveal d2" id="trendList">
-<li data-i18n="165">封闭式系统 <i>→</i> 开放式系统</li>
-<li data-i18n="166">单机 <i>→</i> 虚拟化集群控制</li>
-<li data-i18n="167">传统架构 <i>→</i> 数字化、智能化、网络化</li>
-<li data-i18n="168">传统感知 <i>→</i> 图像识别智能决策</li>
-<li data-i18n="169">传统 UI <i>→</i> Web 化展示千人千面</li>
-<li data-i18n="170">单装置监控 <i>→</i> 管控一体化集成</li>
-<li data-i18n="171">传统的数据采集展示 <i>→</i> 数字孪生</li>
-<li data-i18n="172">设备维护 <i>→</i> 预测性维修</li>
-<li data-i18n="173">传统经验知识模型 <i>→</i> AI 大模型</li>
+<li data-i18n="189">封闭式系统 <i>→</i> 开放式系统</li>
+<li data-i18n="190">单机 <i>→</i> 虚拟化集群控制</li>
+<li data-i18n="191">传统架构 <i>→</i> 数字化、智能化、网络化</li>
+<li data-i18n="192">传统感知 <i>→</i> 图像识别智能决策</li>
+<li data-i18n="193">传统 UI <i>→</i> Web 化展示千人千面</li>
+<li data-i18n="194">单装置监控 <i>→</i> 管控一体化集成</li>
+<li data-i18n="195">传统的数据采集展示 <i>→</i> 数字孪生</li>
+<li data-i18n="196">设备维护 <i>→</i> 预测性维修</li>
+<li data-i18n="197">传统经验知识模型 <i>→</i> AI 大模型</li>
 </ol>
 </div>
 </div>
@@ -377,24 +426,24 @@
 <section class="s3d" data-stage="end" id="contact" style="height:220vh">
 <div class="sticky">
 <div class="copy">
-<div class="idx" data-i18n="174">18 · <b>中控 · SUPCON</b></div>
-<h2 class="h2 reveal" data-i18n="175">让工业更智能，<br/><span class="grad">让客户更成功。</span></h2>
+<div class="idx" data-i18n="198">21 · <b>中控 · SUPCON</b></div>
+<h2 class="h2 reveal" data-i18n="199">让工业更智能，<br/><span class="grad">让客户更成功。</span></h2>
 <div class="vm2 reveal d1">
-<div><h4 data-i18n="176">愿景</h4><p data-i18n="177">成为工业AI全球领先企业，用AI推动工业可持续发展</p></div>
-<div><h4 data-i18n="178">使命</h4><p data-i18n="10">让工业更智能，让客户更成功</p></div>
-<div><h4 data-i18n="179">价值观</h4><p data-i18n="180">客户至上、合作创新、自律诚信、自我驱动</p></div>
-<div><h4 data-i18n="181">员工理念</h4><p data-i18n="182">开心、充实、有价值、受尊重</p></div>
+<div><h4 data-i18n="200">愿景</h4><p data-i18n="201">成为工业AI全球领先企业，用AI推动工业可持续发展</p></div>
+<div><h4 data-i18n="202">使命</h4><p data-i18n="10">让工业更智能，让客户更成功</p></div>
+<div><h4 data-i18n="203">价值观</h4><p data-i18n="204">客户至上、合作创新、自律诚信、自我驱动</p></div>
+<div><h4 data-i18n="205">员工理念</h4><p data-i18n="206">开心、充实、有价值、受尊重</p></div>
 </div>
 <div class="contact2 reveal d2">
-<div class="ct"><span data-i18n="183">中控技术股份有限公司</span><a class="btn pri" data-i18n="6" href="mailto:supcon@supcon.com">联系我们</a></div>
+<div class="ct"><span data-i18n="207">中控技术股份有限公司</span><a class="btn pri" data-i18n="6" href="mailto:supcon@supcon.com">联系我们</a></div>
 <dl class="cinfo">
-<div class="full"><dt data-i18n="184">总部地址</dt><dd data-i18n="185">中国杭州市滨江区六和路309号 · 310053</dd></div>
-<div><dt data-i18n="186">总机</dt><dd><a href="tel:+86-571-88851888">0571-88851888</a></dd></div>
-<div><dt data-i18n="187">7×24 小时技术支持</dt><dd><a href="tel:+86-400-887-6000">+86 400-887-6000</a></dd></div>
-<div><dt data-i18n="188">技术支持邮箱</dt><dd><a href="mailto:ts@supcon.com">ts@supcon.com</a></dd></div>
-<div><dt data-i18n="189">电子邮箱</dt><dd><a href="mailto:supcon@supcon.com">supcon@supcon.com</a></dd></div>
-<div><dt data-i18n="190">传真</dt><dd>0571-86667555</dd></div>
-<div><dt data-i18n="191">官网</dt><dd><a href="https://www.supcon.com/" rel="noopener" target="_blank">www.supcon.com</a></dd></div>
+<div class="full"><dt data-i18n="208">总部地址</dt><dd data-i18n="209">中国杭州市滨江区六和路309号 · 310053</dd></div>
+<div><dt data-i18n="210">总机</dt><dd><a href="tel:+86-571-88851888">0571-88851888</a></dd></div>
+<div><dt data-i18n="211">7×24 小时技术支持</dt><dd><a href="tel:+86-400-887-6000">+86 400-887-6000</a></dd></div>
+<div><dt data-i18n="212">技术支持邮箱</dt><dd><a href="mailto:ts@supcon.com">ts@supcon.com</a></dd></div>
+<div><dt data-i18n="213">电子邮箱</dt><dd><a href="mailto:supcon@supcon.com">supcon@supcon.com</a></dd></div>
+<div><dt data-i18n="214">传真</dt><dd>0571-86667555</dd></div>
+<div><dt data-i18n="215">官网</dt><dd><a href="https://www.supcon.com/" rel="noopener" target="_blank">www.supcon.com</a></dd></div>
 </dl>
 </div>
 </div>
@@ -402,25 +451,28 @@
 </section>
 </main>
 <footer>
-<div class="wrap" data-i18n="192">
+<div class="wrap" data-i18n="216">
 <span>中控 · SUPCON — Nyx 通用控制系统</span>
 <span class="stock">股票代码：688777.SH ｜ SUPCON.SW</span>
 </div>
 </footer>
 <script>
-window.__I18N_EN = ["<i class=\"mk\"></i>SUPCON<small>Nyx UCS</small>", "Architecture", "Key Features", "AI Control", "Specifications", "Case Study", "Contact Us", "Universal Control System · UCS", "<span class=\"nm grad\">Nyx</span><span class=\"t1\">Universal <span class=\"nw\">Control System</span></span><span class=\"en\">UCS · SUPCON</span>", "Toward the future of automation with infinite control", "Making industry smarter, making customers more successful", "Explore Nyx", "<span class=\"ring\"><svg viewBox=\"0 0 24 24\"><path d=\"M8 5.5v13l11-6.5z\"></path></svg></span><span><b>Start the Auto Tour</b><em>Auto Tour · approx. 1.5 min</em></span>", "01 · <b>UCS Core Values</b>", "New capabilities,<br/><span class=\"grad\">proven heritage.</span>", "New capabilities", "Simplified architecture, industrial cloud real-time system, cloud computing, AI-Inside; agile, open, long lifecycle", "Proven heritage", "High reliability, high security, high stability, built-in cybersecurity design", "<b>01</b>Flexible", "<b>02</b>Reliable", "<b>03</b>Efficient", "<b>04</b>Intelligent", "<b>05</b>Human-centric", "02 · <b>UCS Simplified Architecture</b>", "<span class=\"h2k\">Compute. Connect. Sense.</span><br/><span class=\"grad\">All-optical, straight to the field.</span>", "The control data center connects directly to APL / SmartEIO junction boxes and field instruments over an all-optical industrial network, building a fully digital, intelligent field.", "<b>Compute</b> — Control data center", "<b>Connect</b> — All-optical industrial network", "<b>Sense</b> — APL / SmartEIO junction boxes · Instruments", "<span class=\"chip\">Networked I/O System</span><span class=\"chip\">APL</span><span class=\"chip\">SmartEIO</span><span class=\"chip\">Wireless</span><span class=\"chip\">Gateway</span><span class=\"chip\">IPv6</span>", "03 · <b>Control Data Center</b>", "A highly reliable<br/><span class=\"grad\">data center.</span>", "Delivered in standard cabinets, with support for design conversion. Full redundancy of key components, and hardware and software diagnostics across the entire data center.", "Key component redundancy: <b>power supplies, fans, hard drives, NICs</b>, and more", "Environmental diagnostics · Server hardware health status", "Monitoring and log auditing of key NyxOS modules · Supervision of control services", "Software-defined storage network, highly fault-tolerant, with automatic isolation of failed drives", "Hardware availability", "* 3D model is illustrative and does not represent the actual product structure", "04 · <b>Flexible</b>", "Easy to expand,<br/><span class=\"grad\">easy to deploy.</span>", "<b>Easy expansion of operator nodes</b> — Operator nodes are deployed modularly inside the control data center and can be cloned in one click; once an IP is defined, they are accessible via web on a thin client", "<b>Easy expansion of field nodes</b> — No additional components are needed between cabinets; once wired on site, nodes join the all-optical network, and points can be assigned to any control service", "<b>Easy expansion of computing power</b> — After a new server is deployed, one-click expansion and automatic installation scale the control data center's compute, memory and storage within 10 minutes", "<b>Easy delivery, one-click deployment</b> — Cloud engineering and multi-user engineering; fast deployment from the application repository; no need to upgrade every operator and engineering station; minimal concern over hardware–software coupling", "<span data-count=\"10\">10</span><small>min</small>", "Compute · Memory · Storage expansion", "05 · <b>Reliable</b>", "Redundancy,<br/><span class=\"grad\">from 1:1 to 1:N.</span>", "Designed for high reliability and high availability. Both control hardware and control services achieve 1:N redundancy, monitoring and coordinating critical real-time tasks.", "<b>Bumpless single-cycle switchover</b>", "<b>Multi-state redundancy</b> — Hot · Warm · Cold", "<b>Standby nodes generated automatically on demand</b>", "<i></i><span>Control service A runs on Node0 · Hot standby A′ · Cold standby A″</span>", "06 · <b>Efficient</b>", "Fewer cabinets,<br/><span class=\"grad\">less cabling.</span>", "From clients and the control data center to SmartEIO / APL field junction boxes and conventional / APL field instruments — the IO cabinet, terminal board cabinet and isolation barrier cabinet layers of traditional architectures are gone.", "Cabinet space", "Cabling", "Project schedule", "07 · <b>Intelligent</b>", "Nyx × AI control<br/><span class=\"grad\">= higher productivity.</span>", "The GPU-powered control engine <b style=\"color:#fff\">NyxEngine</b>.", "<b>AI-PID</b> — Loop-level autonomous operation", "<b>AI predictive maintenance</b> — Effective integration with equipment platforms", "<b>AI-assisted programming</b> — Industry-specific GenAI", "<b>AI Future Brush</b> — Future trend prediction of loop-level data", "08 · <b>Technology Value</b>", "The technology value<br/><span class=\"grad\">of UCS.</span>", "From a fully digital, intelligent field, to a unified data model and AI-Inside, and ultimately to autonomous operation.", "<b>Autonomous operation</b> — automatic control rate · stability · operation frequency · alarm frequency · O&amp;M efficiency", "<b>AI-Inside</b> — alarm management · AI-PID · AI alarm prediction · situational-awareness HMI · vision AI · IDM · AI programming", "<b>OT data</b> — S-DIM unified data model · OPC UA information model", "<b>Networked I/O system</b> — APL · SmartEIO · Wireless · Gateway · IPv6", "09 · <b>Time-series Model</b>", "Data, algorithms, compute,<br/><span class=\"grad\">converging into TPT.</span>", "Intelligent data, algorithms and computing power combine into the time-series large model TPT, integrated on top of the Nyx platform.", "<b>Intelligent Data</b>", "<b>AI Algorithm</b>", "<b>Computing Power</b>", "<span class=\"chip\">Autonomous optimization</span><span class=\"chip\">Autonomous supervision</span><span class=\"chip\">Knowledge Q&amp;A</span><span class=\"chip\">Data analysis</span><span class=\"chip\">Operation reports</span><span class=\"chip\">Advanced control</span><span class=\"chip\">Operation guidance</span><span class=\"chip\">Alarm management</span><span class=\"chip\">PID tuning</span>", "10 · <b>Platform</b>", "NyxOS — Cloud Base Real-time Control. Real-time control, process monitoring and application services are built in layers.", "<b>Application services</b> — IDM · OPC UA · historical data", "<b>Process monitoring</b> — high-performance HMI · alarms &amp; events · third-party communication", "<b>Real-time control</b> — IEC 61131-3 · AI-PID · AI-ST", "<b>NyxOS</b> — connects APL · SmartEIO · I/O", "<i></i><span>Zero-trust cybersecurity strategy, end to end</span>", "11 · <b>Key Figures</b>", "Key figures<br/><span class=\"grad\">and specifications.</span>", "Hardware availability · critical components redundant", "Control redundancy · from 1:1 to 1:N", "One-click expansion · compute, memory, storage", "<span data-count=\"15000\">15,000</span><small>pts</small>", "First UCS project above 10,000 points", "Cabinet space saved", "Cabling saved", "Project cycle saved", "Control engine NyxEngine", "12 · <b>Specifications</b>", "Specifications,<br/><span class=\"grad\">in four groups.</span>", "<i class=\"on\">Architecture &amp; platform</i><i>Monitoring &amp; redundancy</i><i>Diagnostics &amp; data</i><i>Security &amp; delivery</i>", "Architecture", "Control data center + all-optical industrial network + APL / SmartEIO field junction boxes + field instruments", "Platform", "NyxOS — Cloud Base Real-time Control; industrial cloud real-time system, cloud computing, AI-Inside", "Control engine", "GPU-powered control engine NyxEngine", "Real-time control", "Process monitoring", "High-performance HMI · Alarms &amp; events · Historical trends · Third-party communication", "Application services", "IDM · OPC UA · Historical data · Plant-wide diagnostics · AI-Inside Apps", "Redundancy", "1:N redundancy for control hardware and control services; bumpless single-cycle switchover; multi-state redundancy (hot / warm / cold); standby nodes generated automatically on demand", "Availability", "99.999%; critical components redundant: power supplies, fans, hard drives, NICs, etc.", "Diagnostics", "Environmental diagnostics; server hardware health status; monitoring and log auditing of key NyxOS modules; supervision of control services", "Storage", "Software-defined storage network, highly fault-tolerant; automatic isolation of failed drives", "Field I/O", "Networked I/O system: APL · SmartEIO · Wireless · Gateway; IPv6; all-optical network access", "Data model", "S-DIM unified data model; OPC UA information model", "Cybersecurity", "Zero-trust network security strategy; built-in cybersecurity design", "Access", "Web access via thin client; clients · mobile devices", "Engineering &amp; delivery", "Delivered in standard cabinets with support for design conversion; cloud engineering, multi-user engineering; fast deployment from the application repository", "AI capabilities", "AI-PID · AI predictive maintenance · AI-assisted programming · AI Future Brush; time-series foundation model TPT", "13 · <b>Case Study</b>", "A chlor-alkali company:<br/><span class=\"grad\">digital factory demonstration.</span>", "Industrial AI + autonomous operation: 300,000 t chlor-alkali, 35,000 t potash, 75,000 t hydrogen peroxide and TMAH.", "I/O points in total", "Lower construction cost", "Higher staff productivity", "14 · <b>Case Highlights</b>", "Imported systems,<br/><span class=\"grad\">fully replaced.</span>", "<b>Full-scale application</b> — the first UCS project with more than 10,000 points", "<b>Broad applicability</b> — full replacement of imported systems: two imported systems of 7,000 and 4,000 points", "<b>Integrated application</b> — UCS + TPT working together: smarter and more economical", "<b>Data foundation</b> — integrates four data foundations: operations, equipment, quality and simulation", "<span data-count=\"7000\">7,000</span><small>pts</small>", "Imported system A replaced", "<span data-count=\"4000\">4,000</span><small>pts</small>", "Imported system B replaced", "15 · <b>Milestones</b>", "Milestones of<br/><span class=\"grad\">SUPCON control systems.</span>", "From JX-100 in 1993 to the Nyx Universal Control System in 2024.", "<b>2021</b><span>OMC · SmartEIO, APL</span>", "16 · <b>Market Position</b>", "Serving more than<br/><span class=\"grad\">30,000 enterprises.</span>", "<span data-count=\"30000\">30,000</span><small>+</small>", "Enterprises served", "No. 1 market share in China since 2011", "Chemicals · China industrial market share", "Petroleum · China industrial market share", "18 ten-million-ton refining projects and 28 large ethylene projects", "17 · <b>Trends</b>", "Where industrial control<br/><span class=\"grad\">systems are heading.</span>", "Building smart factories for smarter, more efficient production.", "Closed systems <i>→</i> open systems", "Standalone <i>→</i> virtualized cluster control", "Traditional architecture <i>→</i> digital, intelligent, networked", "Traditional sensing <i>→</i> image recognition and intelligent decisions", "Traditional UI <i>→</i> web-based, personalized views", "Single-unit monitoring <i>→</i> integrated management and control", "Traditional data acquisition and display <i>→</i> digital twin", "Equipment maintenance <i>→</i> predictive maintenance", "Traditional experience-based models <i>→</i> large AI models", "18 · <b>SUPCON</b>", "Making industry smarter,<br/><span class=\"grad\">making customers more successful.</span>", "Vision", "To become a global leader in industrial AI, using AI to drive the sustainable development of industry", "Mission", "Values", "Customer first, collaborative innovation, self‑discipline and integrity, self‑motivation", "Employee philosophy", "Happy, fulfilled, valued, respected", "SUPCON Technology Co., Ltd.", "Headquarters", "No. 309 Liuhe Road, Binjiang District, Hangzhou, China 310053", "Main line", "24/7 technical support", "Support email", "Email", "Fax", "Website", "<span>SUPCON — Nyx Universal Control System</span> <span class=\"stock\">Stock code: 688777.SH | SUPCON.SW</span>", "Nyx control data center cabinet", "Start the auto tour"];
+window.__I18N_EN = ["<i class=\"mk\"></i>SUPCON<small>Nyx UCS</small>", "Architecture", "Key Features", "AI Control", "Specifications", "Case Study", "Contact Us", "Universal Control System · UCS", "<span class=\"nm grad\">Nyx</span><span class=\"t1\">Universal <span class=\"nw\">Control System</span></span><span class=\"en\">UCS · SUPCON</span>", "Toward the future of automation with infinite control", "Making industry smarter, making customers more successful", "Explore Nyx", "<span class=\"ring\"><svg viewBox=\"0 0 24 24\"><path d=\"M8 5.5v13l11-6.5z\"></path></svg></span><span><b>Start the Auto Tour</b><em>Auto Tour · approx. 1.5 min</em></span>", "01 · <b>UCS Core Values</b>", "New Capabilities,<br/><span class=\"grad\">Proven Heritage.</span>", "New Capabilities", "Simplified architecture, Cloud-based Real-time Operating System, cloud computing, AI-Inside; agile, open, long lifecycle", "Proven Heritage", "High reliability, high security, high stability, built-in cybersecurity design", "<b>01</b>Flexible", "<b>02</b>Reliable", "<b>03</b>Efficient", "<b>04</b>Intelligent", "<b>05</b>Human-centric", "02 · <b>UCS Simplified Architecture</b>", "<span class=\"h2k\">Compute. Connect. Sense.</span><br/><span class=\"grad\">All-Optical, Straight to the Field.</span>", "The control data center connects directly to APL / SmartEIO junction boxes and field instruments over an all-optical industrial network, building a fully digital, intelligent field.", "<b>Compute</b> — Control data center", "<b>Connect</b> — All-optical industrial network", "<b>Sense</b> — APL / SmartEIO junction boxes · Instruments", "<span class=\"chip\">Networked I/O System</span><span class=\"chip\">APL</span><span class=\"chip\">SmartEIO</span><span class=\"chip\">Wireless</span><span class=\"chip\">Gateway</span><span class=\"chip\">IPv6</span>", "03 · <b>Control Data Center</b>", "A Highly Reliable<br/><span class=\"grad\">Data Center.</span>", "Delivered in standard cabinets, with support for design conversion. Full redundancy of key components, and hardware and software diagnostics across the entire data center.", "Key component redundancy: <b>power supplies, fans, hard drives, NICs</b>, and more", "Environmental diagnostics · Server hardware health status", "Monitoring and log auditing of key NyxOS modules · Supervision of control services", "Software-defined storage network, highly fault-tolerant, with automatic isolation of failed drives", "Hardware availability", "* 3D model is illustrative and does not represent the actual product structure", "04 · <b>Flexible</b>", "Easy to Expand,<br/><span class=\"grad\">Easy to Deploy.</span>", "<b>Easy expansion of control services</b> — Control services are deployed as modules inside the control data center and can be replicated in one click; once an IP is defined, they can be accessed from a thin-client web browser", "<b>Easy expansion of field nodes</b> — No additional components are needed between cabinets; once wired on site, nodes join the all-optical network, and points can be assigned to any control service", "<b>Easy expansion of computing power</b> — Automated cluster expansion: once a new server is deployed, one-click scale-out and automatic installation extend compute, memory and storage within 10 minutes", "<b>Easy delivery, one-click deployment</b> — Cloud engineering and multi-user engineering; fast deployment from the application repository; no need to upgrade every operator and engineering station; minimal concern over hardware–software coupling", "Automated<small> Cluster Expansion</small>", "One-click scale-out, automatic installation", "05 · <b>Reliable</b>", "Redundancy,<br/><span class=\"grad\">from 1:1 to 1:N.</span>", "Designed for high reliability and high availability. Both control hardware and controller services achieve 1:N redundancy, monitoring and coordinating critical real-time tasks.", "<b>Bumpless single-cycle switchover</b>", "<b>Multi-state redundancy</b> — Hot · Warm · Cold", "<b>Standby nodes generated automatically on demand</b>", "<i></i><span>Controller service A runs on Node0 · Hot standby A′ · Cold standby A″</span>", "06 · <b>Efficient</b>", "Fewer Cabinets,<br/><span class=\"grad\">Less Cabling.</span>", "From clients and the control data center to SmartEIO / APL field junction boxes and conventional / APL field instruments — the IO cabinet, terminal board cabinet and isolation barrier cabinet layers of traditional architectures are gone.", "Cabinet space", "Cabling", "Project schedule", "07 · <b>Intelligent</b>", "Nyx × AI Control<br/><span class=\"grad\">= Higher Productivity.</span>", "The GPU-powered control engine <b style=\"color:#fff\">NyxEngine</b>.", "<b>AI-PID</b> — Loop-level autonomous operation", "<b>AI predictive maintenance</b> — Effective integration with equipment platforms", "<b>AI-assisted programming</b> — Industry-specific GenAI", "<b>AI FutureTrend</b> — AI Driven Future Trending &amp; Alarming", "08 · <b>Reinforced Learning</b>", "Reinforced Learning<br/><span class=\"grad\">for Close-loop Optimization.</span>", "A reinforced learning control agent works with the loop in real time: it evaluates and generates control strategies, with continuous real-time updates.", "<b>Adaptive for Dynamic Status</b>", "<b>Improve Loop Autonomy Rate</b>", "<b>Less PID Tuning Effort</b>", "<b>Reinforced learning control agent</b> — control strategy evaluating neural network · control strategy generation neural network · real-time update", "<b>Intelligent control outputs</b> — PID (opt.), acting on the controlled loop", "<b>Reward and evaluation module</b> — loop performance identifier compares against the target and feeds back the loop signal", "09 · <b>Generative AI</b>", "Generative AI<br/><span class=\"grad\">for Control Logic Development.</span>", "Upload a control logic file or describe the need in natural language, and AI generates the code.", "<b>AI generates code from an uploaded control logic file</b> — SFC, step config, design document", "<b>AI generates code from natural language</b> — enter a prompt, generate and review the code", "<b>Private LLM specific to industrial control</b>", "<span class=\"chip\">SFC</span><span class=\"chip\">Step Config</span><span class=\"chip\">Design Doc</span><span class=\"chip\">Prompt</span><span class=\"chip\">Generating</span><span class=\"chip\">Code Review</span>", "10 · <b>Trend &amp; Alarm Prediction</b>", "Future Trending &amp;<br/><span class=\"grad\">Alarm Predictions.</span>", "The real-time controller (Nyx) supplies the real-time trend; an AI predictive model, trained online, generates future trends and alarm predictions for the loop.", "<b>Loop trending &amp; alarm predict</b> — AI predictive model based on control objectives · online real-time model training · real-time prediction", "<b>Used for</b> — future trending · incoming alarm alerts · operation result prediction", "<b>Digital twin</b> — parallel operation and control", "<span class=\"chip\">Best practice recommendation</span><span class=\"chip\">Future process trends / state prediction</span><span class=\"chip\">Future alarms &amp; events prediction</span>", "11 · <b>Technology Value</b>", "The Technology Value<br/><span class=\"grad\">of UCS.</span>", "From a fully digital, intelligent field, to a unified data model and AI-Inside, and ultimately to autonomous operation.", "<b>Autonomous operation</b> — automatic control rate · stability · operation frequency · alarm frequency · O&amp;M efficiency", "<b>AI-Inside</b> — alarm management · AI-PID · AI alarm prediction · situational-awareness HMI · vision AI · IDM · AI programming", "<b>OT data</b> — S-DIM unified data model · OPC UA information model", "<b>Networked I/O system</b> — APL · SmartEIO · Wireless · Gateway · IPv6", "12 · <b>Time-Series Model</b>", "Data, Algorithms, Compute,<br/><span class=\"grad\">Converging into TPT.</span>", "Intelligent data, algorithms and computing power combine into the time-series large model TPT, integrated on top of the Nyx platform.", "<b>Intelligent Data</b>", "<b>AI Algorithm</b>", "<b>Computing Power</b>", "<span class=\"chip\">Autonomous optimization</span><span class=\"chip\">Autonomous supervision</span><span class=\"chip\">Knowledge Q&amp;A</span><span class=\"chip\">Data analysis</span><span class=\"chip\">Operation reports</span><span class=\"chip\">Advanced control</span><span class=\"chip\">Operation guidance</span><span class=\"chip\">Alarm management</span><span class=\"chip\">PID tuning</span>", "13 · <b>Platform</b>", "NyxOS — Cloud-based Real-time Operating System. Real-time control, process monitoring and application services are built in layers.", "<b>Application services</b> — IDM · OPC UA · historical data", "<b>Process monitoring</b> — high-performance HMI · alarms &amp; events · third-party communication", "<b>Real-time control</b> — IEC 61131-3 · AI-PID · AI-ST", "<b>NyxOS</b> — real-time operating system that schedules and manages containerized control services and computing resources", "<b>Networked I/O system</b> — connects Ethernet-APL · SmartEIO I/O · Fieldbus", "<i></i><span>Zero-trust cybersecurity strategy, end to end</span>", "14 · <b>Key Figures</b>", "Key Figures<br/><span class=\"grad\">and Specifications.</span>", "Hardware availability · critical components redundant", "Controller redundancy · from 1:1 to 1:N", "<span data-count=\"10\">10</span><small>min</small>", "One-click expansion · compute, memory, storage", "Cabinet space saved", "Cabling saved", "Project cycle saved", "Control engine NyxEngine", "15 · <b>Specifications</b>", "Specifications,<br/><span class=\"grad\">in Four Groups.</span>", "<i class=\"on\">Architecture &amp; Platform</i><i>Monitoring &amp; Redundancy</i><i>Diagnostics &amp; Data</i><i>Security &amp; Delivery</i>", "Architecture", "Control data center + all-optical industrial network + APL / SmartEIO field junction boxes + field instruments", "Platform", "NyxOS — Cloud-based Real-time Operating System; cloud computing, AI-Inside", "Control engine", "GPU-powered control engine NyxEngine", "Real-time control", "Process monitoring", "High-performance HMI · Alarms &amp; events · Historical trends · Third-party communication", "Application services", "IDM · OPC UA · Historical data · Plant-wide diagnostics · AI-Inside Apps", "Redundancy", "1:N redundancy for control hardware and control services; bumpless single-cycle switchover; multi-state redundancy (hot / warm / cold); standby nodes generated automatically on demand", "Availability", "99.999%; critical components redundant: power supplies, fans, hard drives, NICs, etc.", "Diagnostics", "Environmental diagnostics; server hardware health status; monitoring and log auditing of key NyxOS modules; supervision of control services", "Storage", "Software-defined storage network, highly fault-tolerant; automatic isolation of failed drives", "Field I/O", "Networked I/O system: APL · SmartEIO · Wireless · Gateway; IPv6; all-optical network access", "Data model", "S-DIM unified data model; OPC UA information model", "Cybersecurity", "Zero-trust network security strategy; built-in cybersecurity design", "Access", "Web access via thin client; clients · mobile devices", "Engineering &amp; delivery", "Delivered in standard cabinets with support for design conversion; cloud engineering, multi-user engineering; fast deployment from the application repository", "AI capabilities", "AI-PID · AI predictive maintenance · AI-assisted programming · AI FutureTrend; time-series foundation model TPT", "16 · <b>Case Study</b>", "A Chlor-Alkali Company:<br/><span class=\"grad\">Digital Factory Demonstration.</span>", "Industrial AI + autonomous operation: 300,000 t chlor-alkali, 35,000 t potash, 75,000 t hydrogen peroxide and TMAH.", "<span data-count=\"15000\">15,000</span><small>pts</small>", "I/O points in total", "Lower construction cost", "Higher staff productivity", "17 · <b>Case Highlights</b>", "Traditional DCS,<br/><span class=\"grad\">Fully Replaced.</span>", "<b>Full-scale application</b> — the first UCS project with more than 10,000 points", "<b>Broad applicability</b> — full replacement of traditional DCS: two traditional DCS installations of 7,000 and 4,000 points", "<b>Integrated application</b> — UCS + TPT working together: smarter and more economical", "<b>Data foundation</b> — integrates four data foundations: operations, equipment, quality and simulation", "<span data-count=\"7000\">7,000</span><small>pts</small>", "Traditional DCS A replaced", "<span data-count=\"4000\">4,000</span><small>pts</small>", "Traditional DCS B replaced", "18 · <b>Milestones</b>", "Milestones of<br/><span class=\"grad\">SUPCON Control Systems.</span>", "From JX-100 in 1993 to the Nyx Universal Control System in 2024.", "<b>2021</b><span>OMC · SmartEIO, APL</span>", "19 · <b>Market Position</b>", "Serving More than<br/><span class=\"grad\">30,000 Enterprises.</span>", "<span data-count=\"30000\">30,000</span><small>+</small>", "Enterprises served", "No. 1 market share in China since 2011", "Chemicals · China industrial market share", "Petroleum · China industrial market share", "18 ten-million-ton refining projects and 28 large ethylene projects", "20 · <b>Trends</b>", "Where Industrial Control<br/><span class=\"grad\">Systems Are Heading.</span>", "Building smart factories for smarter, more efficient production.", "Closed systems <i>→</i> open systems", "Standalone <i>→</i> virtualized cluster control", "Traditional architecture <i>→</i> digital, intelligent, networked", "Traditional sensing <i>→</i> image recognition and intelligent decisions", "Traditional UI <i>→</i> web-based, personalized views", "Single-unit monitoring <i>→</i> integrated management and control", "Traditional data acquisition and display <i>→</i> digital twin", "Equipment maintenance <i>→</i> predictive maintenance", "Traditional experience-based models <i>→</i> large AI models", "21 · <b>SUPCON</b>", "Making Industry Smarter,<br/><span class=\"grad\">Making Customers More Successful.</span>", "Vision", "To become a global leader in industrial AI, using AI to drive the sustainable development of industry", "Mission", "Values", "Customer first, collaborative innovation, self‑discipline and integrity, self‑motivation", "Employee Philosophy", "Happy, fulfilled, valued, respected", "SUPCON Technology Co., Ltd.", "Headquarters", "No. 309 Liuhe Road, Binjiang District, Hangzhou, China 310053", "Main line", "24/7 technical support", "Support email", "Email", "Fax", "Website", "<span>SUPCON — Nyx Universal Control System</span> <span class=\"stock\">Stock code: 688777.SH | SUPCON.SW</span>", "Nyx control data center cabinet", "Start the auto tour"];
 /* ===== i18n: 中 / EN ===== */
 (function () {
   var EN = window.__I18N_EN || [];
   var JS = {
+    '强化学习控制智能体': 'Reinforced Learning Control Agent', '实时更新': 'Real-time Update', '智能控制输出': 'Intelligent Control Outputs', '奖励与评估模块': 'Reward and Evaluation Module',
+    '上传控制逻辑文件': 'Upload Control Logic File', '自然语言 · 提示词': 'Natural Language · Prompt', '工业控制专用私有大模型': 'Private LLM for Industrial Control', '生成代码': 'Generating', 'SFC · 步骤配置': 'SFC · Step Config', '代码审查': 'Code Review',
+    '实时趋势': 'Real-time Trend', '未来趋势': 'Future Trending', '即将发生的报警提醒': 'Incoming Alarm Alert', 'AI 预测模型 · 在线训练引擎': 'AI Predictive Model · Online Training Engine', '真实装置': 'Real Plant', '数字孪生': 'Digital Twin',
     // v2 chapters
     '网络化 I/O 系统': 'Networked I/O System', 'OT 数据 · S-DIM': 'OT Data · S-DIM', '自主运行': 'Autonomous Operation',
     '智能数据': 'Intelligent Data', '算法': 'AI Algorithm', '算力': 'Computing Power', '时间序列大模型 TPT': 'Time-series Large Model TPT',
     '应用服务': 'Application Services', '过程监控': 'Process Monitoring', '实时控制': 'Real-time Control', '零信任网络安全': 'Zero-trust Cybersecurity',
-    '硬件可用性': 'Availability', '控制冗余': 'Control Redundancy', '一键扩容': 'One-click Expansion', '单项目规模': 'Single Project Scale', '机柜空间': 'Cabinet Space', '线缆': 'Cabling', '项目周期': 'Project Cycle',
+    '硬件可用性': 'Availability', '控制冗余': 'Controller Redundancy', '一键扩容': 'One-click Expansion', '单项目规模': 'Single Project Scale', '机柜空间': 'Cabinet Space', '线缆': 'Cabling', '项目周期': 'Project Cycle',
     '1:N 冗余': '1:N Redundancy', '高性能 HMI': 'High-performance HMI', '全数据中心诊断': 'Data-center-wide Diagnostics', '现场 I/O': 'Field I/O', '瘦客户端 Web 访问': 'Thin-client Web Access',
     '氯碱 · 30 万吨': 'Chlor-alkali · 300,000 t', '钾碱 · 3.5 万吨': 'Potash · 35,000 t', '双氧水和 TMAH · 7.5 万吨': 'Hydrogen Peroxide & TMAH · 75,000 t', '共计 I/O 点': 'I/O points in total',
-    '运行': 'Operations', '设备': 'Equipment', '质量': 'Quality', '模拟': 'Simulation', '进口系统 A · 7000 点': 'Imported System A · 7,000 pts', '进口系统 B · 4000 点': 'Imported System B · 4,000 pts', '已替代': 'Replaced',
+    '运行': 'Operations', '设备': 'Equipment', '质量': 'Quality', '模拟': 'Simulation', '传统 DCS A · 7000 点': 'Traditional DCS A · 7,000 pts', '传统 DCS B · 4000 点': 'Traditional DCS B · 4,000 pts', '已替代': 'Replaced',
     '首个万点以上规模 UCS 项目': 'First UCS project above 10,000 points', 'OMC · SmartEIO、APL': 'OMC · SmartEIO, APL',
     '化工': 'Chemicals', '石油': 'Petroleum', '18 套千万吨级炼油': '18 ten-million-ton refineries', '28 套大型乙烯': '28 large ethylene projects',
     '开放式系统': 'Open Systems', '虚拟化集群控制': 'Virtualized Cluster Control', '数字化、智能化、网络化': 'Digital · Intelligent · Networked', '图像识别智能决策': 'Image Recognition & Intelligent Decisions',
@@ -428,17 +480,17 @@ window.__I18N_EN = ["<i class=\"mk\"></i>SUPCON<small>Nyx UCS</small>", "Archite
     // 3D labels (main lines)
     '全光网络交换': 'All-optical Network Switching', '服务器集群 · NyxOS': 'Server Cluster · NyxOS', '冗余电源': 'Redundant Power', '散热 · 风扇': 'Cooling · Fans',
     '控制数据中心': 'Control Data Center', '全光工业网': 'All-optical Industrial Network', 'APL / SmartEIO 接线箱': 'APL / SmartEIO Junction Box', '现场仪表': 'Field Instruments',
-    '服务器硬件': 'Server Hardware', 'Nyx 系统 · NyxOS': 'Nyx System · NyxOS', 'NyxOS · 工业云实时系统': 'NyxOS · Industrial Cloud Real-time System', '传统 DCS · 控制硬件': 'Traditional DCS · Control Hardware', '全数字化智能现场': 'Fully Digital Intelligent Field', '单机 → 虚拟化集群控制': 'Standalone → Virtualized Cluster Control', '控制服务 · 工厂组态': 'Control Services · Plant Configuration', '一键扩容 · 自动安装': 'One-click Expansion · Auto Install',
+    '服务器硬件': 'Server Hardware', 'Nyx 系统 · NyxOS': 'Nyx System · NyxOS', 'NyxOS · 工业云实时系统': 'NyxOS', '传统 DCS · 控制硬件': 'Traditional DCS · Control Hardware', '全数字化智能现场': 'Fully Digital Intelligent Field', '单机 → 虚拟化集群控制': 'Standalone → Virtualized Cluster Control', '控制服务 · 工厂组态': 'Control Services · Plant Configuration', '一键扩容 · 自动安装': 'One-click Scale-out · Auto Install',
     '监控和协调关键的实时任务': 'Monitors & Coordinates Critical Real-time Tasks', '✕ 故障': '✕ Fault',
     'IO柜': 'IO Cabinet', '端子板柜': 'Terminal Board Cabinet', '隔离栅柜': 'Isolation Barrier Cabinet',
     'Nyx 控制数据中心': 'Nyx Control Data Center', 'SmartEIO / APL 现场接线箱': 'SmartEIO / APL Field Junction Box',
-    'AI 预测性维护': 'AI Predictive Maintenance', 'AI 辅助编程': 'AI-assisted Programming', 'AI 未来画笔': 'AI Future Brush',
+    'AI 预测性维护': 'AI Predictive Maintenance', 'AI 辅助编程': 'AI-assisted Programming', 'AI 未来画笔': 'AI FutureTrend',
     'GPU 赋能的控制引擎 NyxEngine': 'GPU-powered Control Engine NyxEngine',
-    '控制服务 A · 热': 'Control Service A · Hot', '控制服务 A′ · 温': 'Control Service A′ · Warm', '控制服务 A″ · 冷': 'Control Service A″ · Cold', '空闲资源': 'Idle Resource',
+    '控制服务 A · 热': 'Controller Service A · Hot', '控制服务 A′ · 温': 'Controller Service A′ · Warm', '控制服务 A″ · 冷': 'Controller Service A″ · Cold', '空闲资源': 'Idle Resource',
     // reliability status line
-    '控制服务 A 运行于 Node0 · A′ 温备 · A″ 冷备': 'Control service A runs on Node0 · A′ warm standby · A″ cold standby',
+    '控制服务 A 运行于 Node0 · A′ 温备 · A″ 冷备': 'Controller service A runs on Node0 · A′ warm standby · A″ cold standby',
     'Node0 故障 —— 单周期无干扰切换': 'Node0 fault — bumpless single-cycle switchover',
-    'Node1 接管控制服务 A · 多态冗余': 'Node1 takes over control service A · multi-state redundancy',
+    'Node1 接管控制服务 A · 多态冗余': 'Node1 takes over controller service A · multi-state redundancy',
     '备用节点按需自动生成 · 1:N 冗余': 'Standby node generated automatically on demand · 1:N redundancy',
     // misc
     '三维场景不可用，已切换为静态版本': '3D scene unavailable — showing the static version',
@@ -446,15 +498,16 @@ window.__I18N_EN = ["<i class=\"mk\"></i>SUPCON<small>Nyx UCS</small>", "Archite
     '自动播放': 'Auto Play', '暂停': 'Pause', '上一章': 'Previous chapter', '下一章': 'Next chapter', '暂停自动播放': 'Pause auto play', '自动播放控制': 'Auto play controls', '跳到 ': 'Go to '
   };
   var SUB = { // 3D label sub-lines that contain Chinese
+    'PID (opt.)': 'PID (opt.)', 'Loop Performance Identifier': 'Loop Performance Identifier', 'SFC · Step Config · Design Doc': 'SFC · Step Config · Design Doc', 'Parallel Operation & Control': 'Parallel Operation & Control',
     'Autonomous Operation': '', 'Intelligent Data': '', 'AI Algorithm': '', 'Computing Power': '', 'Zero Trust': '', 'Thin-client Web Access': '', 'Time-series Large Model': '',
     'Operations': '', 'Equipment': '', 'Quality': '', 'Simulation': '', '时间序列大模型': 'Time-series Large Model',
-    'Compute · 计算': 'Compute', 'Connect · 连接': 'Connect', 'Sense · 感知': 'Sense', '10 分钟内': 'Within 10 minutes',
+    'Compute · 计算': 'Compute', 'Connect · 连接': 'Connect', 'Sense · 感知': 'Sense', '自动化 · 集群扩展': 'Automated Cluster Expansion', 'Cloud-based Real-time Operating System': 'Cloud-based Real-time Operating System',
     '回路级的自主运行': 'Loop-level autonomous operation', '设备平台的有效结合': 'Integrated with equipment platforms',
-    '工业专用 GenAI': 'Industry-specific GenAI', '回路级数据未来趋势预测': 'Loop-level future trend prediction'
+    '工业专用 GenAI': 'Industry-specific GenAI', '回路级数据未来趋势预测': 'AI Driven Future Trending & Alarming'
   };
   var META = {
     zh: { title: 'Nyx 通用控制系统 · 中控 SUPCON | Universal Control System', desc: 'Nyx 通用控制系统（UCS）：极简架构、工业云实时系统、AI-Inside。更灵活、更可靠、更节省、更智能。' },
-    en: { title: 'Nyx Universal Control System · SUPCON', desc: 'Nyx Universal Control System (UCS): simplified architecture, industrial cloud real-time system, AI-Inside. More flexible, more reliable, more efficient, more intelligent.' }
+    en: { title: 'Nyx Universal Control System · SUPCON', desc: 'Nyx Universal Control System (UCS): simplified architecture, Cloud-based Real-time Operating System, AI-Inside. More flexible, more reliable, more efficient, more intelligent.' }
   };
   var HAN = /[\u3400-\u9fff]/;
   var doc = document.documentElement, KEY = 'nyx-lang';
@@ -558,7 +611,7 @@ window.__I18N_EN = ["<i class=\"mk\"></i>SUPCON<small>Nyx UCS</small>", "Archite
     if (m && m[1].length + m[2].length <= 22 && block.textContent.trim().split(/\s+/).length > 4) n.textContent = s.slice(0, m.index) + m[1] + '\u00a0' + m[2] + s.slice(m.index + m[0].length);
   }
   /* zh: keep common technical terms unbroken */
-  var TERMS = new RegExp('(' + ["时间序列大模型", "控制数据中心", "统一数据模型", "第三方通信", "无干扰切换", "预测性维护", "数字化工厂", "长生命周期", "现场接线箱", "全光工业网", "备用节点", "进口系统", "现场仪表", "瘦客户端", "环境诊断", "技术规格", "网络安全", "应用服务", "历史趋势", "全光网络", "多人组态", "关键部件", "数据中心", "实时任务", "端子板柜", "健康状态", "工程师站", "监测守护", "未来画笔", "日志审计", "设计转换", "智能现场", "全域诊断", "应用仓库", "控制硬件", "实时系统", "发展趋势", "自动安装", "自主运行", "实时控制", "标准机柜", "示范项目", "控制服务", "一键拷贝", "全数字化", "隔离栅柜", "历史数据", "现场节点", "一键部署", "过程监控", "一键扩容", "态势感知", "辅助编程", "操作节点", "工业云", "操作站", "云组态", "接线箱", "网络化", "云计算", "服务器", "软硬件", "零信任", "可用性", "里程碑", "双氧水", "耦合性"].join('|') + ')', 'g');
+  var TERMS = new RegExp('(' + ["时间序列大模型", "控制数据中心", "统一数据模型", "第三方通信", "无干扰切换", "预测性维护", "数字化工厂", "长生命周期", "现场接线箱", "全光工业网", "备用节点", "现场仪表", "瘦客户端", "环境诊断", "技术规格", "网络安全", "应用服务", "历史趋势", "全光网络", "多人组态", "关键部件", "数据中心", "实时任务", "端子板柜", "健康状态", "工程师站", "监测守护", "未来画笔", "日志审计", "设计转换", "智能现场", "全域诊断", "应用仓库", "控制硬件", "实时系统", "发展趋势", "自动安装", "自主运行", "实时控制", "标准机柜", "示范项目", "控制服务", "一键拷贝", "全数字化", "隔离栅柜", "历史数据", "现场节点", "一键部署", "过程监控", "一键扩容", "态势感知", "辅助编程", "操作节点", "工业云", "操作站", "云组态", "接线箱", "网络化", "云计算", "服务器", "软硬件", "零信任", "可用性", "里程碑", "双氧水", "耦合性"].join('|') + ')', 'g');
   function terms(root) {
     textNodes(root, ',.wph .nw,.hero-title').forEach(function (n) {
       var s = n.textContent; TERMS.lastIndex = 0; if (!TERMS.test(s)) return; TERMS.lastIndex = 0;
@@ -639,6 +692,9 @@ window.__I18N_EN = ["<i class=\"mk\"></i>SUPCON<small>Nyx UCS</small>", "Archite
     { ids: ['rel'], cn: '更可靠', en: 'Reliable' },
     { ids: ['save'], cn: '更节省', en: 'Efficient' },
     { ids: ['ai'], cn: '更智能', en: 'Intelligent' },
+    { ids: ['rl'], cn: '强化学习', en: 'RL Optimization' },
+    { ids: ['genai'], cn: '生成式 AI', en: 'Generative AI' },
+    { ids: ['predict'], cn: '趋势预测', en: 'Trend Prediction' },
     { ids: ['value'], cn: '技术价值', en: 'Tech Value' },
     { ids: ['tpt'], cn: 'TPT 大模型', en: 'TPT Model' },
     { ids: ['platform'], cn: '平台架构', en: 'Platform' },
@@ -1074,7 +1130,7 @@ const flexLabels = {
   hw: label(stB.g, V(SRV_W / 2 + .1, 0.75, 0.3), '服务器硬件', 'Server Hardware', 'side', () => stageOp('flex'), stB),
   os: label(slab, V(1.2, 0, 0.3), 'Nyx 系统 · NyxOS', 'Nyx System', 'side', () => stageOp('flex'), stB),
   svc: label(svcSlab, V(1.2, 0.1, 0.3), '控制服务 · 工厂组态', 'Control Services', 'side', () => stageOp('flex'), stB),
-  add: label(stB.g, V(0, 0, 0), '一键扩容 · 自动安装', '10 分钟内', 'plain', () => 0, stB),
+  add: label(stB.g, V(0, 0, 0), '一键扩容 · 自动安装', '自动化 · 集群扩展', 'plain', () => 0, stB),
 };
 
 function glowMatB(color, op) { return new THREE.MeshBasicMaterial({ color, transparent: true, opacity: op, blending: THREE.AdditiveBlending, depthWrite: false }); }
@@ -1165,7 +1221,7 @@ const cellPos = (idx, cols) => { const c = idx % cols, r = Math.floor(idx / cols
 services.forEach((s, i) => { s.cur = cellPos(Math.min(i, 11), 4); s.g.position.copy(s.cur); });
 /* labels */
 flexLabels.os.o.removeFromParent(); stB.g.add(flexLabels.os.o);
-setText(flexLabels.os, 'NyxOS · 工业云实时系统', 'Cloud Base Real-time Control');
+setText(flexLabels.os, 'NyxOS · 工业云实时系统', 'Cloud-based Real-time Operating System');
 flexLabels.svc.o.removeFromParent(); stB.g.add(flexLabels.svc.o);
 const ctrlL = label(stB.g, V(0, 0, 0), '传统 DCS · 控制硬件', '', '', () => 0, stB);
 const convL = label(stB.g, V(0, 0, 0), '单机 → 虚拟化集群控制', '', '', () => 0, stB);
@@ -1298,7 +1354,7 @@ stE.g.add(parts);
 const pE = new THREE.PointLight(0x2f86ff, 8, 6, 2); pE.position.set(0, 1.2, 0); stE.g.add(pE);
 
 /* ================================================================ camera choreography */
-/* ================================================================ v2 STAGES (技术价值 → 愿景), x = 200 … 600 */
+/* ================================================================ v2 STAGES (技术价值 → 愿景), x = 320 … 720 (v7: shifted +120 for the three new AI stages at 200/240/280) */
 const glowMat = (color, op = .9) => new THREE.MeshBasicMaterial({ color, transparent: true, opacity: op, blending: THREE.AdditiveBlending, depthWrite: false });
 const layerMat = (color, emissive, op = .42) => new THREE.MeshStandardMaterial({ color, emissive, emissiveIntensity: 1, metalness: .2, roughness: .25, transparent: true, opacity: op, depthWrite: false });
 const ptsMat = (color, size, op = .9) => new THREE.PointsMaterial({ map: glowTex, color, size, transparent: true, opacity: op, blending: THREE.AdditiveBlending, depthWrite: false });
@@ -1411,7 +1467,7 @@ const archStreams = streams(archPlant, [
 const archPlantL = label(archPlant, V(3.3, 1.35, -3.45), '全数字化智能现场', 'Fully Digital Intelligent Field', '', () => 0, stA);
 
 /* ---------- STAGE F: 技术价值 — four-layer stack (200) */
-const stF = stage('value', 200); stF.center.set(200, 1.3, 0);
+const stF = stage('value', 320); stF.center.set(320, 1.3, 0);
 floor(stF.g, 5, 0, 0);
 const pF = new THREE.PointLight(0x2f86ff, 6, 8, 2); pF.position.set(-1.5, 2.5, 2.2); stF.g.add(pF);
 const VY = [0.3, 1.0, 1.7, 2.4];
@@ -1447,7 +1503,7 @@ const vL = [
 ];
 
 /* ---------- STAGE G: TPT — data · algorithm · compute converge (240) */
-const stG = stage('tpt', 240); stG.center.set(240, 1.4, 0);
+const stG = stage('tpt', 360); stG.center.set(360, 1.4, 0);
 floor(stG.g, 5.2, 0, 0);
 const pG = new THREE.PointLight(0x3f8dff, 8, 7, 2); pG.position.set(0, 1.5, 0); stG.g.add(pG);
 const CORE = V(0, 1.5, 0);
@@ -1475,7 +1531,7 @@ const tL = [
 ];
 
 /* ---------- STAGE H: platform layers + zero-trust shield (280) */
-const stH = stage('platform', 280); stH.center.set(280, 1.4, 0);
+const stH = stage('platform', 400); stH.center.set(400, 1.4, 0);
 floor(stH.g, 5.4, 0, 0);
 const pH = new THREE.PointLight(0x2f86ff, 6, 8, 2); pH.position.set(-1.8, 2.6, 2.2); stH.g.add(pH);
 const PY = [0.62, 1.12, 1.62, 2.12];   // NyxOS, 实时控制, 过程监控, 应用服务
@@ -1499,23 +1555,23 @@ const pL = [
   label(pLayers[3], V(1.6, .05, .3), '应用服务', 'IDM · OPC UA · Historian', 'side', () => 0, stH),
   label(pLayers[2], V(1.6, .05, .3), '过程监控', 'HMI · Alarms & Events', 'side', () => 0, stH),
   label(pLayers[1], V(1.6, .05, .3), '实时控制', 'IEC 61131-3 · AI-PID · AI-ST', 'side', () => 0, stH),
-  label(pLayers[0], V(1.75, 0, .3), 'NyxOS', 'Cloud Base Real-time Control', 'side', () => 0, stH),
+  label(pLayers[0], V(1.75, 0, .3), 'NyxOS', 'Cloud-based Real-time Operating System', 'side', () => 0, stH),
   label(stH.g, V(0, 3.05, 0), 'TPT', '时间序列大模型', 'plain', () => 0, stH),
   label(stH.g, V(-1.9, 1.95, 0.9), '零信任网络安全', 'Zero Trust', '', () => 0, stH),
 ];
 
 /* ---------- STAGE I: key figures — rising columns (320) */
-const stI = stage('figures', 320); stI.center.set(320, 1.2, 0);
+const stI = stage('figures', 440); stI.center.set(440, 1.2, 0);
 floor(stI.g, 5.6, 0, 0);
 const pI = new THREE.PointLight(0x2f86ff, 6, 8, 2); pI.position.set(0, 3, 2.5); stI.g.add(pI);
 const FIG = [
-  { v: 99.999, dec: 3, s: '%', h: 2.3, l: '硬件可用性' }, { t: '1:N', h: 1.6, l: '控制冗余' }, { v: 10, s: ['分钟', ' min'], h: 1.3, l: '一键扩容' }, { v: 15000, s: ['点', ' pts'], h: 1.9, l: '单项目规模' },
+  { v: 99.999, dec: 3, s: '%', h: 2.3, l: '硬件可用性' }, { t: '1:N', h: 1.6, l: '控制冗余' }, { v: 10, s: ['分钟', ' min'], h: 1.3, l: '一键扩容' },
   { v: 90, s: '%', h: 2.07, l: '机柜空间' }, { v: 80, s: '%', h: 1.84, l: '线缆' }, { v: 50, s: '%', h: 1.15, l: '项目周期' }, { t: 'GPU', h: 1.6, l: 'NyxEngine' },
 ];
 const colMat = new THREE.MeshStandardMaterial({ color: 0x1d4f9a, emissive: 0x1450c8, emissiveIntensity: .8, metalness: .4, roughness: .3, transparent: true, opacity: .88 });
 const colMat2 = new THREE.MeshStandardMaterial({ color: 0x2a6cc7, emissive: 0x2f9bff, emissiveIntensity: 1, metalness: .3, roughness: .3, transparent: true, opacity: .9 });
 const cols = FIG.map((f, i) => {
-  const u = i / 7 - .5, x = u * 6.4, z = -u * 3.2, row = i % 2;
+  const u = i / (FIG.length - 1) - .5, x = u * 6.4, z = -u * 3.2, row = i % 2;
   const g = new THREE.Group(); g.position.set(x, 0, z); stI.g.add(g);
   const m = new THREE.Mesh(B(.4, 1, .4), row ? colMat2 : colMat); m.castShadow = true; g.add(m);
   const e = edges(B(.42, 1, .42), 0xbfe6ff, .6, g);
@@ -1525,7 +1581,7 @@ const cols = FIG.map((f, i) => {
 });
 
 /* ---------- STAGE J: spec blueprint (360) */
-const stJ = stage('spec', 360); stJ.center.set(360, 1, 0);
+const stJ = stage('spec', 480); stJ.center.set(480, 1, 0);
 floor(stJ.g, 6, 0, 0, false);
 const grid = new THREE.GridHelper(9, 36, 0x2f86ff, 0x1a3a66); grid.material.transparent = true; grid.material.opacity = .12; grid.position.y = .005; stJ.g.add(grid);
 const pJ = new THREE.PointLight(0x2f86ff, 6, 8, 2); pJ.position.set(-1.5, 2.5, 2); stJ.g.add(pJ);
@@ -1547,7 +1603,7 @@ const JFOCUS = [[V(0, .9, 0), -0.35, .42, 11.2], [V(-1.6, 1.0, 0), -0.7, .3, 9.4
 const JHI = [V(0, 0, 0), V(-1.6, 0, 0), V(1.5, 0, 0), V(-3.3, 0, 0)];
 
 /* ---------- STAGE K: case — plant + 15,000 points (400) */
-const stK = stage('case', 400); stK.center.set(400, 1, 0);
+const stK = stage('case', 520); stK.center.set(520, 1, 0);
 floor(stK.g, 6.4, 0, 0, false);
 const pK = new THREE.PointLight(0x2f86ff, 6, 9, 2); pK.position.set(0, 3, 2.5); stK.g.add(pK);
 const pointSrc = [];
@@ -1590,7 +1646,7 @@ const kPts = new THREE.Points(kGeo, ptsMat(0x7fd8ff, .038, .7)); stK.g.add(kPts)
 const kCount = label(stK.g, V(0, 2.25, 1.6), '0', '共计 I/O 点', '', () => 0, stK);
 
 /* ---------- STAGE L: swap — imported systems replaced + four data foundations (440) */
-const stL = stage('swap', 440); stL.center.set(440, 1, 0);
+const stL = stage('swap', 560); stL.center.set(560, 1, 0);
 floor(stL.g, 6, 0, 0, false);
 const pL2 = new THREE.PointLight(0x2f86ff, 6, 9, 2); pL2.position.set(0, 3, 2.5); stL.g.add(pL2);
 const oldMat = [new THREE.MeshStandardMaterial({ color: 0x4a515b, metalness: .5, roughness: .5, transparent: true, opacity: 1 }), new THREE.MeshStandardMaterial({ color: 0x3e444c, metalness: .5, roughness: .5, transparent: true, opacity: 1 })];
@@ -1611,13 +1667,13 @@ const sBases = BASES.map(([cn, en, x, z], i) => {
 });
 const sTPT = new THREE.Mesh(new THREE.TorusGeometry(.7, .025, 10, 120), glowMat(0x9fd8ff, 0)); sTPT.rotation.x = Math.PI / 2; sTPT.position.set(0, 2.15, .2); stL.g.add(sTPT);
 const sL = {
-  sie: label(stL.g, V(-2.45, 1.85, -0.6), '进口系统 A · 7000 点', '已替代', 'bad', () => 0, stL),
-  emr: label(stL.g, V(2.2, 1.85, -0.6), '进口系统 B · 4000 点', '已替代', 'bad', () => 0, stL),
+  sie: label(stL.g, V(-2.45, 1.85, -0.6), '传统 DCS A · 7000 点', '已替代', 'bad', () => 0, stL),
+  emr: label(stL.g, V(2.2, 1.85, -0.6), '传统 DCS B · 4000 点', '已替代', 'bad', () => 0, stL),
   nyx: label(stL.g, V(0, 2.45, .2), 'UCS + TPT', '首个万点以上规模 UCS 项目', '', () => 0, stL),
 };
 
 /* ---------- STAGE M: milestones — camera travels along the timeline (480) */
-const stM = stage('time', 480); stM.center.set(480, 1, 0);
+const stM = stage('time', 600); stM.center.set(600, 1, 0);
 const MS = [['1993', 'JX-100', ''], ['1996', 'JX-300X', 'jx-300x.jpg'], ['2001', 'ECS-100', 'ecs-100.jpg'], ['2005', 'JX-300XP', 'jx-300xp.jpg'], ['2007', 'ECS-700', 'ecs-700.jpg'], ['2021', 'OMC · SmartEIO、APL', 'omc.jpg'], ['2024', 'Nyx', 'nyx-2024.jpg']];
 const MSX = i => -6 + i * 2;
 const mRailC = new THREE.LineCurve3(V(-7.2, .03, 0), V(7.2, .03, 0));
@@ -1641,7 +1697,7 @@ addEventListener('langchange', () => mNodes.forEach(m => { m.nm.textContent = T(
 mNodes.forEach(m => { m.nm.textContent = T(m.n); });
 
 /* ---------- STAGE N: market — share gauges + 30,000 dots (520) */
-const stN = stage('market', 520); stN.center.set(520, 1.2, 0);
+const stN = stage('market', 640); stN.center.set(640, 1.2, 0);
 floor(stN.g, 5.6, 0, 0, false);
 const pN = new THREE.PointLight(0x2f86ff, 6, 9, 2); pN.position.set(0, 2.5, 2.6); stN.g.add(pN);
 const GAUGE = [[-1.25, 56.3, '化工'], [1.25, 49.3, '石油']].map(([x, v, cn]) => {
@@ -1662,7 +1718,7 @@ for (let i = 0; i < 28; i++) { const m = new THREE.Mesh(new THREE.CylinderGeomet
 const nL = { ref: label(stN.g, V(-1.8, .95, .85), '18 套千万吨级炼油', '', 'plain', () => 0, stN), eth: label(stN.g, V(1.7, .8, .85), '28 套大型乙烯', '', 'plain', () => 0, stN) };
 
 /* ---------- STAGE O: trends — nine tiles flip from old to new (560) */
-const stO = stage('trend', 560); stO.center.set(560, .6, 0);
+const stO = stage('trend', 680); stO.center.set(680, .6, 0);
 floor(stO.g, 5.2, 0, 0, false);
 const pO = new THREE.PointLight(0x2f86ff, 6, 8, 2); pO.position.set(0, 2.6, 2); stO.g.add(pO);
 const TR = ['开放式系统', '虚拟化集群控制', '数字化、智能化、网络化', '图像识别智能决策', 'Web 化展示千人千面', '管控一体化集成', '数字孪生', '预测性维修', 'AI 大模型'];
@@ -1679,7 +1735,7 @@ const tiles = TR.map((cn, i) => {
 });
 
 /* ---------- STAGE P: closing — cinematic pull-back (600) */
-const stP = stage('end', 600); stP.center.set(600, 1, 0);
+const stP = stage('end', 720); stP.center.set(720, 1, 0);
 const ringP = floor(stP.g, 6, 0, 0);
 const pP = new THREE.PointLight(0x3f8dff, 7, 8, 2); pP.position.set(-1, 1.6, 1.6); stP.g.add(pP);
 const eNyx = miniNyx(stP.g, 0, 0, 1);
@@ -1690,6 +1746,146 @@ const eGeo = new THREE.BufferGeometry(); eGeo.setAttribute('position', new THREE
 const eSky = new THREE.Points(eGeo, ptsMat(0x9fd8ff, .05, .7)); stP.g.add(eSky);
 const eRays = []; for (let i = 0; i < 10; i++) { const a = i / 10 * Math.PI * 2 + .2, R = 4.2 + (i % 3) * .6; const c = new THREE.CatmullRomCurve3([V(0, .2, 0), V(Math.cos(a) * 1.2, .03, Math.sin(a) * 1.2), V(Math.cos(a) * R, .03, Math.sin(a) * R)]); eRays.push({ t: tube(c, .01, 0x6fd0ff, .85, stP.g, 60), p: pulses(c, 2, 0xbfeaff, .14, .25, stP.g, i * .1), end: (() => { const s = glowSprite(0x9fe8ff, .45, stP.g); s.position.set(Math.cos(a) * R, .08, Math.sin(a) * R); return s; })() }); }
 const eHalo = new THREE.Mesh(new THREE.TorusGeometry(1.1, .02, 10, 160), glowMat(0x9fd8ff, .8)); eHalo.rotation.x = Math.PI / 2; eHalo.position.y = 2.45; stP.g.add(eHalo);
+
+/* ================================================================ v7 · three new AI stages (x = 200 / 240 / 280) */
+const _v4 = new THREE.Vector3();
+const AMBER = 0xffc861, CYAN = 0x6fd0ff, BLUE = 0x2f86ff, RED = 0xff4d5e;
+const loopCurve = (pts) => new THREE.CatmullRomCurve3(pts, true, 'centripetal');
+const lineCurve = (pts) => new THREE.CatmullRomCurve3(pts, false, 'centripetal');
+function netBox(parent, x, y, z, col) { /* glass box with a small 3×3 neural lattice inside */
+  const g = new THREE.Group(); g.position.set(x, y, z); parent.add(g);
+  const box = new THREE.Mesh(B(.78, .92, .5), layerMat(0x2f86ff, 0x0c3c9c, .18)); g.add(box); const e = edges(B(.78, .92, .5), 0x9fdcff, .7, g);
+  const nodes = []; const nm = new THREE.MeshStandardMaterial({ color: 0x9fdcff, emissive: col, emissiveIntensity: 1, metalness: .2, roughness: .3 });
+  for (let c = 0; c < 3; c++) for (let r = 0; r < 3; r++) { const m = new THREE.Mesh(new THREE.SphereGeometry(.045, 14, 10), nm); m.position.set((c - 1) * .22, (r - 1) * .24, 0); g.add(m); nodes.push(m); }
+  const pts = []; for (let c = 0; c < 2; c++) for (let a = 0; a < 3; a++) for (let b = 0; b < 3; b++) pts.push(V((c - 1) * .22, (a - 1) * .24, 0), V(c * .22, (b - 1) * .24, 0));
+  const lg = new THREE.BufferGeometry().setFromPoints(pts); const ln = new THREE.LineSegments(lg, edgeMat(0x6fd0ff, .35)); g.add(ln);
+  return { g, box, e, nodes, nm, ln };
+}
+function texPanel(w, h, draw) { const [c, x] = mkCanvas(w, h); draw(x, w, h); return mkTex(c); }
+
+/* ---------- STAGE R: reinforced learning — closed loop with a circulating reward signal (200) */
+const stR = stage('rl', 200); stR.center.set(200, 1, 0);
+floor(stR.g, 5.4, 0, 0);
+const pR = new THREE.PointLight(0x2f86ff, 6, 8, 2); pR.position.set(0, 2.6, 1.6); stR.g.add(pR);
+const RX = 1.95, RZ = 1.3, RY = .06;
+const rLoopC = loopCurve(Array.from({ length: 24 }, (_, i) => { const a = i / 24 * Math.PI * 2; return V(Math.cos(a) * RX, RY, Math.sin(a) * RZ); }));
+const rLoop = tube(rLoopC, .014, CYAN, .95, stR.g, 240), rLoopG = tube(rLoopC, .05, BLUE, .18, stR.g, 240, true);
+const rReward = pulses(rLoopC, 5, AMBER, .22, .16, stR.g);
+const rFlow = pulses(rLoopC, 7, 0xcff2ff, .12, .16, stR.g, .07);
+/* agent: two neural networks (evaluating + generation) on the left of the loop */
+const rAgent = new THREE.Group(); rAgent.position.set(-RX, 0, 0); stR.g.add(rAgent);
+const rNetE = netBox(rAgent, -.05, .82, -.48, 0x2f9bff), rNetG = netBox(rAgent, -.05, .82, .48, 0x2f9bff);
+const rAgentPad = new THREE.Mesh(new THREE.CylinderGeometry(.75, .8, .06, 48), new THREE.MeshStandardMaterial({ color: 0x0b1a2e, emissive: 0x2f9bff, emissiveIntensity: .4, metalness: .5, roughness: .3 })); rAgentPad.position.y = .03; rAgent.add(rAgentPad);
+const rUpdC = lineCurve([V(-.05, 1.32, -.48), V(-.05, 1.62, 0), V(-.05, 1.32, .48)]); const rUpd = tube(rUpdC, .01, AMBER, .9, rAgent, 60); const rUpdP = pulses(rUpdC, 2, AMBER, .14, .5, rAgent);
+/* outputs: PID (opt.) block at the front */
+const pidTex = texPanel(256, 128, (x, w, h) => { x.fillStyle = '#0b1626'; x.fillRect(0, 0, w, h); x.strokeStyle = 'rgba(120,200,255,.7)'; x.lineWidth = 4; x.strokeRect(6, 6, w - 12, h - 12); x.fillStyle = '#d8ecff'; x.font = '600 52px Arial'; x.textAlign = 'center'; x.fillText('PID', w / 2, 70); x.font = '24px Arial'; x.fillStyle = '#7fb8e6'; x.fillText('(opt.)', w / 2, 106); });
+const rPid = new THREE.Mesh(B(.72, .4, .34), [0, 0, 0, 0, 1, 0].map(i => i ? new THREE.MeshStandardMaterial({ map: pidTex, emissive: 0xffffff, emissiveMap: pidTex, emissiveIntensity: .5 }) : new THREE.MeshStandardMaterial({ color: 0x14243a, metalness: .5, roughness: .4 })));
+rPid.position.set(0, .3, RZ); stR.g.add(rPid); const rPidE = edges(B(.74, .42, .36), CYAN, .7, rPid);
+/* controlled loop: a process column on the right */
+const rCol = new THREE.Group(); rCol.position.set(RX, 0, 0); stR.g.add(rCol);
+const colMatR = new THREE.MeshStandardMaterial({ color: 0x8ea6c6, emissive: 0x0a2a66, emissiveIntensity: .35, metalness: .85, roughness: .28 });
+const rTower = new THREE.Mesh(new THREE.CylinderGeometry(.26, .26, 1.7, 32), colMatR); rTower.position.y = .85; rCol.add(rTower);
+const rCap = new THREE.Mesh(new THREE.SphereGeometry(.26, 32, 12, 0, Math.PI * 2, 0, Math.PI / 2), colMatR); rCap.position.y = 1.7; rCol.add(rCap);
+const rRings = [0, 1, 2, 3].map(i => { const m = new THREE.Mesh(new THREE.TorusGeometry(.275, .012, 8, 48), glowMat(CYAN, .6)); m.rotation.x = Math.PI / 2; m.position.y = .35 + i * .36; rCol.add(m); return m; });
+/* reward & evaluation module: loop-performance panel at the back with a settling step response */
+const rPanel = new THREE.Group(); rPanel.position.set(0, .95, -RZ - .05); stR.g.add(rPanel);
+const rPanelBg = new THREE.Mesh(new THREE.PlaneGeometry(1.9, 1.1), new THREE.MeshBasicMaterial({ map: texPanel(512, 300, (x, w, h) => { x.fillStyle = 'rgba(8,16,30,.9)'; x.fillRect(0, 0, w, h); x.strokeStyle = 'rgba(80,140,220,.18)'; for (let i = 0; i <= 10; i++) { x.beginPath(); x.moveTo(30 + i * 45, 20); x.lineTo(30 + i * 45, 280); x.stroke(); } for (let j = 0; j <= 6; j++) { x.beginPath(); x.moveTo(30, 20 + j * 43); x.lineTo(480, 20 + j * 43); x.stroke(); } x.strokeStyle = 'rgba(160,210,255,.8)'; x.lineWidth = 3; x.strokeRect(2, 2, w - 4, h - 4); }), transparent: true, opacity: .9, depthWrite: false }));
+rPanel.add(rPanelBg); const rPanelE = edges(new THREE.PlaneGeometry(1.9, 1.1), CYAN, .5, rPanel);
+const stepPts = (zeta, wn) => Array.from({ length: 70 }, (_, i) => { const tt = i / 69 * 5, wd = wn * Math.sqrt(1 - zeta * zeta), y = 1 - Math.exp(-zeta * wn * tt) * (Math.cos(wd * tt) + zeta / Math.sqrt(1 - zeta * zeta) * Math.sin(wd * tt)); return V(-.82 + i / 69 * 1.64, -.42 + y * .62, .01); });
+const rStepOsc = tube(lineCurve(stepPts(.12, 6)), .008, 0xff8a6a, .85, rPanel, 200), rStepAI = tube(lineCurve(stepPts(.72, 4.2)), .011, CYAN, .95, rPanel, 200);
+const rTarget = new THREE.Mesh(B(1.64, .006, .004), new THREE.MeshBasicMaterial({ color: AMBER, transparent: true, opacity: .7 })); rTarget.position.set(0, .2, .012); rPanel.add(rTarget);
+const rL = {
+  agent: label(stR.g, V(-RX, 1.95, 0), '强化学习控制智能体', 'Reinforced Learning Control Agent', '', () => 0, stR),
+  upd: label(rAgent, V(-.05, 1.62, 0), '实时更新', '', 'plain', () => 0, stR),
+  out: label(stR.g, V(0, .72, RZ), '智能控制输出', 'PID (opt.)', '', () => 0, stR),
+  rew: label(stR.g, V(0, 1.72, -RZ), '奖励与评估模块', 'Loop Performance Identifier', '', () => 0, stR),
+  state: label(stR.g, V(-1.15, .14, -1.15), '(Aₜ, Bₜ, Cₜ, Dₜ₊₁)', '', 'plain', () => 0, stR),
+};
+
+/* ---------- STAGE Gn: generative AI — document / prompt → private LLM → code blocks + SFC steps (240) */
+const stGn = stage('genai', 240); stGn.center.set(240, 1, 0);
+floor(stGn.g, 5.4, 0, 0);
+const pGn = new THREE.PointLight(0x2f86ff, 6, 8, 2); pGn.position.set(0, 2.4, 1.8); stGn.g.add(pGn);
+const docTex = texPanel(360, 480, (x, w, h) => { x.fillStyle = '#eef4fb'; x.fillRect(0, 0, w, h); x.fillStyle = '#2f7bff'; x.fillRect(24, 24, 200, 18); x.fillStyle = '#c7372f'; x.fillRect(w - 76, 56, 52, 60); x.fillStyle = '#9fb3c8'; x.fillRect(24, 60, 170, 10); x.fillRect(24, 80, 120, 10);
+  x.strokeStyle = '#b8c6d6'; x.lineWidth = 1.5; for (let r = 0; r < 14; r++) { const y = 140 + r * 22; x.strokeRect(24, y, w - 48, 22); x.fillStyle = r ? '#c9d4e1' : '#7d93ab'; x.fillRect(32, y + 8, 50, 6); x.fillRect(100, y + 8, 80, 6); x.fillRect(200, y + 8, 40, 6); x.fillRect(258, y + 8, 60, 6); } });
+const gDoc = new THREE.Mesh(new THREE.PlaneGeometry(.9, 1.2), new THREE.MeshStandardMaterial({ map: docTex, emissive: 0xffffff, emissiveMap: docTex, emissiveIntensity: .55, side: THREE.DoubleSide, transparent: true }));
+gDoc.position.set(-2.15, 1.45, -.35); gDoc.rotation.y = .35; stGn.g.add(gDoc); const gDocE = edges(new THREE.PlaneGeometry(.9, 1.2), CYAN, .6, gDoc);
+const promptTex = texPanel(512, 96, (x, w, h) => { x.fillStyle = '#0b1626'; x.fillRect(0, 0, w, h); x.strokeStyle = 'rgba(120,200,255,.8)'; x.lineWidth = 4; x.strokeRect(4, 4, w - 8, h - 8); x.fillStyle = '#6fd0ff'; x.font = '600 44px monospace'; x.fillText('>', 26, 64); x.fillStyle = 'rgba(200,225,255,.55)'; [[70, 150], [236, 90], [342, 110]].forEach(([a, b]) => x.fillRect(a, 42, b, 16)); });
+const gPrompt = new THREE.Mesh(B(1.5, .28, .08), new THREE.MeshStandardMaterial({ map: promptTex, emissive: 0xffffff, emissiveMap: promptTex, emissiveIntensity: .6 }));
+gPrompt.position.set(-1.9, .42, 1.05); gPrompt.rotation.y = .35; stGn.g.add(gPrompt);
+const gCaret = new THREE.Mesh(B(.04, .16, .01), glowMat(0xcff2ff, .9)); gCaret.position.set(.62, 0, .05); gPrompt.add(gCaret);
+const GC = V(0, 1.25, 0);
+const gCore = new THREE.Mesh(new THREE.IcosahedronGeometry(.42, 1), new THREE.MeshStandardMaterial({ color: 0x9fd8ff, emissive: 0x2f7bff, emissiveIntensity: .9, metalness: .3, roughness: .2, flatShading: true })); gCore.position.copy(GC); stGn.g.add(gCore);
+const gShell = new THREE.Mesh(new THREE.IcosahedronGeometry(.68, 1), new THREE.MeshBasicMaterial({ color: CYAN, wireframe: true, transparent: true, opacity: .4, blending: THREE.AdditiveBlending, depthWrite: false })); gShell.position.copy(GC); stGn.g.add(gShell);
+const gGlow = glowSprite(0x3fb6ff, 2.4, stGn.g); gGlow.position.copy(GC);
+const gInC = [lineCurve([V(-1.95, 1.45, -.2), V(-1.0, 1.6, -.1), GC.clone()]), lineCurve([V(-1.2, .45, 1.2), V(-.6, .8, .7), GC.clone()])];
+const gIn = gInC.map((c, i) => ({ t: tube(c, .012, CYAN, .9, stGn.g, 80), g: tube(c, .04, BLUE, .16, stGn.g, 80, true), p: pulses(c, 3, 0xcff2ff, .16, .45, stGn.g, i * .3) }));
+const codeTex = texPanel(512, 300, (x, w, h) => { x.fillStyle = '#0a1422'; x.fillRect(0, 0, w, h); const cols = ['#6fd0ff', '#ffc861', '#9fe8b0', '#c8a8ff', '#d8e6f5']; let sd = 7; const r = () => (sd = (sd * 16807) % 2147483647) / 2147483647;
+  for (let i = 0; i < 9; i++) { let px = 24 + (i % 3 === 1 ? 32 : i % 3 === 2 ? 64 : 0); const y = 22 + i * 30; for (let k = 0; k < 4; k++) { const ww = 30 + r() * 90; x.fillStyle = cols[Math.floor(r() * cols.length)]; x.globalAlpha = .85; x.fillRect(px, y, ww, 12); px += ww + 14; if (px > w - 60) break; } } x.globalAlpha = 1; x.strokeStyle = 'rgba(120,200,255,.7)'; x.lineWidth = 4; x.strokeRect(2, 2, w - 4, h - 4); });
+const gCode = [0, 1, 2, 3, 4].map(i => { const m = new THREE.Mesh(B(1.15, .05, .68), [0, 0, 1, 0, 0, 0].map(j => j ? new THREE.MeshStandardMaterial({ map: codeTex, emissive: 0xffffff, emissiveMap: codeTex, emissiveIntensity: .55, transparent: true }) : new THREE.MeshStandardMaterial({ color: 0x173a70, emissive: 0x0f3d9a, emissiveIntensity: .6, transparent: true })));
+  m.position.set(1.55, .25 + i * .26, -.1); stGn.g.add(m); m.userData.e = edges(B(1.17, .06, .7), CYAN, .6, m); return m; });
+const gOutC = lineCurve([GC.clone(), V(.8, 1.3, -.05), V(1.4, 1.0, -.1)]); const gOut = { t: tube(gOutC, .012, CYAN, .9, stGn.g, 60), p: pulses(gOutC, 3, 0xcff2ff, .16, .5, stGn.g) };
+const gSfc = [0, 1, 2, 3].map(i => { const g = new THREE.Group(); g.position.set(2.6, 1.75 - i * .45, .45); stGn.g.add(g); const m = new THREE.Mesh(B(.38, .22, .2), new THREE.MeshStandardMaterial({ color: 0x1d4f9a, emissive: 0x2f7bff, emissiveIntensity: .8, metalness: .3, roughness: .3 })); g.add(m); edges(B(.4, .24, .22), 0xcfeeff, .7, g);
+  if (i < 3) { const ln = new THREE.Mesh(B(.012, .23, .012), glowMat(CYAN, .8)); ln.position.y = -.225; g.add(ln); const tr = new THREE.Mesh(B(.16, .014, .014), glowMat(AMBER, .9)); tr.position.y = -.225; g.add(tr); } return g; });
+const gScan = new THREE.Mesh(B(1.3, .012, .8), glowMat(0x9fe8b0, 0)); gScan.position.set(1.55, 1.4, -.1); stGn.g.add(gScan);
+const gL = {
+  doc: label(stGn.g, V(-2.15, 2.25, -.35), '上传控制逻辑文件', 'SFC · Step Config · Design Doc', '', () => 0, stGn),
+  prompt: label(stGn.g, V(-1.9, .7, 1.05), '自然语言 · 提示词', 'Prompt', '', () => 0, stGn),
+  core: label(stGn.g, V(0, 2.15, 0), '工业控制专用私有大模型', 'Private LLM', '', () => 0, stGn),
+  code: label(stGn.g, V(1.55, 1.65, -.1), '生成代码', 'Generating', '', () => 0, stGn),
+  sfc: label(stGn.g, V(2.6, 2.12, .45), 'SFC · 步骤配置', 'Step Config', '', () => 0, stGn),
+  rev: label(stGn.g, V(1.55, .05, .45), '代码审查', 'Code Review', 'plain', () => 0, stGn),
+};
+
+/* ---------- STAGE Pr: future trending & alarm prediction — live trend → predicted future, twin plant (280) */
+const stPr = stage('predict', 280); stPr.center.set(280, 1, 0);
+floor(stPr.g, 5.6, .4, 0);
+const pPr = new THREE.PointLight(0x2f86ff, 6, 8, 2); pPr.position.set(-.5, 2.6, 1.8); stPr.g.add(pPr);
+const TP = new THREE.Group(); TP.position.set(-.42, 1.25, 0); TP.scale.setScalar(.84); stPr.g.add(TP);
+const tpBg = new THREE.Mesh(new THREE.PlaneGeometry(3.6, 1.9), new THREE.MeshBasicMaterial({ map: texPanel(720, 380, (x, w, h) => { x.fillStyle = 'rgba(6,14,28,.82)'; x.fillRect(0, 0, w, h); x.strokeStyle = 'rgba(80,140,220,.16)'; x.lineWidth = 1; for (let i = 0; i <= 18; i++) { x.beginPath(); x.moveTo(i * 40, 0); x.lineTo(i * 40, h); x.stroke(); } for (let j = 0; j <= 9; j++) { x.beginPath(); x.moveTo(0, j * 42); x.lineTo(w, j * 42); x.stroke(); }
+  const g = x.createLinearGradient(470, 0, w, 0); g.addColorStop(0, 'rgba(255,200,97,0)'); g.addColorStop(1, 'rgba(255,200,97,.12)'); x.fillStyle = g; x.fillRect(470, 0, w - 470, h); x.strokeStyle = 'rgba(160,210,255,.75)'; x.lineWidth = 3; x.strokeRect(2, 2, w - 4, h - 4); }), transparent: true, depthWrite: false }));
+TP.add(tpBg); edges(new THREE.PlaneGeometry(3.6, 1.9), CYAN, .45, TP);
+const NOWX = .55, trendY = u => .08 * Math.sin(u * 5.1) + .1 * Math.sin(u * 2.3 + 1) + .05 * Math.sin(u * 11.7);
+const pastPts = Array.from({ length: 60 }, (_, i) => { const x = -1.65 + i / 59 * (NOWX + 1.65); return V(x, -.25 + trendY(x), .02); });
+const futPts = Array.from({ length: 30 }, (_, i) => { const x = NOWX + i / 29 * 1.05, u = i / 29; return V(x, -.25 + trendY(x) + u * u * .62, .03); });
+const tPast = tube(lineCurve(pastPts), .012, CYAN, .95, TP, 240), tPastG = tube(lineCurve(pastPts), .04, BLUE, .2, TP, 240, true);
+const tFut = tube(lineCurve(futPts), .016, AMBER, .95, TP, 120), tFutG = tube(lineCurve(futPts), .06, AMBER, .22, TP, 120, true);
+const bandGeo = new THREE.BufferGeometry(); { const p = []; for (let i = 0; i < futPts.length - 1; i++) { const a = futPts[i], b = futPts[i + 1], wa = .02 + i / 29 * .2, wb = .02 + (i + 1) / 29 * .2; p.push(a.x, a.y - wa, .025, b.x, b.y - wb, .025, b.x, b.y + wb, .025, a.x, a.y - wa, .025, b.x, b.y + wb, .025, a.x, a.y + wa, .025); } bandGeo.setAttribute('position', new THREE.Float32BufferAttribute(p, 3)); }
+const tBand = new THREE.Mesh(bandGeo, new THREE.MeshBasicMaterial({ color: AMBER, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide })); TP.add(tBand);
+const tNow = new THREE.Mesh(B(.012, 1.8, .01), glowMat(0xcff2ff, .8)); tNow.position.set(NOWX, 0, .02); TP.add(tNow);
+const THR = .2, tThr = new THREE.Mesh(B(3.4, .008, .006), new THREE.MeshBasicMaterial({ color: RED, transparent: true, opacity: .5 })); tThr.position.set(0, THR, .02); TP.add(tThr);
+const aIdx = futPts.findIndex(p => p.y >= THR), aPt = futPts[Math.max(0, aIdx)];
+const tAlarm = new THREE.Mesh(new THREE.OctahedronGeometry(.07), new THREE.MeshBasicMaterial({ color: RED, transparent: true, opacity: 0 })); tAlarm.position.set(aPt.x, aPt.y, .06); TP.add(tAlarm);
+const tAlarmG = glowSprite(RED, .5, TP); tAlarmG.position.copy(tAlarm.position);
+const tAlarmR = new THREE.Mesh(new THREE.RingGeometry(.1, .115, 48), new THREE.MeshBasicMaterial({ color: RED, transparent: true, opacity: 0, depthWrite: false })); tAlarmR.position.copy(tAlarm.position); TP.add(tAlarmR);
+const tPastP = pulses(lineCurve(pastPts), 3, 0xcff2ff, .12, .25, TP);
+/* AI predictive model + online training engine (below the trend's "now") */
+const AIM = V(.2, .45, 1.05);
+const aiCore = new THREE.Mesh(new THREE.IcosahedronGeometry(.22, 1), new THREE.MeshStandardMaterial({ color: 0x9fd8ff, emissive: 0x2f7bff, emissiveIntensity: 1, metalness: .3, roughness: .2, flatShading: true })); aiCore.position.copy(AIM); stPr.g.add(aiCore);
+const aiRing = new THREE.Mesh(new THREE.TorusGeometry(.36, .01, 8, 96), glowMat(AMBER, .7)); aiRing.position.copy(AIM); stPr.g.add(aiRing);
+const aiGlow = glowSprite(0x3fb6ff, 1.2, stPr.g); aiGlow.position.copy(AIM);
+const aiC = lineCurve([AIM.clone(), V(.05, .85, .6), V(-.75 + NOWX, 1.25 - .25 + trendY(NOWX), .05)]); const aiT = tube(aiC, .01, AMBER, .9, stPr.g, 60), aiP = pulses(aiC, 3, AMBER, .14, .55, stPr.g);
+/* real plant + digital twin, side by side */
+function plant(parent, x, z, wire) {
+  const g = new THREE.Group(); g.position.set(x, 0, z); parent.add(g);
+  const mat = wire ? new THREE.MeshBasicMaterial({ color: CYAN, wireframe: true, transparent: true, opacity: .35, blending: THREE.AdditiveBlending, depthWrite: false }) : new THREE.MeshStandardMaterial({ color: 0x8ea6c6, emissive: 0x0a2a66, emissiveIntensity: .35, metalness: .85, roughness: .28 });
+  const col = new THREE.Mesh(new THREE.CylinderGeometry(.2, .2, 1.5, wire ? 14 : 32, wire ? 6 : 1), mat); col.position.y = .75; g.add(col);
+  const tank = new THREE.Mesh(new THREE.SphereGeometry(.22, wire ? 12 : 32, wire ? 8 : 16), mat); tank.position.set(.45, .3, .1); g.add(tank);
+  const pipe = new THREE.Mesh(new THREE.CylinderGeometry(.03, .03, .5, 10), mat); pipe.rotation.z = Math.PI / 2; pipe.position.set(.22, .45, .05); g.add(pipe);
+  if (wire) { edges(new THREE.CylinderGeometry(.2, .2, 1.5, 14), CYAN, .55, col); }
+  return g;
+}
+const realP = plant(stPr.g, 1.95, -.55, false), twinP = plant(stPr.g, 2.9, .6, true);
+const rtC = lineCurve([V(.95, 1.55, 0), V(1.45, 1.75, -.35), V(1.95, 1.6, -.55)]); const rtT = tube(rtC, .01, CYAN, .9, stPr.g, 60), rtP = pulses(rtC, 2, 0xcff2ff, .14, .5, stPr.g);
+const twC = lineCurve([V(2.15, .9, -.4), V(2.6, 1.05, .05), V(2.85, .9, .5)]); const twT = tube(twC, .01, CYAN, .9, stPr.g, 60), twP = pulses(twC, 2, 0xcff2ff, .14, .5, stPr.g), twP2 = pulses(twC, 2, AMBER, .12, .5, stPr.g, .5);
+const prL = {
+  past: label(TP, V(-.9, .25, .05), '实时趋势', 'Real-time Trend', 'plain', () => 0, stPr),
+  fut: label(TP, V(1.2, .62, .05), '未来趋势', 'Future Trending', 'plain', () => 0, stPr),
+  alarm: label(TP, V(aPt.x, aPt.y + .32, .06), '即将发生的报警提醒', 'Incoming Alarm Alert', 'bad', () => 0, stPr),
+  ai: label(stPr.g, V(AIM.x, AIM.y - .5, AIM.z), 'AI 预测模型 · 在线训练引擎', 'AI Model for Prediction', 'plain', () => 0, stPr),
+  real: label(stPr.g, V(1.95, 1.95, -.55), '真实装置', 'Real Plant', '', () => 0, stPr),
+  twin: label(stPr.g, V(2.9, 1.95, .6), '数字孪生', 'Parallel Operation & Control', '', () => 0, stPr),
+};
 
 function orbit(t, az, el, d, off) { return { t, p: V(t.x + Math.sin(az) * Math.cos(el) * d, t.y + Math.sin(el) * d, t.z + Math.cos(az) * Math.cos(el) * d), off }; }
 let intro = 0, explodeV = 0;
@@ -1702,17 +1898,20 @@ const POSE = {
   rel: k => orbit(V(80, 1.2, 0), lerp(-0.32, 0.1, k), lerp(0.28, 0.22, k), 10.6, 0.2),
   save: k => orbit(V(120, 0.75, 0.2), lerp(-0.72, -0.42, k), lerp(0.62, 0.42, k), lerp(11.6, 10.6, k), 0.2),
   ai: k => orbit(V(160, 0.7, 0.2), lerp(0.1, 0.42, k), lerp(1.15, 0.82, k), lerp(13.2, 11.8, k), 0.14),
-  value: k => orbit(V(200, lerp(0.9, 1.5, k), 0), lerp(-0.62, -0.3, k), lerp(0.36, 0.26, k), lerp(10.4, 9.4, k), 0.2),
-  tpt: k => orbit(V(240, 1.5, 0), lerp(-0.3, 0.12, k), lerp(0.22, 0.14, k), lerp(11.6, 10.4, k), 0.19),
-  platform: k => orbit(V(280, 1.45, 0), lerp(-0.72, -0.38, k), lerp(0.34, 0.24, k), lerp(11, 10, k), 0.19),
-  figures: k => orbit(V(320, 1.0, 0), lerp(-0.2, 0.05, k), lerp(0.4, 0.3, k), lerp(12.4, 11.4, k), 0.2),
-  spec: k => { const f = clamp(k * 4 - .5, 0, 3), i0 = Math.floor(f), i1 = Math.min(3, i0 + 1), w = easeIO(f - i0), A = JFOCUS[i0], Bq = JFOCUS[i1]; return orbit(V(360 + lerp(A[0].x, Bq[0].x, w), lerp(A[0].y, Bq[0].y, w), 0), lerp(A[1], Bq[1], w) + Math.sin(k * 3) * .05, lerp(A[2], Bq[2], w), lerp(A[3], Bq[3], w), 0.2); },
-  case: k => orbit(V(400, 0.9, -0.2), lerp(-0.55, -0.18, k), lerp(0.55, 0.4, k), lerp(12.2, 10.8, k), 0.2),
-  swap: k => orbit(V(440, 0.95, -0.1), lerp(-0.25, 0.12, k), lerp(0.42, 0.32, k), lerp(11.6, 10.4, k), 0.2),
-  time: k => { const kk = clamp((k - .04) / .88), tx = lerp(-6, 6, kk); return orbit(V(480 + tx + 0.4, 0.95, 0), lerp(-0.42, -0.28, kk), 0.2, mobile ? 7.4 : 6.6, 0.18); },
-  market: k => orbit(V(520, 1.1, 0.2), lerp(-0.25, 0.08, k), lerp(0.26, 0.34, k), lerp(11, 10.2, k), 0.2),
-  trend: k => orbit(V(560, 0.35, 0.1), lerp(-0.5, -0.2, k), lerp(0.78, 0.62, k), lerp(9.4, 8.6, k), 0.2),
-  end: k => orbit(V(600, lerp(1.1, 0.9, k), 0), lerp(-0.7, 0.5, k), lerp(0.12, 0.42, k), lerp(6.4, 12.5, k), 0.2),
+  rl: k => orbit(V(200.35, 1.0, 0), lerp(-0.5, -0.22, k), lerp(0.42, 0.32, k), lerp(10.8, 9.9, k), 0.2),
+  genai: k => orbit(V(240.4, 1.15, 0), lerp(-0.34, 0.02, k), lerp(0.3, 0.22, k), lerp(11, 10.2, k), 0.2),
+  predict: k => orbit(V(281.0, 1.15, 0), lerp(-0.38, -0.12, k), lerp(0.26, 0.18, k), lerp(11.2, 10.4, k), 0.2),
+  value: k => orbit(V(320, lerp(0.9, 1.5, k), 0), lerp(-0.62, -0.3, k), lerp(0.36, 0.26, k), lerp(10.4, 9.4, k), 0.2),
+  tpt: k => orbit(V(360, 1.5, 0), lerp(-0.3, 0.12, k), lerp(0.22, 0.14, k), lerp(11.6, 10.4, k), 0.19),
+  platform: k => orbit(V(400, 1.45, 0), lerp(-0.72, -0.38, k), lerp(0.34, 0.24, k), lerp(11, 10, k), 0.19),
+  figures: k => orbit(V(440, 1.0, 0), lerp(-0.2, 0.05, k), lerp(0.4, 0.3, k), lerp(12.4, 11.4, k), 0.2),
+  spec: k => { const f = clamp(k * 4 - .5, 0, 3), i0 = Math.floor(f), i1 = Math.min(3, i0 + 1), w = easeIO(f - i0), A = JFOCUS[i0], Bq = JFOCUS[i1]; return orbit(V(480 + lerp(A[0].x, Bq[0].x, w), lerp(A[0].y, Bq[0].y, w), 0), lerp(A[1], Bq[1], w) + Math.sin(k * 3) * .05, lerp(A[2], Bq[2], w), lerp(A[3], Bq[3], w), 0.2); },
+  case: k => orbit(V(520, 0.9, -0.2), lerp(-0.55, -0.18, k), lerp(0.55, 0.4, k), lerp(12.2, 10.8, k), 0.2),
+  swap: k => orbit(V(560, 0.95, -0.1), lerp(-0.25, 0.12, k), lerp(0.42, 0.32, k), lerp(11.6, 10.4, k), 0.2),
+  time: k => { const kk = clamp((k - .04) / .88), tx = lerp(-6, 6, kk); return orbit(V(600 + tx + 0.4, 0.95, 0), lerp(-0.42, -0.28, kk), 0.2, mobile ? 7.4 : 6.6, 0.18); },
+  market: k => orbit(V(640, 1.1, 0.2), lerp(-0.25, 0.08, k), lerp(0.26, 0.34, k), lerp(11, 10.2, k), 0.2),
+  trend: k => orbit(V(680, 0.35, 0.1), lerp(-0.5, -0.2, k), lerp(0.78, 0.62, k), lerp(9.4, 8.6, k), 0.2),
+  end: k => orbit(V(720, lerp(1.1, 0.9, k), 0), lerp(-0.7, 0.5, k), lerp(0.12, 0.42, k), lerp(6.4, 12.5, k), 0.2),
 };
 const camT = V(0, 1, 0); let camOff = 0.2;
 function cameraFor() {
@@ -1850,7 +2049,7 @@ function frame() {
   relL.fail.show = () => relOp * fail * (1 - idle0);
   if (relStatus) {
     const st = kC < 0.3 ? ['控制服务 A 运行于 Node0 · A′ 温备 · A″ 冷备', false] : kC < 0.44 ? ['Node0 故障 —— 单周期无干扰切换', true] : kC < 0.6 ? ['Node1 接管控制服务 A · 多态冗余', false] : ['备用节点按需自动生成 · 1:N 冗余', false];
-    const sk = st[0] + '|' + (window.__lang || ''); if (relStatus.dataset.s !== sk || !relStatus.querySelector('span').textContent) { relStatus.dataset.s = sk; relStatus.querySelector('span').textContent = T(st[0]); relStatus.classList.toggle('bad', st[1]); }
+    const sk = st[0] + '|' + (window.__lang || ''); if (relStatus.dataset.s !== sk || !relStatus.querySelector('span').textContent) { relStatus.dataset.s = sk; relStatus.querySelector('span').textContent = T(st[0]).replace(/ ([·—]) /g, '\u00a0$1 '); relStatus.classList.toggle('bad', st[1]); }
   }
 
   /* --- stage D: savings */
@@ -1871,6 +2070,53 @@ function frame() {
   });
   chipEdge.material.opacity = .5 + .4 * Math.sin(t * 2.2); under.material.opacity = .5 + .25 * Math.sin(t * 1.6);
   if (stE.g.visible) { for (let i = 0; i < NP; i++) { const u = (pSeed[i * 3 + 1] + t * 0.12) % 1; pPos[i * 3] = pSeed[i * 3] * (1 + u * .6); pPos[i * 3 + 1] = .25 + u * 2.4; pPos[i * 3 + 2] = pSeed[i * 3 + 2] * (1 + u * .6); } pGeo.attributes.position.needsUpdate = true; parts.material.opacity = .75; }
+
+  /* --- v7 AI stages */
+  if (stR.g.visible) {
+    const k = clamp(S.rl.k), op = stageOp('rl');
+    const lp = seg(k, .02, .26); reveal(rLoop, lp); reveal(rLoopG, lp);
+    const a1 = seg(k, .08, .3), a2 = seg(k, .16, .38), a3 = seg(k, .24, .46);
+    rAgent.scale.setScalar(Math.max(.001, lerp(.6, 1, a1))); rAgent.visible = a1 > .002;
+    [rNetE, rNetG].forEach((n, j) => { n.ln.material.opacity = .35 * a1 + .25 * Math.max(0, Math.sin(t * 3 + j * 1.6)) * a1; n.nm.emissiveIntensity = .6 + .9 * seg(k, .55, .85) + .3 * Math.sin(t * 4 + j); n.g.rotation.y = .35; });
+    rPid.visible = a2 > .002; rPid.scale.setScalar(Math.max(.001, a2)); rPidE.material.opacity = .7 * a2;
+    rCol.visible = a2 > .002; rCol.scale.set(1, Math.max(.001, a2), 1); rRings.forEach((r, i) => r.material.opacity = (.35 + .35 * Math.max(0, Math.sin(t * 2.5 - i * .9))) * a2);
+    rPanel.visible = a3 > .002; rPanel.scale.setScalar(Math.max(.001, lerp(.7, 1, a3))); rPanelBg.material.opacity = .9 * a3; rPanelE.material.opacity = .5 * a3; rTarget.material.opacity = .7 * a3;
+    rPanel.lookAt(camera.position.x, rPanel.getWorldPosition(_v4).y, camera.position.z);
+    const osc = seg(k, .3, .5), set = seg(k, .55, .82);
+    reveal(rStepOsc, osc); rStepOsc.material.opacity = .85 * (1 - .75 * set); reveal(rStepAI, set);
+    const on = seg(k, .32, .45); rFlow.update(t, on); rReward.update(t, on * (.5 + .5 * set)); rUpdP.update(t, seg(k, .4, .55)); reveal(rUpd, seg(k, .35, .5));
+    rL.agent.show = () => op * a1; rL.out.show = () => op * a2; rL.rew.show = () => op * a3; rL.upd.show = () => op * seg(k, .4, .55); rL.state.show = () => op * seg(k, .45, .6);
+  }
+  if (stGn.g.visible) {
+    const k = clamp(S.genai.k), op = stageOp('genai');
+    const d = seg(k, .02, .2), pr = seg(k, .1, .28);
+    gDoc.visible = d > .002; gDoc.material.opacity = d; gDocE.material.opacity = .6 * d; gDoc.position.y = 1.45 + (1 - d) * .3 + Math.sin(t * 1.2) * .03;
+    gPrompt.visible = pr > .002; gPrompt.scale.set(Math.max(.001, pr), 1, 1); gCaret.visible = Math.sin(t * 6) > 0;
+    const cin = seg(k, .2, .4); gIn.forEach((s, i) => { reveal(s.t, cin); reveal(s.g, cin); s.p.update(t, cin > .98 ? op : 0); });
+    const core = seg(k, .3, .5); gCore.scale.setScalar(Math.max(.001, lerp(.4, 1, core))); gCore.rotation.set(t * .3, t * .5, 0); gCore.material.emissiveIntensity = .5 + core * (1 + .4 * Math.sin(t * 3));
+    gShell.rotation.set(-t * .2, -t * .35, 0); gShell.material.opacity = .4 * core; gGlow.material.opacity = .25 + .6 * core;
+    const go = seg(k, .45, .58); reveal(gOut.t, go); gOut.p.update(t, go > .98 ? op : 0);
+    gCode.forEach((m, i) => { const e = seg(k, .5 + i * .06, .6 + i * .06); m.visible = e > .002; m.scale.set(lerp(.3, 1, e), 1, lerp(.3, 1, e)); m.position.y = .25 + i * .26 + (1 - e) * .4; m.material.forEach(x => x.opacity = e); m.userData.e.material.opacity = .6 * e; });
+    gSfc.forEach((g, i) => { const e = seg(k, .55 + i * .06, .65 + i * .06); g.visible = e > .002; g.scale.setScalar(Math.max(.001, e)); });
+    const rv = seg(k, .82, .95); gScan.material.opacity = rv > 0 && rv < 1 ? .8 : 0; gScan.position.y = lerp(1.4, .2, rv);
+    gCode.forEach((m, i) => { const passed = rv > 0 && gScan.position.y < m.position.y; m.userData.e.material.color.setHex(passed ? 0x9fe8b0 : CYAN); });
+    gL.doc.show = () => op * d; gL.prompt.show = () => op * pr; gL.core.show = () => op * core; gL.code.show = () => op * seg(k, .55, .65); gL.sfc.show = () => op * seg(k, .62, .72); gL.rev.show = () => op * seg(k, .82, .9);
+  }
+  if (stPr.g.visible) {
+    const k = clamp(S.predict.k), op = stageOp('predict');
+    const pl = seg(k, .02, .2); [realP, twinP].forEach((g, i) => { const e = i ? seg(k, .5, .66) : pl; g.visible = e > .002; g.scale.set(1, Math.max(.001, e), 1); });
+    const ps = seg(k, .04, .3); reveal(tPast, ps); reveal(tPastG, ps); tPastP.update(t, ps > .98 ? op * .8 : 0);
+    tNow.material.opacity = .8 * seg(k, .25, .35); tThr.material.opacity = .5 * seg(k, .25, .4);
+    const am = seg(k, .3, .45); aiCore.scale.setScalar(Math.max(.001, am)); aiCore.rotation.set(t * .4, t * .6, 0); aiRing.material.opacity = .7 * am; aiRing.rotation.set(Math.PI / 2 + Math.sin(t) * .25, 0, t * .8); aiGlow.material.opacity = .6 * am;
+    reveal(aiT, seg(k, .38, .5)); aiP.update(t, seg(k, .45, .55) * op);
+    const fu = seg(k, .45, .7); reveal(tFut, fu); reveal(tFutG, fu); tBand.material.opacity = .16 * fu * (.8 + .2 * Math.sin(t * 2));
+    const al = seg(k, .66, .78), pulse = .5 + .5 * Math.sin(t * 5);
+    tAlarm.material.opacity = al; tAlarm.rotation.y = t * 2; tAlarmG.material.opacity = al * (.4 + .6 * pulse);
+    const rr = (t * .8) % 1; tAlarmR.scale.setScalar(1 + rr * 2.2); tAlarmR.material.opacity = al * (1 - rr) * .8;
+    reveal(rtT, seg(k, .2, .35)); rtP.update(t, seg(k, .3, .4) * op);
+    const tw = seg(k, .58, .72); reveal(twT, tw); twP.update(t, tw > .98 ? op : 0); twP2.update(t, tw > .98 ? op : 0, true);
+    prL.past.show = () => op * seg(k, .2, .3); prL.real.show = () => op * pl; prL.ai.show = () => op * am; prL.fut.show = () => op * seg(k, .6, .7); prL.alarm.show = () => op * al; prL.twin.show = () => op * tw;
+  }
 
   { const pe = Math.min(seg(S.arch.k, .5, .78), archStep.f); archPlant.visible = pe > .001; if (archPlant.visible) { apkG.scale.y = Math.max(pe, .001); const ps = Math.min(seg(S.arch.k, .62, .92), archStep.f); updStreams(archStreams, t, ps); archPlantL.show = () => archLabelOp * clamp((ps - .6) * 3); } else archPlantL.show = () => 0; }
   /* --- v2 stages */
