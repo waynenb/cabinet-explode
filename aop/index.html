@@ -154,6 +154,7 @@ const DEV_Z = CD / 2 - 0.09 - DEV_D / 2;
 const $ = id => document.getElementById(id);
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 const maxTpt = ucs => Math.floor((RACK_U - ucs * 2) / 4);
+const rackStart = (ucs, tpt) => RACK_U - (tpt * 4 + ucs * 2) + 1;
 
 const state = { mode: 'single', ...PRESET };
 function clampState() {
@@ -189,9 +190,10 @@ function plan() {
     return [{ id: 'S', name: '单机柜', x: 0, ucs: state.ucs, tpt: state.tpt, gpus }];
   }
   const [gL, gR] = distribute(state.gpuDual, [state.tptL, state.tptR]);
+  const pairX = (CW + 0.02) / 2;
   return [
-    { id: 'L', name: '左柜', x: -0.78, ucs: state.ucsL, tpt: state.tptL, gpus: gL },
-    { id: 'R', name: '右柜', x: 0.78, ucs: state.ucsR, tpt: state.tptR, gpus: gR },
+    { id: 'L', name: '左柜', x: -pairX, ucs: state.ucsL, tpt: state.tptL, gpus: gL },
+    { id: 'R', name: '右柜', x: pairX, ucs: state.ucsR, tpt: state.tptR, gpus: gR },
   ];
 }
 
@@ -343,7 +345,7 @@ function buildCabinet(spec) {
 
   const devs = new THREE.Group(); devs.position.x = spec.x; scene.add(devs); dyn.push(devs);
   const devices = [];
-  let u = 1;
+  let u = rackStart(spec.ucs, spec.tpt);
   const place = (kind, index, span, gpus) => {
     const h = span * U - GAP;
     const y = BASE_Y + (u - 1) * U + span * U / 2;
@@ -369,8 +371,13 @@ function buildCabinet(spec) {
     el.innerHTML = '<div class="in"><div class="ln"></div><div class="card" style="border-color:' + color + '">' + text + '</div></div>';
     const lab = new CSS2DObject(el); lab.position.set(DEV_W / 2 + 0.02, y, DEV_Z); devs.add(lab); lab.userData.el = el;
   };
-  if (spec.tpt) addLabel(spec.name + ' · TPT 4U × ' + spec.tpt, BASE_Y + spec.tpt * 2 * U, '#c9a4ff');
-  if (spec.ucs) addLabel(spec.name + ' · UCS 2U × ' + spec.ucs, BASE_Y + (spec.tpt * 4 + spec.ucs) * U, '#3fb6ff');
+  const midY = kind => {
+    const rows = devices.filter(d => d.kind === kind);
+    if (!rows.length) return 0;
+    return rows.reduce((s, d) => s + d.mesh.userData.baseY, 0) / rows.length;
+  };
+  if (spec.tpt) addLabel(spec.name + ' · TPT 4U × ' + spec.tpt, midY('tpt'), '#c9a4ff');
+  if (spec.ucs) addLabel(spec.name + ' · UCS 2U × ' + spec.ucs, midY('ucs'), '#3fb6ff');
   return { spec, shell, door, devs, devices, baseX: spec.x };
 }
 
@@ -414,7 +421,7 @@ function applyExplode(t) {
     c.shell.position.y = lift * 0.85;
     c.shell.position.z = -lift * 0.35;
     c.shell.visible = fade > 0.03;
-    c.door.rotation.y = eDoor * THREE.MathUtils.degToRad(100);
+    c.door.rotation.y = eDoor * THREE.MathUtils.degToRad(state.mode === 'dual' ? 86 : 100);
     c.devs.position.x = c.baseX + sign * lift * 0.25;
     c.devices.forEach((d, i) => {
       d.mesh.position.y = d.mesh.userData.baseY + (i - (c.devices.length - 1) / 2) * 0.045 * ease((t - 0.35) / 0.5);
@@ -434,7 +441,7 @@ function viewDist() {
   const dual = state.mode === 'dual';
   const mobile = innerWidth < 820;
   const aspect = innerWidth / Math.max(innerHeight, 1);
-  const base = mobile ? (dual ? 7.2 : 5.6) : (dual ? 7.4 : 5.5);
+  const base = mobile ? (dual ? 6.5 : 5.6) : (dual ? 6.5 : 5.5);
   return base * (1 + progress * 0.22) * Math.max(1, mobile ? 0.72 / aspect : 1);
 }
 function homeCamera(jump) {
@@ -493,9 +500,9 @@ function syncInputs() {
 }
 function cellsHtml(ucs, tpt) {
   const marks = Array(RACK_U).fill('');
-  let u = 0;
-  for (let i = 0; i < tpt * 4 && u < RACK_U; i++) marks[u++] = 'tpt';
-  for (let i = 0; i < ucs * 2 && u < RACK_U; i++) marks[u++] = 'ucs';
+  let u = rackStart(ucs, tpt) - 1;
+  for (let i = 0; i < tpt * 4; i++) marks[u++] = 'tpt';
+  for (let i = 0; i < ucs * 2; i++) marks[u++] = 'ucs';
   return '<div class="cells">' + marks.map(k => '<i class="' + k + '"></i>').join('') + '</div>';
 }
 function renderHud() {
@@ -511,7 +518,7 @@ function renderHud() {
     '<div><span>TPT 显卡</span><b>' + placed + ' 张在柜内' + (placed !== asked ? ' / 设定 ' + asked : '') + '</b></div>' +
     (asked && !tpt ? '<div class="warn"><span>显卡还没有 4U 服务器可放</span><b>未放入</b></div>' : '');
   const items = [];
-  cabinets.forEach(c => c.devices.forEach(d => {
+  cabinets.forEach(c => c.devices.slice().sort((a, b) => b.u0 - a.u0).forEach(d => {
     items.push('<li><span>' + c.spec.name + ' U' + d.u0 + '–U' + d.u1 + '</span><span>' + (d.kind === 'ucs' ? 'UCS 2U' : 'TPT 4U · 显卡 ' + d.gpus) + '</span></li>');
   }));
   $('occ').innerHTML = items.join('') || '<li><span>柜内没有服务器</span><span>可把滑块调高</span></li>';
@@ -525,6 +532,12 @@ function audit() {
     const tpt = c.devices.filter(d => d.kind === 'tpt');
     if (ucs.length > 7) problems.push(c.spec.name + ' UCS > 7');
     if (ucs.length !== c.spec.ucs || tpt.length !== c.spec.tpt) problems.push(c.spec.name + ' count');
+    if (c.devices.length) {
+      const usedU = c.spec.tpt * 4 + c.spec.ucs * 2;
+      const minU = Math.min(...c.devices.map(d => d.u0));
+      const maxU = Math.max(...c.devices.map(d => d.u1));
+      if (maxU !== RACK_U || minU !== RACK_U - usedU + 1) problems.push(c.spec.name + ' not top-packed');
+    }
     const used = new Set();
     c.devices.forEach(d => {
       const span = d.u1 - d.u0 + 1;
