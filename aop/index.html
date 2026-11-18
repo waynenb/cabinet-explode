@@ -328,11 +328,48 @@ const floor = new THREE.Mesh(new THREE.CircleGeometry(6.2, 72), floorMat);
 floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
 
 const meshDoorMat = (() => {
-  const W = 256, H = 512, [c, x] = mkCanvas(W, H);
-  x.fillStyle = '#c5ccd3'; x.fillRect(0, 0, W, H);
-  x.globalCompositeOperation = 'destination-out';
-  for (let y = 10; y < H; y += 16) for (let px = 10; px < W; px += 16) { x.beginPath(); x.arc(px, y, 5, 0, 7); x.fill(); }
-  const mat = new THREE.MeshStandardMaterial({ map: mkTex(c), transparent: true, alphaTest: 0.4, metalness: 0.65, roughness: 0.42, side: THREE.DoubleSide });
+  const S = 32;
+  const [base, bx] = mkCanvas(S, S);
+  bx.fillStyle = '#fff';
+  bx.fillRect(0, 0, S, S);
+  bx.globalCompositeOperation = 'destination-out';
+  bx.beginPath();
+  bx.arc(S / 2, S / 2, S * 0.36, 0, Math.PI * 2);
+  bx.fill();
+  const mips = [base];
+  let src = base;
+  while (src.width > 1) {
+    const w = src.width >> 1, h = src.height >> 1;
+    const [c, x] = mkCanvas(w, h);
+    const data = src.getContext('2d').getImageData(0, 0, src.width, src.height).data;
+    const out = x.createImageData(w, h);
+    for (let y = 0; y < h; y++) for (let px = 0; px < w; px++) {
+      let a = 0;
+      for (let oy = 0; oy < 2; oy++) for (let ox = 0; ox < 2; ox++) {
+        a += data[((y * 2 + oy) * src.width + (px * 2 + ox)) * 4 + 3];
+      }
+      const i = (y * w + px) * 4;
+      const solid = a / 4 >= 128 ? 255 : 0;
+      out.data[i] = out.data[i + 1] = out.data[i + 2] = solid;
+      out.data[i + 3] = solid;
+    }
+    x.putImageData(out, 0, 0);
+    mips.push(c);
+    src = c;
+  }
+  const tex = mkTex(base);
+  tex.mipmaps = mips;
+  tex.generateMipmaps = false;
+  tex.minFilter = THREE.LinearMipmapLinearFilter;
+  tex.magFilter = THREE.LinearFilter;
+  tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+  tex.anisotropy = 4;
+  const pitch = 0.015;
+  tex.repeat.set((CW - 0.11) / pitch, (CH - 0.38) / pitch);
+  const mat = new THREE.MeshStandardMaterial({
+    color: 0x121317, map: tex, metalness: 0.7, roughness: 0.35,
+    transparent: true, alphaTest: 0.05, alphaToCoverage: true, side: THREE.DoubleSide
+  });
   mat.userData.shared = true;
   return mat;
 })();
@@ -501,7 +538,7 @@ function buildCabinet(spec) {
   const plateMat = new THREE.MeshStandardMaterial({ color: 0x0d1b2e, emissive: 0x123a66, emissiveIntensity: 0.7, metalness: 0.4, roughness: 0.35 });
   box(door, 0.28, 0.08, 0.012, plateMat, -dw * 0.55, dh * 0.72, 0.02, door);
   rememberMat(frameMat, 1, false); rememberMat(panelMat, 1, false); rememberMat(railMat, 1, false); rememberMat(sideMat, 1, false);
-  rememberMat(infill, state.door === 'mesh' ? 1 : 0.18, true); rememberMat(plateMat, 1, false);
+  rememberMat(infill, state.door === 'mesh' ? 1 : 0.18, state.door !== 'mesh'); rememberMat(plateMat, 1, false);
   shell.userData.door = door;
 
   const devs = new THREE.Group(); devs.position.x = spec.x; scene.add(devs); dyn.push(devs);
