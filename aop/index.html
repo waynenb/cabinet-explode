@@ -43,20 +43,36 @@
   .map{flex:1}
   .map .nm{font-size:11px;color:#8ea4bd;margin-bottom:4px}
   .cells{display:flex;flex-direction:column-reverse;gap:1px;height:168px;border:1px solid rgba(120,180,255,.2);border-radius:6px;padding:3px;background:rgba(0,0,0,.25)}
-  .cells i{flex:1;border-radius:1px;background:rgba(255,255,255,.06)}
+  .cells i{flex:1 1 0;min-height:0;border-radius:1px;background:rgba(255,255,255,.06)}
   .cells i.ucs{background:#3fb6ff}
   .cells i.tpt{background:#b388ff}
-  body.theme-light{color:#172033;background:radial-gradient(ellipse at 50% 35%,#f7f9fc 0%,#e7eef6 52%,#d5e0ec 100%)}
-body.theme-light header h1,body.theme-light header p,body.theme-light #config h2,body.theme-light .field small,body.theme-light .fine,body.theme-light .key,body.theme-light .sum,body.theme-light #occ{color:#31445c}
-body.theme-light .glass{background:rgba(255,255,255,.86);border-color:rgba(40,70,110,.16);color:#172033}
-body.theme-light .banner{color:#16324d;background:rgba(47,123,255,.1)}
-body.theme-light .modes button,body.theme-light #controls button,body.theme-light #bPreset,body.theme-light .ac{color:#172033;background:rgba(20,40,70,.05)}
-body.theme-light .modes button.on,body.theme-light #controls button.on,body.theme-light .ac.on{color:#fff}
-body.theme-light .glabel .card{background:rgba(255,255,255,.94);color:#142033}
-.ac{font:inherit;font-size:13px;color:#dce8f5;background:rgba(255,255,255,.06);border:1px solid rgba(120,180,255,.28);padding:7px 12px;border-radius:8px;cursor:pointer;margin:0 8px 8px 0}
-.ac.on{background:linear-gradient(135deg,#1f8fff,#00c6ff);border-color:transparent;color:#fff}
-.cells i.ac{background:#7f93a8}
+  .cells i.sw{background:#3dffc5}
+  .cells i.ac{background:#7f93a8}
   .cells i.gap{background:repeating-linear-gradient(90deg, rgba(255,213,154,.9) 0 1px, transparent 1px 3px)}
+  body.theme-light{color:#172033;background:radial-gradient(ellipse at 50% 35%,#f7f9fc 0%,#e7eef6 52%,#d5e0ec 100%)}
+  body.theme-light header h1,body.theme-light header p,body.theme-light #config h2,body.theme-light .field small,body.theme-light .fine,body.theme-light .key,body.theme-light .sum,body.theme-light #occ,body.theme-light #pct,body.theme-light #controls .sl{color:#31445c}
+  body.theme-light .glass{background:rgba(255,255,255,.92);border-color:rgba(40,70,110,.18);color:#172033}
+  body.theme-light .banner{color:#16324d;background:rgba(47,123,255,.12)}
+  body.theme-light .modes button,body.theme-light #controls button,body.theme-light #bPreset,body.theme-light button.ac{color:#172033;background:#f4f7fb;border:1px solid #6d849c}
+  body.theme-light .modes button.on,body.theme-light #controls button.on,body.theme-light button.ac.on{color:#fff;background:#0a4fb3;border-color:#083e8c;font-weight:650}
+  body.theme-light .glabel .card{background:rgba(255,255,255,.94);color:#142033}
+  body.theme-light input[type=range]{background:linear-gradient(90deg,#0a4fb3 var(--p,0%),#b7c5d4 var(--p,0%))}
+  body.theme-light input[type=range]::-webkit-slider-thumb{background:#0a4fb3;box-shadow:0 0 0 2px #fff,0 0 0 4px #0a4fb3}
+  body.theme-light input[type=range]::-moz-range-thumb{background:#0a4fb3;box-shadow:0 0 0 2px #fff,0 0 0 4px #0a4fb3}
+  body.theme-light .cells{background:#d5e0eb;border-color:#7f97ad}
+  body.theme-light .cells i{background:#b7c6d6}
+  body.theme-light .cells i.sw{background:#0c8f62}
+  body.theme-light .cells i.ucs{background:#0a5bd3}
+  body.theme-light .cells i.tpt{background:#6d28d9}
+  body.theme-light .cells i.ac{background:#c2410c}
+  body.theme-light .cells i.gap{background:repeating-linear-gradient(90deg,#d97706 0 2px,#fff7ed 2px 4px)}
+  body.theme-light .key i.sw{background:#0c8f62}
+  body.theme-light .key i.ucs{background:#0a5bd3}
+  body.theme-light .key i.tpt{background:#6d28d9}
+  body.theme-light .key i.ac{background:#c2410c}
+  body.theme-light .key i.gap{background:repeating-linear-gradient(90deg,#d97706 0 2px,#fff7ed 2px 4px)}
+  button.ac{font:inherit;font-size:13px;color:#dce8f5;background:rgba(255,255,255,.06);border:1px solid rgba(120,180,255,.28);padding:7px 12px;border-radius:8px;cursor:pointer;margin:0 8px 8px 0}
+  button.ac.on{background:linear-gradient(135deg,#1f8fff,#00c6ff);border-color:transparent;color:#fff}
   .sum{font-size:12.5px;line-height:1.45;margin:0}
   .sum div{display:flex;justify-content:space-between;gap:8px;padding:3px 0;border-top:1px solid rgba(255,255,255,.06)}
   .warn{color:#ffd59a}
