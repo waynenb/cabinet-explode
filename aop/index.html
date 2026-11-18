@@ -39,7 +39,7 @@
     background:linear-gradient(90deg,var(--accent) var(--p,0%),rgba(255,255,255,.15) var(--p,0%));outline:none}
   input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(63,182,255,.35);cursor:pointer}
   input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:#fff;border:0;cursor:pointer}
-  .maps{display:flex;gap:10px;align-items:flex-end;margin:4px 0 8px}
+  .maps{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;margin:4px 0 8px}
   .map{flex:1}
   .map .nm{font-size:11px;color:#8ea4bd;margin-bottom:4px}
   .cells{display:flex;flex-direction:column-reverse;gap:1px;height:168px;border:1px solid rgba(120,180,255,.2);border-radius:6px;padding:3px;background:rgba(0,0,0,.25)}
@@ -60,16 +60,27 @@
   #controls .sl{display:flex;align-items:center;gap:8px;font-size:12px;color:#8ea4bd}
   #controls input[type=range]{width:160px}
   #pct{width:36px;text-align:right;color:#dce8f5;font-variant-numeric:tabular-nums}
-  #info{position:fixed;right:18px;top:108px;width:280px;padding:14px;z-index:6}
+  #info{position:fixed;right:18px;top:108px;width:280px;padding:14px;z-index:7}
   #info.hidden{display:none}
   #info .tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:20px;background:rgba(63,182,255,.18);color:var(--accent)}
   #info h3{margin:6px 0 4px;font-size:16px}
   #info p{margin:0;font-size:12.5px;line-height:1.55;color:#c3d3e4}
   #info button{position:absolute;right:8px;top:6px;background:none;border:0;color:#8ea4bd;font-size:20px;cursor:pointer}
-  .glabel{width:0;height:0;position:relative}
-  .glabel .in{position:absolute;left:0;top:0;transform:translateY(-50%);display:flex;align-items:center;white-space:nowrap}
-  .glabel .ln{width:36px;height:1px;background:linear-gradient(90deg,rgba(63,182,255,0),var(--accent))}
-  .glabel .card{padding:4px 8px;border-left:2px solid var(--accent);background:linear-gradient(90deg,rgba(15,35,60,.8),rgba(15,35,60,0));font-size:13px}
+  .key{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center;font-size:11px;color:#9eb0c4;margin:0 0 6px;flex-basis:100%}
+  .key i{width:10px;height:8px;border-radius:2px;display:inline-block}
+  .key i.sw{background:#3dffc5}
+  .key i.ucs{background:#3fb6ff}
+  .key i.tpt{background:#b388ff}
+  .key i.gap{background:repeating-linear-gradient(90deg, rgba(255,213,154,.95) 0 1px, transparent 1px 3px);width:14px}
+  .glabel{position:fixed;z-index:4;pointer-events:none;display:none}
+  .glabel.right{transform:translate(0,-50%)}
+  .glabel.left{transform:translate(-100%,-50%)}
+  .glabel .in{display:flex;align-items:center}
+  .glabel .ln{width:22px;height:1px;background:linear-gradient(90deg,rgba(63,182,255,0),var(--accent));flex:none}
+  .glabel.left .in{flex-direction:row-reverse}
+  .glabel.left .ln{background:linear-gradient(270deg,rgba(63,182,255,0),var(--accent))}
+  .glabel .card{padding:3px 7px;border-left:2px solid var(--accent);background:rgba(8,14,24,.88);font-size:12px;white-space:nowrap;color:#eef6ff}
+  .glabel.left .card{border-left:0;border-right:2px solid var(--accent)}
   #hint{position:fixed;right:18px;bottom:22px;font-size:11px;color:#6d8199;z-index:4;pointer-events:none;text-align:right}
   #loading{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;z-index:20;
     background:#070a10;color:#8ea4bd;font-size:13px;transition:opacity .5s}
@@ -78,7 +89,9 @@
   @media (max-width:820px){
     header h1{font-size:16px}
     #config{left:8px;right:8px;top:auto;bottom:74px;width:auto;max-height:34vh}
-    #info{left:8px;right:8px;top:auto;bottom:74px;width:auto;max-height:40vh;overflow:auto}
+    #info{left:8px;right:8px;top:62px;bottom:auto;width:auto;max-height:22vh}
+    .glabel .card{font-size:11px}
+    .glabel .ln{width:12px}
     #hint{display:none}
     #controls input[type=range]{width:110px}
     #occ{max-height:72px}
@@ -352,7 +365,7 @@ function tptMat(gpus) {
 const metalSide = new THREE.MeshStandardMaterial({ color: 0x8d949e, metalness: 0.8, roughness: 0.32 });
 metalSide.userData.shared = true;
 
-let dyn = [], pickables = [], shellMats = [], cabinets = [];
+let dyn = [], pickables = [], shellMats = [], cabinets = [], callouts = [];
 let progress = 0, tween = null, framedP = 0, selected = null;
 
 function box(parent, w, h, d, mat, x, y, z, owner) {
@@ -458,20 +471,19 @@ function buildCabinet(spec) {
     }
     devices.push({ kind: slot.kind, index: slot.index, u0: slot.u0, u1: slot.u1, gpus, mesh: holder });
   });
-  const addLabel = (text, y, color) => {
-    const el = document.createElement('div'); el.className = 'glabel';
+  const labels = {};
+  const addLabel = (kind, text, color) => {
+    const el = document.createElement('div');
+    el.className = 'glabel';
     el.innerHTML = '<div class="in"><div class="ln"></div><div class="card" style="border-color:' + color + '">' + text + '</div></div>';
-    const lab = new CSS2DObject(el); lab.position.set(DEV_W / 2 + 0.02, y, DEV_Z); devs.add(lab); lab.userData.el = el;
+    document.body.appendChild(el);
+    labels[kind] = el;
+    callouts.push({ kind, el, spec, getRows: () => devices.filter(d => d.kind === kind) });
   };
-  const midY = kind => {
-    const rows = devices.filter(d => d.kind === kind);
-    if (!rows.length) return 0;
-    return rows.reduce((s, d) => s + d.mesh.userData.baseY, 0) / rows.length;
-  };
-  if (spec.sw) addLabel(spec.name + ' · 交换机 1U × ' + spec.sw + '（示意）', midY('switch'), '#3dffc5');
-  if (spec.tpt) addLabel(spec.name + ' · TPT 4U × ' + spec.tpt, midY('tpt'), '#c9a4ff');
-  if (spec.ucs) addLabel(spec.name + ' · UCS 2U × ' + spec.ucs, midY('ucs'), '#3fb6ff');
-  return { spec, shell, door, devs, devices, baseX: spec.x };
+  if (spec.sw) addLabel('switch', spec.name + ' · 交换机 ×' + spec.sw, '#3dffc5');
+  if (spec.ucs) addLabel('ucs', spec.name + ' · UCS ×' + spec.ucs, '#3fb6ff');
+  if (spec.tpt) addLabel('tpt', spec.name + ' · TPT ×' + spec.tpt, '#c9a4ff');
+  return { spec, shell, door, devs, devices, baseX: spec.x, labels };
 }
 
 function clearDyn() {
@@ -485,6 +497,8 @@ function clearDyn() {
     scene.remove(g);
   });
   dyn = []; pickables = []; shellMats = []; cabinets = []; selected = null;
+  callouts.forEach(c => c.el.remove());
+  callouts = [];
   $('info').classList.add('hidden');
 }
 
@@ -522,8 +536,6 @@ function applyExplode(t) {
       d.mesh.position.y = d.mesh.userData.baseY + (d.mesh.userData.baseY - mid) * 0.9 * spread;
     });
   });
-  const show = t > 0.62 && innerWidth >= 820;
-  labelRenderer.domElement.querySelectorAll('.glabel').forEach(el => { el.style.opacity = show ? 1 : 0; });
 }
 function ease(x) { x = clamp(x); return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; }
 
@@ -609,7 +621,8 @@ function cellsHtml(sw, ucs, tpt) {
 }
 function renderHud() {
   const rows = plan();
-  $('maps').innerHTML = rows.map(r => '<div class="map"><div class="nm">' + r.name + '</div>' + cellsHtml(r.sw, r.ucs, r.tpt) + '</div>').join('');
+  $('maps').innerHTML = rows.map(r => '<div class="map"><div class="nm">' + r.name + '</div>' + cellsHtml(r.sw, r.ucs, r.tpt) + '</div>').join('')
+    + '<div class="key"><i class="sw"></i>交换机<i class="ucs"></i>UCS<i class="tpt"></i>TPT<i class="gap"></i>1U间隔</div>';
   const ucs = rows.reduce((s, r) => s + r.ucs, 0);
   const tpt = rows.reduce((s, r) => s + r.tpt, 0);
   const sw = rows.reduce((s, r) => s + r.sw, 0);
@@ -733,6 +746,67 @@ window.addEventListener('resize', () => {
   homeCamera(true);
 });
 
+function layoutCallouts() {
+  const blocked = [$('config'), $('controls'), document.querySelector('header'), $('info')].map(el => {
+    if (!el || el.classList.contains('hidden')) return null;
+    const r = el.getBoundingClientRect();
+    return { left: r.left, top: r.top, right: r.right, bottom: r.bottom };
+  }).filter(Boolean);
+  const hit = (a, b) => a.left < b.right + 4 && a.right > b.left - 4 && a.top < b.bottom + 4 && a.bottom > b.top - 4;
+  const show = progress > 0.42;
+  const pending = [];
+  const forward = camera.getWorldDirection(_fwd);
+  callouts.forEach(c => {
+    const rows = c.getRows();
+    if (!show || !rows.length) { c.el.style.display = 'none'; return; }
+    const mid = new THREE.Vector3();
+    rows.forEach(d => { const p = new THREE.Vector3(); d.mesh.getWorldPosition(p); mid.add(p); });
+    mid.multiplyScalar(1 / rows.length);
+    if (mid.clone().sub(camera.position).dot(forward) <= 0.05) { c.el.style.display = 'none'; return; }
+    const prefer = c.spec.x < 0 ? -1 : 1;
+    const anchor = mid.clone();
+    anchor.x += prefer * (DEV_W / 2 + 0.05);
+    const v = anchor.project(camera);
+    c.el.style.display = 'block';
+    pending.push({
+      c, prefer,
+      sx: (v.x * 0.5 + 0.5) * innerWidth,
+      sy: (-v.y * 0.5 + 0.5) * innerHeight,
+      w: c.el.offsetWidth,
+      h: c.el.offsetHeight
+    });
+  });
+  pending.sort((a, b) => a.sy - b.sy || a.sx - b.sx);
+  const placed = [];
+  pending.forEach(p => {
+    const box = (side, sy) => {
+      const left = side < 0 ? p.sx - p.w : p.sx;
+      const top = sy - p.h / 2;
+      return { left, top, right: left + p.w, bottom: top + p.h, side };
+    };
+    const ok = r => r.left >= 4 && r.top >= 4 && r.right <= innerWidth - 4 && r.bottom <= innerHeight - 4 && !blocked.some(b => hit(r, b)) && !placed.some(o => hit(r, o));
+    let chosen = box(p.prefer, p.sy);
+    if (!ok(chosen) && !(state.mode === 'dual' && p.prefer < 0)) {
+      const flip = box(-p.prefer, p.sy);
+      if (ok(flip)) chosen = flip;
+    }
+    for (let n = 1; n <= 8 && !ok(chosen); n++) {
+      const dy = Math.ceil(n / 2) * (p.h + 6) * (n % 2 ? 1 : -1);
+      const trial = box(chosen.side, p.sy + dy);
+      if (ok(trial)) chosen = trial;
+    }
+    chosen.top = Math.max(4, Math.min(innerHeight - p.h - 4, chosen.top));
+    chosen.left = Math.max(4, Math.min(innerWidth - p.w - 4, chosen.left));
+    chosen.right = chosen.left + p.w;
+    chosen.bottom = chosen.top + p.h;
+    p.c.el.classList.toggle('left', chosen.side < 0);
+    p.c.el.classList.toggle('right', chosen.side >= 0);
+    p.c.el.style.left = (chosen.side < 0 ? chosen.right : chosen.left) + 'px';
+    p.c.el.style.top = (chosen.top + p.h / 2) + 'px';
+    placed.push(chosen);
+  });
+}
+const _fwd = new THREE.Vector3();
 function loop() {
   const t = clock.getElapsedTime();
   if (tween) {
@@ -749,6 +823,7 @@ function loop() {
     framedP = now;
   }
   controls.update();
+  layoutCallouts();
   renderer.render(scene, camera);
   labelRenderer.render(scene, camera);
   requestAnimationFrame(loop);
