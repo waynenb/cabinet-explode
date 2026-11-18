@@ -6,6 +6,8 @@
 
 产品介绍：<https://waynenb.github.io/cabinet-explode/site/>
 
+UCS+TPT 一体化方案（AOP）：[aop/](aop/)。单机柜 / 双机柜为示意页面，具体数量待确认，柜内不含空调和 UPS。原三维爆炸图与产品介绍仍在上面两个地址。
+
 产品介绍支持 `?autoplay=1`（自动播放导览）和 `?lang=en`（英文版，页内也可切换语言）：<https://waynenb.github.io/cabinet-explode/site/?autoplay=1&lang=en>
 
 ## 操作

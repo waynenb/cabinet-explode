@@ -18,6 +18,8 @@
   header h1{margin:0;font-size:22px;font-weight:600;letter-spacing:1px}
   header h1 b{color:var(--accent)}
   header p{margin:4px 0 0;font-size:12px;color:#8ea4bd;letter-spacing:.5px}
+  header .entry{pointer-events:auto;margin:8px 0 0;font-size:12px}
+  header .entry a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(63,182,255,.45)}
   .glass{background:var(--panel);border:1px solid var(--line);border-radius:12px;
     backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 10px 30px rgba(0,0,0,.35)}
   #legend{position:fixed;left:24px;top:92px;width:230px;padding:12px;z-index:5}
@@ -91,6 +93,7 @@
 <header>
   <h1><b>SUPCON</b> Nyx通用控制系统 · 三维爆炸图</h1>
   <p>Industrial Control Cabinet · Interactive 3D Exploded View</p>
+  <p class="entry"><a href="aop/">UCS+TPT 一体化方案（AOP）</a></p>
 </header>
 <div id="legend" class="glass"><h3>部件分组 · COMPONENTS</h3><div id="lgList"></div></div>
 <div id="info" class="glass hidden">
