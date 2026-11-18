@@ -39,15 +39,40 @@
     background:linear-gradient(90deg,var(--accent) var(--p,0%),rgba(255,255,255,.15) var(--p,0%));outline:none}
   input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(63,182,255,.35);cursor:pointer}
   input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:#fff;border:0;cursor:pointer}
-  .maps{display:flex;gap:10px;align-items:flex-end;margin:4px 0 8px}
+  .maps{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;margin:4px 0 8px}
   .map{flex:1}
   .map .nm{font-size:11px;color:#8ea4bd;margin-bottom:4px}
   .cells{display:flex;flex-direction:column-reverse;gap:1px;height:168px;border:1px solid rgba(120,180,255,.2);border-radius:6px;padding:3px;background:rgba(0,0,0,.25)}
-  .cells i{flex:1;border-radius:1px;background:rgba(255,255,255,.06)}
+  .cells i{flex:1 1 0;min-height:0;border-radius:1px;background:rgba(255,255,255,.06)}
   .cells i.ucs{background:#3fb6ff}
   .cells i.tpt{background:#b388ff}
   .cells i.sw{background:#3dffc5}
+  .cells i.ac{background:#7f93a8}
   .cells i.gap{background:repeating-linear-gradient(90deg, rgba(255,213,154,.9) 0 1px, transparent 1px 3px)}
+  body.theme-light{color:#172033;background:radial-gradient(ellipse at 50% 35%,#f7f9fc 0%,#e7eef6 52%,#d5e0ec 100%)}
+  body.theme-light header h1,body.theme-light header p,body.theme-light #config h2,body.theme-light .field small,body.theme-light .fine,body.theme-light .key,body.theme-light .sum,body.theme-light #occ,body.theme-light #pct,body.theme-light #controls .sl{color:#31445c}
+  body.theme-light .glass{background:rgba(255,255,255,.92);border-color:rgba(40,70,110,.18);color:#172033}
+  body.theme-light .banner{color:#16324d;background:rgba(47,123,255,.12)}
+  body.theme-light .modes button,body.theme-light #controls button,body.theme-light #bPreset,body.theme-light button.ac{color:#172033;background:#f4f7fb;border:1px solid #6d849c}
+  body.theme-light .modes button.on,body.theme-light #controls button.on,body.theme-light button.ac.on{color:#fff;background:#0a4fb3;border-color:#083e8c;font-weight:650}
+  body.theme-light .glabel .card{background:rgba(255,255,255,.94);color:#142033}
+  body.theme-light input[type=range]{background:linear-gradient(90deg,#0a4fb3 var(--p,0%),#b7c5d4 var(--p,0%))}
+  body.theme-light input[type=range]::-webkit-slider-thumb{background:#0a4fb3;box-shadow:0 0 0 2px #fff,0 0 0 4px #0a4fb3}
+  body.theme-light input[type=range]::-moz-range-thumb{background:#0a4fb3;box-shadow:0 0 0 2px #fff,0 0 0 4px #0a4fb3}
+  body.theme-light .cells{background:#d5e0eb;border-color:#7f97ad}
+  body.theme-light .cells i{background:#b7c6d6}
+  body.theme-light .cells i.sw{background:#0c8f62}
+  body.theme-light .cells i.ucs{background:#0a5bd3}
+  body.theme-light .cells i.tpt{background:#6d28d9}
+  body.theme-light .cells i.ac{background:#c2410c}
+  body.theme-light .cells i.gap{background:repeating-linear-gradient(90deg,#d97706 0 2px,#fff7ed 2px 4px)}
+  body.theme-light .key i.sw{background:#0c8f62}
+  body.theme-light .key i.ucs{background:#0a5bd3}
+  body.theme-light .key i.tpt{background:#6d28d9}
+  body.theme-light .key i.ac{background:#c2410c}
+  body.theme-light .key i.gap{background:repeating-linear-gradient(90deg,#d97706 0 2px,#fff7ed 2px 4px)}
+  button.ac{font:inherit;font-size:13px;color:#dce8f5;background:rgba(255,255,255,.06);border:1px solid rgba(120,180,255,.28);padding:7px 12px;border-radius:8px;cursor:pointer;margin:0 8px 8px 0}
+  button.ac.on{background:linear-gradient(135deg,#1f8fff,#00c6ff);border-color:transparent;color:#fff}
   .sum{font-size:12.5px;line-height:1.45;margin:0}
   .sum div{display:flex;justify-content:space-between;gap:8px;padding:3px 0;border-top:1px solid rgba(255,255,255,.06)}
   .warn{color:#ffd59a}
@@ -60,16 +85,28 @@
   #controls .sl{display:flex;align-items:center;gap:8px;font-size:12px;color:#8ea4bd}
   #controls input[type=range]{width:160px}
   #pct{width:36px;text-align:right;color:#dce8f5;font-variant-numeric:tabular-nums}
-  #info{position:fixed;right:18px;top:108px;width:280px;padding:14px;z-index:6}
+  #info{position:fixed;right:18px;top:108px;width:280px;padding:14px;z-index:7}
   #info.hidden{display:none}
   #info .tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:20px;background:rgba(63,182,255,.18);color:var(--accent)}
   #info h3{margin:6px 0 4px;font-size:16px}
   #info p{margin:0;font-size:12.5px;line-height:1.55;color:#c3d3e4}
   #info button{position:absolute;right:8px;top:6px;background:none;border:0;color:#8ea4bd;font-size:20px;cursor:pointer}
-  .glabel{width:0;height:0;position:relative}
-  .glabel .in{position:absolute;left:0;top:0;transform:translateY(-50%);display:flex;align-items:center;white-space:nowrap}
-  .glabel .ln{width:36px;height:1px;background:linear-gradient(90deg,rgba(63,182,255,0),var(--accent))}
-  .glabel .card{padding:4px 8px;border-left:2px solid var(--accent);background:linear-gradient(90deg,rgba(15,35,60,.8),rgba(15,35,60,0));font-size:13px}
+  .key{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center;font-size:11px;color:#9eb0c4;margin:0 0 6px;flex-basis:100%}
+  .key i{width:10px;height:8px;border-radius:2px;display:inline-block}
+  .key i.sw{background:#3dffc5}
+  .key i.ucs{background:#3fb6ff}
+  .key i.tpt{background:#b388ff}
+  .key i.ac{background:#7f93a8}
+  .key i.gap{background:repeating-linear-gradient(90deg, rgba(255,213,154,.95) 0 1px, transparent 1px 3px);width:14px}
+  .glabel{position:fixed;z-index:4;pointer-events:none;display:none}
+  .glabel.right{transform:translate(0,-50%)}
+  .glabel.left{transform:translate(-100%,-50%)}
+  .glabel .in{display:flex;align-items:center}
+  .glabel .ln{width:22px;height:1px;background:linear-gradient(90deg,rgba(63,182,255,0),var(--accent));flex:none}
+  .glabel.left .in{flex-direction:row-reverse}
+  .glabel.left .ln{background:linear-gradient(270deg,rgba(63,182,255,0),var(--accent))}
+  .glabel .card{padding:3px 7px;border-left:2px solid var(--accent);background:rgba(8,14,24,.88);font-size:12px;white-space:nowrap;color:#eef6ff}
+  .glabel.left .card{border-left:0;border-right:2px solid var(--accent)}
   #hint{position:fixed;right:18px;bottom:22px;font-size:11px;color:#6d8199;z-index:4;pointer-events:none;text-align:right}
   #loading{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;z-index:20;
     background:#070a10;color:#8ea4bd;font-size:13px;transition:opacity .5s}
@@ -78,7 +115,9 @@
   @media (max-width:820px){
     header h1{font-size:16px}
     #config{left:8px;right:8px;top:auto;bottom:74px;width:auto;max-height:34vh}
-    #info{left:8px;right:8px;top:auto;bottom:74px;width:auto;max-height:40vh;overflow:auto}
+    #info{left:8px;right:8px;top:62px;bottom:auto;width:auto;max-height:22vh}
+    .glabel .card{font-size:11px}
+    .glabel .ln{width:12px}
     #hint{display:none}
     #controls input[type=range]{width:110px}
     #occ{max-height:72px}
@@ -109,6 +148,13 @@
     <button type="button" id="mDual">双机柜</button>
   </div>
   <p class="banner">示意配置 / 可配置，具体数量待确认。</p>
+  <div class="modes">
+    <button type="button" id="themeDark" class="on">深色</button>
+    <button type="button" id="themeLight">浅色</button>
+    <button type="button" id="doorGlass" class="on">玻璃门</button>
+    <button type="button" id="doorMesh">网孔门</button>
+  </div>
+  <p id="notice" class="warn" hidden></p>
   <div id="fields"></div>
   <button type="button" id="bPreset">恢复示意初值</button>
   <div class="maps" id="maps"></div>
@@ -119,8 +165,8 @@
     <p>已确认：单柜 2U 的 UCS 节点不超过 7 台。这 7 台只数 2U UCS，不把 4U 的 TPT 服务器算进这 7 台。</p>
     <p>已确认：TPT 服务器都是 4U。单机柜和双机柜的差别，是 UCS 节点数量，以及 TPT 显卡数量。</p>
     <p>待确认：UCS 的默认台数、双柜 UCS 总上限、TPT 服务器台数、显卡数量、显卡型号、每台服务器的显卡上限。上面的滑块只用于把示意摆进画面。4U 滑块的尽头是本页 36 个可视 U 扣掉交换机、服务器和服务器间隔之后的剩余空位，不是产品容量。显卡滑块 0–16 也只是示意调节范围。</p>
-    <p>每两台相邻服务器之间空 1 个 U，UCS 和 TPT 相接时也一样。交换机之间、交换机和第一台服务器之间不加这 1U。交换机按 1U 连续排在各柜最上面，台数可调；初值只是示意，没有已确认的台数上限，滑块尽头是扣掉当前服务器和间隔后的剩余 U。端口规格和带宽都未确认，图上不标。</p>
-    <p>两种形态的柜内都没有空调，也没有 UPS。本页不给出 AOP、TPT 的英文全称。</p>
+    <p>每两台相邻服务器之间空 1 个 U，UCS 和 TPT 相接时也一样。交换机之间、交换机和第一台服务器之间不加这 1U。空调不参与这 1U 间隔。交换机按 1U 连续排在各柜最上面，台数可调；初值只是示意，没有已确认的台数上限。端口规格和带宽都未确认，图上不标。</p>
+    <p>空调默认关闭。打开后占该柜底部真实 U1–U6，不放在柜外。左右柜可以分别打开。高度按 6U 示意，不标功率、制冷量或品牌。若当前设备会占进这 6U，空调不会打开，原有数量保持不变，并提示先腾出底部。关掉空调后这 6U 释放。UPS 不会出现。</p>
   </details>
 </aside>
 <div id="info" class="glass hidden">
@@ -160,14 +206,15 @@ function usedU(sw, ucs, tpt) {
   const n = ucs + tpt;
   return sw + ucs * 2 + tpt * 4 + Math.max(0, n - 1);
 }
-function maxTpt(ucs, sw) {
+function room(ac) { return RACK_U - (ac ? 6 : 0); }
+function maxTpt(ucs, sw, ac) {
   let t = 0;
-  while (usedU(sw, ucs, t + 1) <= RACK_U) t++;
+  while (usedU(sw, ucs, t + 1) <= room(ac)) t++;
   return t;
 }
-function maxSw(ucs, tpt) {
+function maxSw(ucs, tpt, ac) {
   let s = 0;
-  while (usedU(s + 1, ucs, tpt) <= RACK_U) s++;
+  while (usedU(s + 1, ucs, tpt) <= room(ac)) s++;
   return s;
 }
 function layoutSlots(sw, ucs, tpt) {
@@ -185,26 +232,35 @@ function layoutSlots(sw, ucs, tpt) {
   servers.forEach((s, i) => { if (i > 0) top -= 1; take(s[0], s[1], s[2]); });
   return items;
 }
-function fitCab(sw, ucs, tpt) {
+function fitCab(sw, ucs, tpt, ac) {
   ucs = Math.max(0, Math.min(UCS_MAX, ucs | 0));
   tpt = Math.max(0, tpt | 0);
   sw = Math.max(0, sw | 0);
-  while (usedU(sw, ucs, tpt) > RACK_U && tpt > 0) tpt--;
-  while (usedU(sw, ucs, tpt) > RACK_U && sw > 0) sw--;
-  return { sw, ucs, tpt };
+  const limit = room(!!ac);
+  const t0 = tpt, s0 = sw;
+  while (usedU(sw, ucs, tpt) > limit && tpt > 0) tpt--;
+  while (usedU(sw, ucs, tpt) > limit && sw > 0) sw--;
+  return { sw, ucs, tpt, reduced: tpt !== t0 || sw !== s0, fromT: t0, fromS: s0 };
 }
 
-const state = { mode: 'single', ...PRESET };
+const state = { mode: 'single', theme: 'dark', door: 'glass', ac: false, acL: false, acR: false, ...PRESET };
 function clampState() {
-  const a = fitCab(state.sw, state.ucs, state.tpt);
-  state.sw = a.sw; state.ucs = a.ucs; state.tpt = a.tpt;
-  const l = fitCab(state.swL, state.ucsL, state.tptL);
-  state.swL = l.sw; state.ucsL = l.ucs; state.tptL = l.tpt;
-  const r = fitCab(state.swR, state.ucsR, state.tptR);
-  state.swR = r.sw; state.ucsR = r.ucs; state.tptR = r.tpt;
+  const notes = [];
+  const apply = (swK, ucsK, tptK, acK, name) => {
+    const f = fitCab(state[swK], state[ucsK], state[tptK], state[acK]);
+    if (f.reduced) notes.push(name + '的示意数量已按剩余 U 收回（交换机 ' + f.fromS + '→' + f.sw + '，TPT ' + f.fromT + '→' + f.tpt + '），避免进入底部空调位或超出可视 U。');
+    state[swK] = f.sw; state[ucsK] = f.ucs; state[tptK] = f.tpt;
+  };
+  apply('sw', 'ucs', 'tpt', 'ac', '单机柜');
+  apply('swL', 'ucsL', 'tptL', 'acL', '左柜');
+  apply('swR', 'ucsR', 'tptR', 'acR', '右柜');
   const n = (v, a, b) => Math.max(a, Math.min(b, v | 0));
   state.gpu = n(state.gpu, 0, GPU_MAX);
   state.gpuDual = n(state.gpuDual, 0, GPU_MAX);
+  const note = $('notice');
+  if (note && notes.length) { note.hidden = false; note.textContent = notes.join(''); }
+  else if (note && note.dataset.kind === 'fit') note.hidden = true;
+  if (note) note.dataset.kind = notes.length ? 'fit' : (note.hidden ? '' : note.dataset.kind || '');
 }
 
 function distribute(total, counts) {
@@ -225,13 +281,13 @@ function gpuNow() { return state.mode === 'dual' ? state.gpuDual : state.gpu; }
 function plan() {
   if (state.mode === 'single') {
     const [gpus] = distribute(state.gpu, [state.tpt]);
-    return [{ id: 'S', name: '单机柜', x: 0, sw: state.sw, ucs: state.ucs, tpt: state.tpt, gpus }];
+    return [{ id: 'S', name: '单机柜', x: 0, sw: state.sw, ucs: state.ucs, tpt: state.tpt, gpus, ac: state.ac }];
   }
   const [gL, gR] = distribute(state.gpuDual, [state.tptL, state.tptR]);
   const pairX = (CW + 0.02) / 2;
   return [
-    { id: 'L', name: '左柜', x: -pairX, sw: state.swL, ucs: state.ucsL, tpt: state.tptL, gpus: gL },
-    { id: 'R', name: '右柜', x: pairX, sw: state.swR, ucs: state.ucsR, tpt: state.tptR, gpus: gR },
+    { id: 'L', name: '左柜', x: -pairX, sw: state.swL, ucs: state.ucsL, tpt: state.tptL, gpus: gL, ac: state.acL },
+    { id: 'R', name: '右柜', x: pairX, sw: state.swR, ucs: state.ucsR, tpt: state.tptR, gpus: gR, ac: state.acR },
   ];
 }
 
@@ -267,8 +323,33 @@ scene.add(key);
 const rim = new THREE.DirectionalLight(0x5a9dff, 0.8);
 rim.position.set(4, 1.5, -3);
 scene.add(rim);
+const floorMat = new THREE.MeshStandardMaterial({ color: 0x0e131b, roughness: 0.55, metalness: 0.35 });
+const floor = new THREE.Mesh(new THREE.CircleGeometry(6.2, 72), floorMat);
+floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
 
-const floor = new THREE.Mesh(new THREE.CircleGeometry(6.2, 72), new THREE.MeshStandardMaterial({ color: 0x0e131b, roughness: 0.55, metalness: 0.35 }));
+const meshDoorMat = (() => {
+  const W = 256, H = 512, [c, x] = mkCanvas(W, H);
+  x.fillStyle = '#c5ccd3'; x.fillRect(0, 0, W, H);
+  x.globalCompositeOperation = 'destination-out';
+  for (let y = 10; y < H; y += 16) for (let px = 10; px < W; px += 16) { x.beginPath(); x.arc(px, y, 5, 0, 7); x.fill(); }
+  const mat = new THREE.MeshStandardMaterial({ map: mkTex(c), transparent: true, alphaTest: 0.4, metalness: 0.65, roughness: 0.42, side: THREE.DoubleSide });
+  mat.userData.shared = true;
+  return mat;
+})();
+function acTex() {
+  const [c, x] = mkCanvas(1024, 360);
+  x.fillStyle = '#d5dbe2'; x.fillRect(0, 0, 1024, 360);
+  x.fillStyle = '#243140'; x.font = 'bold 42px Arial,sans-serif'; x.fillText('空调', 40, 70);
+  x.font = '24px Arial,sans-serif'; x.fillStyle = '#4d6074'; x.fillText('6U · 示意', 170, 66);
+  for (let i = 0; i < 8; i++) {
+    const y = 100 + i * 30;
+    x.fillStyle = i % 2 ? '#8ea0b3' : '#6e8498';
+    x.fillRect(36, y, 952, 16);
+  }
+  return mkTex(c);
+}
+const acMat = new THREE.MeshStandardMaterial({ map: acTex(), metalness: 0.45, roughness: 0.45 });
+acMat.userData.shared = true;
 floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
 
 function mkCanvas(w, h) { const c = document.createElement('canvas'); c.width = w; c.height = h; return [c, c.getContext('2d')]; }
@@ -352,7 +433,7 @@ function tptMat(gpus) {
 const metalSide = new THREE.MeshStandardMaterial({ color: 0x8d949e, metalness: 0.8, roughness: 0.32 });
 metalSide.userData.shared = true;
 
-let dyn = [], pickables = [], shellMats = [], cabinets = [];
+let dyn = [], pickables = [], shellMats = [], cabinets = [], callouts = [];
 let progress = 0, tween = null, framedP = 0, selected = null;
 
 function box(parent, w, h, d, mat, x, y, z, owner) {
@@ -409,18 +490,18 @@ function buildCabinet(spec) {
   [-1, 1].forEach(sx => [0.28, -0.28].forEach(z => box(shell, 0.018, RACK_U * U, 0.025, railMat, sx * 0.27, BASE_Y + RACK_U * U / 2, z, shell)));
   const door = new THREE.Group();
   door.position.set(CW / 2 - 0.01, Y0 + 0.12, CD / 2);
-  door.userData.info = { tag: '前门', cn: spec.name + ' · 前门', en: 'Door', desc: '玻璃前门，仅作示意。' };
+  door.userData.info = { tag: '前门', cn: spec.name + ' · 前门', en: 'Door', desc: state.door === 'mesh' ? '网孔前门，孔洞可透过看到柜内，仅作示意。' : '玻璃前门，仅作示意。' };
   shell.add(door);
   const dw = CW - 0.03, dh = CH - 0.22;
   box(door, 0.05, dh, 0.02, frameMat, -dw + 0.025, dh / 2, 0.01, door);
   box(door, dw - 0.05, 0.05, 0.02, frameMat, -dw / 2 + 0.025, dh - 0.025, 0.01, door);
   box(door, dw - 0.05, 0.08, 0.02, frameMat, -dw / 2 + 0.025, 0.04, 0.01, door);
-  const glassMat = new THREE.MeshPhysicalMaterial({ color: 0xaaccee, metalness: 0, roughness: 0.05, transparent: true, opacity: 0.18, transmission: 0, depthWrite: false });
-  box(door, dw - 0.08, dh - 0.16, 0.008, glassMat, -(dw - 0.08) / 2, (dh - 0.16) / 2 + 0.08, 0.012, door);
+  const infill = state.door === 'mesh' ? meshDoorMat : new THREE.MeshPhysicalMaterial({ color: 0xaaccee, metalness: 0, roughness: 0.05, transparent: true, opacity: 0.18, transmission: 0, depthWrite: false });
+  box(door, dw - 0.08, dh - 0.16, 0.008, infill, -(dw - 0.08) / 2, (dh - 0.16) / 2 + 0.08, 0.012, door);
   const plateMat = new THREE.MeshStandardMaterial({ color: 0x0d1b2e, emissive: 0x123a66, emissiveIntensity: 0.7, metalness: 0.4, roughness: 0.35 });
   box(door, 0.28, 0.08, 0.012, plateMat, -dw * 0.55, dh * 0.72, 0.02, door);
   rememberMat(frameMat, 1, false); rememberMat(panelMat, 1, false); rememberMat(railMat, 1, false); rememberMat(sideMat, 1, false);
-  rememberMat(glassMat, 0.18, true); rememberMat(plateMat, 1, false);
+  rememberMat(infill, state.door === 'mesh' ? 1 : 0.18, true); rememberMat(plateMat, 1, false);
   shell.userData.door = door;
 
   const devs = new THREE.Group(); devs.position.x = spec.x; scene.add(devs); dyn.push(devs);
@@ -458,20 +539,31 @@ function buildCabinet(spec) {
     }
     devices.push({ kind: slot.kind, index: slot.index, u0: slot.u0, u1: slot.u1, gpus, mesh: holder });
   });
-  const addLabel = (text, y, color) => {
-    const el = document.createElement('div'); el.className = 'glabel';
+  if (spec.ac) {
+    const span = 6, h = span * U - GAP, y = BASE_Y + span * U / 2;
+    const holder = new THREE.Group();
+    holder.position.set(0, y, DEV_Z);
+    holder.userData.baseY = y;
+    holder.userData.info = { tag: '6U · 空调 · 示意', cn: spec.name + ' · 底部空调', en: 'Cooling', desc: '可选空调，占本柜底部 U1–U6。示意，不标功率、制冷量或品牌。' };
+    devs.add(holder);
+    const mesh = box(holder, DEV_W, h, DEV_D, acMat, 0, 0, 0, holder);
+    mesh.material = [metalSide, metalSide, metalSide, metalSide, acMat, metalSide];
+    devices.push({ kind: 'ac', index: 0, u0: 1, u1: 6, gpus: 0, mesh: holder });
+  }
+  const labels = {};
+  const addLabel = (kind, text, color) => {
+    const el = document.createElement('div');
+    el.className = 'glabel';
     el.innerHTML = '<div class="in"><div class="ln"></div><div class="card" style="border-color:' + color + '">' + text + '</div></div>';
-    const lab = new CSS2DObject(el); lab.position.set(DEV_W / 2 + 0.02, y, DEV_Z); devs.add(lab); lab.userData.el = el;
+    document.body.appendChild(el);
+    labels[kind] = el;
+    callouts.push({ kind, el, spec, getRows: () => devices.filter(d => d.kind === kind) });
   };
-  const midY = kind => {
-    const rows = devices.filter(d => d.kind === kind);
-    if (!rows.length) return 0;
-    return rows.reduce((s, d) => s + d.mesh.userData.baseY, 0) / rows.length;
-  };
-  if (spec.sw) addLabel(spec.name + ' · 交换机 1U × ' + spec.sw + '（示意）', midY('switch'), '#3dffc5');
-  if (spec.tpt) addLabel(spec.name + ' · TPT 4U × ' + spec.tpt, midY('tpt'), '#c9a4ff');
-  if (spec.ucs) addLabel(spec.name + ' · UCS 2U × ' + spec.ucs, midY('ucs'), '#3fb6ff');
-  return { spec, shell, door, devs, devices, baseX: spec.x };
+  if (spec.sw) addLabel('switch', spec.name + ' · 交换机 ×' + spec.sw, '#3dffc5');
+  if (spec.ucs) addLabel('ucs', spec.name + ' · UCS ×' + spec.ucs, '#3fb6ff');
+  if (spec.tpt) addLabel('tpt', spec.name + ' · TPT ×' + spec.tpt, '#c9a4ff');
+  if (spec.ac) addLabel('ac', spec.name + ' · 空调 6U', '#7f93a8');
+  return { spec, shell, door, devs, devices, baseX: spec.x, labels };
 }
 
 function clearDyn() {
@@ -485,6 +577,8 @@ function clearDyn() {
     scene.remove(g);
   });
   dyn = []; pickables = []; shellMats = []; cabinets = []; selected = null;
+  callouts.forEach(c => c.el.remove());
+  callouts = [];
   $('info').classList.add('hidden');
 }
 
@@ -522,8 +616,6 @@ function applyExplode(t) {
       d.mesh.position.y = d.mesh.userData.baseY + (d.mesh.userData.baseY - mid) * 0.9 * spread;
     });
   });
-  const show = t > 0.62 && innerWidth >= 820;
-  labelRenderer.domElement.querySelectorAll('.glabel').forEach(el => { el.style.opacity = show ? 1 : 0; });
 }
 function ease(x) { x = clamp(x); return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; }
 
@@ -549,6 +641,9 @@ function homeCamera(jump) {
 }
 
 /* HUD */
+function acButton(key, label) {
+  return '<button type="button" class="ac' + (state[key] ? ' on' : '') + '" data-ac="' + key + '">' + label + (state[key] ? '：开' : '：关') + '</button>';
+}
 function sliderField(key, label, min, max, hint) {
   const v = state[key];
   const p = max === min ? 0 : (v - min) / (max - min) * 100;
@@ -561,16 +656,18 @@ function mountFields() {
   $('mSingle').classList.toggle('on', !dual);
   $('mDual').classList.toggle('on', dual);
   $('fields').innerHTML = dual
-    ? sliderField('swL', '左柜交换机 · 1U', 0, maxSw(state.ucsL, state.tptL), '示意台数。尽头是扣掉左柜服务器和间隔后的剩余 U，不是已确认上限') +
-      sliderField('swR', '右柜交换机 · 1U', 0, maxSw(state.ucsR, state.tptR), '示意台数。尽头是扣掉右柜服务器和间隔后的剩余 U，不是已确认上限') +
+    ? sliderField('swL', '左柜交换机 · 1U', 0, maxSw(state.ucsL, state.tptL, state.acL), '示意台数。尽头是扣掉左柜服务器、间隔和底部空调后的剩余 U，不是已确认上限') +
+      sliderField('swR', '右柜交换机 · 1U', 0, maxSw(state.ucsR, state.tptR, state.acR), '示意台数。尽头是扣掉右柜服务器、间隔和底部空调后的剩余 U，不是已确认上限') +
       sliderField('ucsL', '左柜 UCS 节点 · 2U', 0, UCS_MAX, '每柜不超过 7 台 2U') +
       sliderField('ucsR', '右柜 UCS 节点 · 2U', 0, UCS_MAX, '每柜不超过 7 台 2U。双柜总上限待确认') +
-      sliderField('tptL', '左柜 TPT 服务器 · 4U', 0, maxTpt(state.ucsL, state.swL), '台数待确认，尽头只是左柜剩余可视 U') +
-      sliderField('tptR', '右柜 TPT 服务器 · 4U', 0, maxTpt(state.ucsR, state.swR), '台数待确认，尽头只是右柜剩余可视 U') +
+      sliderField('tptL', '左柜 TPT 服务器 · 4U', 0, maxTpt(state.ucsL, state.swL, state.acL), '台数待确认，尽头只是左柜剩余可视 U') +
+      sliderField('tptR', '右柜 TPT 服务器 · 4U', 0, maxTpt(state.ucsR, state.swR, state.acR), '台数待确认，尽头只是右柜剩余可视 U') +
+      acButton('acL', '左柜底部空调 6U') + acButton('acR', '右柜底部空调 6U') +
       sliderField('gpuDual', 'TPT 显卡总数', 0, GPU_MAX, '数量、型号、每机上限待确认。0–16 只是示意范围，按各台 4U 尽量均分')
-    : sliderField('sw', '交换机 · 1U', 0, maxSw(state.ucs, state.tpt), '示意台数，高度按 1U。尽头是当前剩余可视 U，不是已确认上限') +
+    : sliderField('sw', '交换机 · 1U', 0, maxSw(state.ucs, state.tpt, state.ac), '示意台数，高度按 1U。尽头是扣掉服务器、间隔和底部空调后的剩余 U，不是已确认上限') +
       sliderField('ucs', 'UCS 节点 · 2U', 0, UCS_MAX, '已确认的单柜上限：不超过 7 台，不含 4U TPT') +
-      sliderField('tpt', 'TPT 服务器 · 4U', 0, maxTpt(state.ucs, state.sw), '台数待确认。尽头是本示意剩余 U 位，不是产品上限') +
+      sliderField('tpt', 'TPT 服务器 · 4U', 0, maxTpt(state.ucs, state.sw, state.ac), '台数待确认。尽头是本示意剩余 U 位，不是产品上限') +
+      acButton('ac', '底部空调 6U') +
       sliderField('gpu', 'TPT 显卡', 0, GPU_MAX, '数量、型号、每机上限待确认。0–16 只是示意范围');
   $('fields').querySelectorAll('input').forEach(input => {
     input.addEventListener('input', () => {
@@ -580,15 +677,18 @@ function mountFields() {
       rebuild(false);
     });
   });
+  $('fields').querySelectorAll('[data-ac]').forEach(btn => {
+    btn.addEventListener('click', () => toggleAc(btn.dataset.ac));
+  });
 }
 function syncInputs() {
   $('fields').querySelectorAll('input').forEach(input => {
     const key = input.dataset.key;
     input.value = state[key];
     const maxes = {
-      sw: maxSw(state.ucs, state.tpt), tpt: maxTpt(state.ucs, state.sw),
-      swL: maxSw(state.ucsL, state.tptL), tptL: maxTpt(state.ucsL, state.swL),
-      swR: maxSw(state.ucsR, state.tptR), tptR: maxTpt(state.ucsR, state.swR)
+      sw: maxSw(state.ucs, state.tpt, state.ac), tpt: maxTpt(state.ucs, state.sw, state.ac),
+      swL: maxSw(state.ucsL, state.tptL, state.acL), tptL: maxTpt(state.ucsL, state.swL, state.acL),
+      swR: maxSw(state.ucsR, state.tptR, state.acR), tptR: maxTpt(state.ucsR, state.swR, state.acR)
     };
     if (maxes[key] != null) input.max = String(maxes[key]);
     const min = Number(input.min), max = Number(input.max);
@@ -596,8 +696,9 @@ function syncInputs() {
     const lab = $('v-' + key); if (lab) lab.textContent = state[key];
   });
 }
-function cellsHtml(sw, ucs, tpt) {
+function cellsHtml(sw, ucs, tpt, ac) {
   const marks = Array(RACK_U).fill('');
+  if (ac) for (let u = 0; u < 6; u++) marks[u] = 'ac';
   const slots = layoutSlots(sw, ucs, tpt);
   slots.forEach(s => {
     const cls = s.kind === 'switch' ? 'sw' : s.kind;
@@ -609,11 +710,12 @@ function cellsHtml(sw, ucs, tpt) {
 }
 function renderHud() {
   const rows = plan();
-  $('maps').innerHTML = rows.map(r => '<div class="map"><div class="nm">' + r.name + '</div>' + cellsHtml(r.sw, r.ucs, r.tpt) + '</div>').join('');
+  $('maps').innerHTML = rows.map(r => '<div class="map"><div class="nm">' + r.name + '</div>' + cellsHtml(r.sw, r.ucs, r.tpt, r.ac) + '</div>').join('')
+    + '<div class="key"><i class="sw"></i>交换机<i class="ucs"></i>UCS<i class="tpt"></i>TPT<i class="gap"></i>1U间隔<i class="ac"></i>空调 6U</div>';
   const ucs = rows.reduce((s, r) => s + r.ucs, 0);
   const tpt = rows.reduce((s, r) => s + r.tpt, 0);
   const sw = rows.reduce((s, r) => s + r.sw, 0);
-  const remain = rows.reduce((s, r) => s + (RACK_U - usedU(r.sw, r.ucs, r.tpt)), 0);
+    const remain = rows.reduce((s, r) => s + (room(r.ac) - usedU(r.sw, r.ucs, r.tpt)), 0);
   const placed = rows.reduce((s, r) => s + r.gpus.reduce((a, b) => a + b, 0), 0);
   const asked = gpuNow();
   $('sum').innerHTML =
@@ -621,11 +723,12 @@ function renderHud() {
     '<div><span>UCS 节点 2U</span><b>' + ucs + ' 台</b></div>' +
     '<div><span>TPT 服务器 4U</span><b>' + tpt + ' 台</b></div>' +
     '<div><span>TPT 显卡</span><b>' + placed + ' 张在柜内' + (placed !== asked ? ' / 设定 ' + asked : '') + '</b></div>' +
+    '<div><span>底部空调 6U · 示意</span><b>' + rows.filter(r => r.ac).length + ' 柜</b></div>' +
     '<div><span>剩余可视 U</span><b>' + remain + '</b></div>' +
     (asked && !tpt ? '<div class="warn"><span>显卡还没有 4U 服务器可放</span><b>未放入</b></div>' : '');
   const items = [];
   cabinets.forEach(c => c.devices.slice().sort((a, b) => b.u0 - a.u0).forEach(d => {
-    const label = d.kind === 'switch' ? '交换机 1U · 示意' : d.kind === 'ucs' ? 'UCS 2U' : 'TPT 4U · 显卡 ' + d.gpus;
+    const label = d.kind === 'switch' ? '交换机 1U · 示意' : d.kind === 'ac' ? '空调 6U · 示意' : d.kind === 'ucs' ? 'UCS 2U' : 'TPT 4U · 显卡 ' + d.gpus;
     items.push('<li><span>' + c.spec.name + ' U' + d.u0 + (d.u0 === d.u1 ? '' : '–U' + d.u1) + '</span><span>' + label + '</span></li>');
   }));
   $('occ').innerHTML = items.join('') || '<li><span>柜内没有服务器</span><span>可把滑块调高</span></li>';
@@ -639,10 +742,15 @@ function audit() {
     const tpt = c.devices.filter(d => d.kind === 'tpt');
     const sw = c.devices.filter(d => d.kind === 'switch');
     if (ucs.length > 7) problems.push(c.spec.name + ' UCS > 7');
+    const gear = c.devices.filter(d => d.kind !== 'ac');
+    const acDev = c.devices.filter(d => d.kind === 'ac');
     if (ucs.length !== c.spec.ucs || tpt.length !== c.spec.tpt || sw.length !== c.spec.sw) problems.push(c.spec.name + ' count');
+    if (!!c.spec.ac !== (acDev.length === 1)) problems.push('ac presence');
+    if (c.spec.ac && (acDev[0].u0 !== 1 || acDev[0].u1 !== 6)) problems.push('ac span');
+    if (c.spec.ac && gear.some(d => d.u0 <= 6)) problems.push('invade ac');
     const slots = layoutSlots(c.spec.sw, c.spec.ucs, c.spec.tpt);
-    if (slots.length !== c.devices.length) problems.push('slot count');
-    c.devices.forEach(d => {
+    if (slots.length !== gear.length) problems.push('slot count');
+    gear.forEach(d => {
       const slot = slots.find(s => s.kind === d.kind && s.index === d.index);
       if (!slot || slot.u0 !== d.u0 || slot.u1 !== d.u1) problems.push('u mismatch ' + d.kind);
       const span = d.u1 - d.u0 + 1;
@@ -652,7 +760,7 @@ function audit() {
       if (d.kind === 'switch' && span !== 1) problems.push('sw span');
     });
     if (sw.length && Math.max(...sw.map(d => d.u1)) !== RACK_U) problems.push('switch not top');
-    const servers = c.devices.filter(d => d.kind !== 'switch').sort((a, b) => b.u0 - a.u0);
+    const servers = c.devices.filter(d => d.kind === 'ucs' || d.kind === 'tpt').sort((a, b) => b.u0 - a.u0);
     for (let i = 1; i < servers.length; i++) if (servers[i - 1].u0 - servers[i].u1 !== 2) problems.push('gap');
     if (sw.length && servers.length && sw.reduce((m, d) => Math.min(m, d.u0), 99) - servers[0].u1 !== 1) problems.push('switch-server gap');
     if (ucs.length && tpt.length && Math.min(...ucs.map(d => d.u0)) <= Math.max(...tpt.map(d => d.u1))) problems.push('order');
@@ -674,7 +782,7 @@ function audit() {
     if (gpuSum !== c.spec.gpus.reduce((a, b) => a + b, 0)) problems.push('gpu');
   });
   const blob = $('fields').innerText + $('sum').innerText + $('occ').innerText;
-  if (/空调|UPS|制冷|不间断电源|25G|Gbps/.test(blob)) problems.push('forbidden words');
+  if (/UPS|不间断电源|25G|Gbps/.test(blob)) problems.push('forbidden words');
   window.__auditProblems = problems;
   document.documentElement.dataset.aopAudit = problems.length ? 'fail' : 'ok';
   if (problems.length) console.error('AOP audit', problems);
@@ -712,6 +820,38 @@ $('infoClose').onclick = () => showInfo(null);
 $('mSingle').onclick = () => { if (state.mode === 'single') return; state.mode = 'single'; mountFields(); rebuild(true); };
 $('mDual').onclick = () => { if (state.mode === 'dual') return; state.mode = 'dual'; mountFields(); rebuild(true); };
 $('bPreset').onclick = () => { Object.assign(state, PRESET); mountFields(); rebuild(false); };
+function setTheme(theme) {
+  state.theme = theme;
+  document.body.classList.toggle('theme-light', theme === 'light');
+  if (typeof floorMat !== 'undefined') floorMat.color.set(theme === 'light' ? 0xd7dee6 : 0x0e131b);
+  $('themeDark').classList.toggle('on', theme !== 'light');
+  $('themeLight').classList.toggle('on', theme === 'light');
+}
+function setDoor(door) {
+  state.door = door;
+  $('doorGlass').classList.toggle('on', door !== 'mesh');
+  $('doorMesh').classList.toggle('on', door === 'mesh');
+  rebuild(false);
+}
+function toggleAc(key) {
+  const on = !state[key];
+  const pack = key === 'acL' ? [state.swL, state.ucsL, state.tptL] : key === 'acR' ? [state.swR, state.ucsR, state.tptR] : [state.sw, state.ucs, state.tpt];
+  const note = $('notice');
+  if (on && usedU(pack[0], pack[1], pack[2]) > room(true)) {
+    note.hidden = false;
+    note.dataset.kind = 'ac';
+    note.textContent = '底部 U1–U6 已被当前设备占用，空调没有打开。交换机、服务器和显卡数量保持原样，请先减少设备后再开。';
+    return;
+  }
+  state[key] = on;
+  if (note.dataset.kind === 'ac') { note.hidden = true; note.textContent = ''; note.dataset.kind = ''; }
+  mountFields();
+  rebuild(false);
+}
+$('themeDark').onclick = () => setTheme('dark');
+$('themeLight').onclick = () => setTheme('light');
+$('doorGlass').onclick = () => { if (state.door !== 'glass') setDoor('glass'); };
+$('doorMesh').onclick = () => { if (state.door !== 'mesh') setDoor('mesh'); };
 const slider = $('slider'), pct = $('pct');
 let dragging = false;
 function animateTo(to) { tween = { from: progress, to, start: clock.getElapsedTime(), dur: 0.35 + 1.1 * Math.abs(to - progress) }; }
@@ -733,6 +873,67 @@ window.addEventListener('resize', () => {
   homeCamera(true);
 });
 
+function layoutCallouts() {
+  const blocked = [$('config'), $('controls'), document.querySelector('header'), $('info')].map(el => {
+    if (!el || el.classList.contains('hidden')) return null;
+    const r = el.getBoundingClientRect();
+    return { left: r.left, top: r.top, right: r.right, bottom: r.bottom };
+  }).filter(Boolean);
+  const hit = (a, b) => a.left < b.right + 4 && a.right > b.left - 4 && a.top < b.bottom + 4 && a.bottom > b.top - 4;
+  const show = progress > 0.42;
+  const pending = [];
+  const forward = camera.getWorldDirection(_fwd);
+  callouts.forEach(c => {
+    const rows = c.getRows();
+    if (!show || !rows.length) { c.el.style.display = 'none'; return; }
+    const mid = new THREE.Vector3();
+    rows.forEach(d => { const p = new THREE.Vector3(); d.mesh.getWorldPosition(p); mid.add(p); });
+    mid.multiplyScalar(1 / rows.length);
+    if (mid.clone().sub(camera.position).dot(forward) <= 0.05) { c.el.style.display = 'none'; return; }
+    const prefer = c.spec.x < 0 ? -1 : 1;
+    const anchor = mid.clone();
+    anchor.x += prefer * (DEV_W / 2 + 0.05);
+    const v = anchor.project(camera);
+    c.el.style.display = 'block';
+    pending.push({
+      c, prefer,
+      sx: (v.x * 0.5 + 0.5) * innerWidth,
+      sy: (-v.y * 0.5 + 0.5) * innerHeight,
+      w: c.el.offsetWidth,
+      h: c.el.offsetHeight
+    });
+  });
+  pending.sort((a, b) => a.sy - b.sy || a.sx - b.sx);
+  const placed = [];
+  pending.forEach(p => {
+    const box = (side, sy) => {
+      const left = side < 0 ? p.sx - p.w : p.sx;
+      const top = sy - p.h / 2;
+      return { left, top, right: left + p.w, bottom: top + p.h, side };
+    };
+    const ok = r => r.left >= 4 && r.top >= 4 && r.right <= innerWidth - 4 && r.bottom <= innerHeight - 4 && !blocked.some(b => hit(r, b)) && !placed.some(o => hit(r, o));
+    let chosen = box(p.prefer, p.sy);
+    if (!ok(chosen) && !(state.mode === 'dual' && p.prefer < 0)) {
+      const flip = box(-p.prefer, p.sy);
+      if (ok(flip)) chosen = flip;
+    }
+    for (let n = 1; n <= 8 && !ok(chosen); n++) {
+      const dy = Math.ceil(n / 2) * (p.h + 6) * (n % 2 ? 1 : -1);
+      const trial = box(chosen.side, p.sy + dy);
+      if (ok(trial)) chosen = trial;
+    }
+    chosen.top = Math.max(4, Math.min(innerHeight - p.h - 4, chosen.top));
+    chosen.left = Math.max(4, Math.min(innerWidth - p.w - 4, chosen.left));
+    chosen.right = chosen.left + p.w;
+    chosen.bottom = chosen.top + p.h;
+    p.c.el.classList.toggle('left', chosen.side < 0);
+    p.c.el.classList.toggle('right', chosen.side >= 0);
+    p.c.el.style.left = (chosen.side < 0 ? chosen.right : chosen.left) + 'px';
+    p.c.el.style.top = (chosen.top + p.h / 2) + 'px';
+    placed.push(chosen);
+  });
+}
+const _fwd = new THREE.Vector3();
 function loop() {
   const t = clock.getElapsedTime();
   if (tween) {
@@ -749,6 +950,7 @@ function loop() {
     framedP = now;
   }
   controls.update();
+  layoutCallouts();
   renderer.render(scene, camera);
   labelRenderer.render(scene, camera);
   requestAnimationFrame(loop);
