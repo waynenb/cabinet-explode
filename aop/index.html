@@ -46,6 +46,8 @@
   .cells i{flex:1;border-radius:1px;background:rgba(255,255,255,.06)}
   .cells i.ucs{background:#3fb6ff}
   .cells i.tpt{background:#b388ff}
+  .cells i.sw{background:#3dffc5}
+  .cells i.gap{background:repeating-linear-gradient(90deg, rgba(255,213,154,.9) 0 1px, transparent 1px 3px)}
   .sum{font-size:12.5px;line-height:1.45;margin:0}
   .sum div{display:flex;justify-content:space-between;gap:8px;padding:3px 0;border-top:1px solid rgba(255,255,255,.06)}
   .warn{color:#ffd59a}
@@ -116,7 +118,8 @@
     <summary>已确认的边界，以及仍待确认的项</summary>
     <p>已确认：单柜 2U 的 UCS 节点不超过 7 台。这 7 台只数 2U UCS，不把 4U 的 TPT 服务器算进这 7 台。</p>
     <p>已确认：TPT 服务器都是 4U。单机柜和双机柜的差别，是 UCS 节点数量，以及 TPT 显卡数量。</p>
-    <p>待确认：UCS 的默认台数、双柜 UCS 总上限、TPT 服务器台数、显卡数量、显卡型号、每台服务器的显卡上限。上面的滑块只用于把示意摆进画面。4U 滑块的尽头是本页 36 个可视 U 的剩余空位，不是产品容量。显卡滑块 0–16 也只是示意调节范围。</p>
+    <p>待确认：UCS 的默认台数、双柜 UCS 总上限、TPT 服务器台数、显卡数量、显卡型号、每台服务器的显卡上限。上面的滑块只用于把示意摆进画面。4U 滑块的尽头是本页 36 个可视 U 扣掉交换机、服务器和服务器间隔之后的剩余空位，不是产品容量。显卡滑块 0–16 也只是示意调节范围。</p>
+    <p>每两台相邻服务器之间空 1 个 U，UCS 和 TPT 相接时也一样。交换机之间、交换机和第一台服务器之间不加这 1U。交换机按 1U 连续排在各柜最上面，台数可调；初值只是示意，没有已确认的台数上限，滑块尽头是扣掉当前服务器和间隔后的剩余 U。端口规格和带宽都未确认，图上不标。</p>
     <p>两种形态的柜内都没有空调，也没有 UPS。本页不给出 AOP、TPT 的英文全称。</p>
   </details>
 </aside>
@@ -146,27 +149,62 @@ const GAP = 0.008;
 const BASE_Y = 0.26;
 const UCS_MAX = 7;
 const GPU_MAX = 16;
-const PRESET = { ucs: 4, tpt: 1, gpu: 4, ucsL: 6, ucsR: 4, tptL: 1, tptR: 1, gpuDual: 8 };
+const PRESET = { sw: 1, ucs: 4, tpt: 1, gpu: 4, swL: 1, ucsL: 6, ucsR: 4, swR: 1, tptL: 1, tptR: 1, gpuDual: 8 };
 const CW = 0.62, CD = 1.0, CH = 2.0, Y0 = 0.08;
 const DEV_W = 0.50, DEV_D = 0.70;
 const DEV_Z = CD / 2 - 0.09 - DEV_D / 2;
 
 const $ = id => document.getElementById(id);
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
-const maxTpt = ucs => Math.floor((RACK_U - ucs * 2) / 4);
-const rackStart = (ucs, tpt) => RACK_U - (tpt * 4 + ucs * 2) + 1;
+function usedU(sw, ucs, tpt) {
+  const n = ucs + tpt;
+  return sw + ucs * 2 + tpt * 4 + Math.max(0, n - 1);
+}
+function maxTpt(ucs, sw) {
+  let t = 0;
+  while (usedU(sw, ucs, t + 1) <= RACK_U) t++;
+  return t;
+}
+function maxSw(ucs, tpt) {
+  let s = 0;
+  while (usedU(s + 1, ucs, tpt) <= RACK_U) s++;
+  return s;
+}
+function layoutSlots(sw, ucs, tpt) {
+  const items = [];
+  let top = RACK_U;
+  const take = (kind, index, span) => {
+    const u1 = top, u0 = top - span + 1;
+    items.push({ kind, index, u0, u1 });
+    top = u0 - 1;
+  };
+  for (let i = 0; i < sw; i++) take('switch', i, 1);
+  const servers = [];
+  for (let i = 0; i < ucs; i++) servers.push(['ucs', i, 2]);
+  for (let i = 0; i < tpt; i++) servers.push(['tpt', i, 4]);
+  servers.forEach((s, i) => { if (i > 0) top -= 1; take(s[0], s[1], s[2]); });
+  return items;
+}
+function fitCab(sw, ucs, tpt) {
+  ucs = Math.max(0, Math.min(UCS_MAX, ucs | 0));
+  tpt = Math.max(0, tpt | 0);
+  sw = Math.max(0, sw | 0);
+  while (usedU(sw, ucs, tpt) > RACK_U && tpt > 0) tpt--;
+  while (usedU(sw, ucs, tpt) > RACK_U && sw > 0) sw--;
+  return { sw, ucs, tpt };
+}
 
 const state = { mode: 'single', ...PRESET };
 function clampState() {
+  const a = fitCab(state.sw, state.ucs, state.tpt);
+  state.sw = a.sw; state.ucs = a.ucs; state.tpt = a.tpt;
+  const l = fitCab(state.swL, state.ucsL, state.tptL);
+  state.swL = l.sw; state.ucsL = l.ucs; state.tptL = l.tpt;
+  const r = fitCab(state.swR, state.ucsR, state.tptR);
+  state.swR = r.sw; state.ucsR = r.ucs; state.tptR = r.tpt;
   const n = (v, a, b) => Math.max(a, Math.min(b, v | 0));
-  state.ucs = n(state.ucs, 0, UCS_MAX);
-  state.tpt = n(state.tpt, 0, maxTpt(state.ucs));
   state.gpu = n(state.gpu, 0, GPU_MAX);
   state.gpuDual = n(state.gpuDual, 0, GPU_MAX);
-  state.ucsL = n(state.ucsL, 0, UCS_MAX);
-  state.ucsR = n(state.ucsR, 0, UCS_MAX);
-  state.tptL = n(state.tptL, 0, maxTpt(state.ucsL));
-  state.tptR = n(state.tptR, 0, maxTpt(state.ucsR));
 }
 
 function distribute(total, counts) {
@@ -187,13 +225,13 @@ function gpuNow() { return state.mode === 'dual' ? state.gpuDual : state.gpu; }
 function plan() {
   if (state.mode === 'single') {
     const [gpus] = distribute(state.gpu, [state.tpt]);
-    return [{ id: 'S', name: '单机柜', x: 0, ucs: state.ucs, tpt: state.tpt, gpus }];
+    return [{ id: 'S', name: '单机柜', x: 0, sw: state.sw, ucs: state.ucs, tpt: state.tpt, gpus }];
   }
   const [gL, gR] = distribute(state.gpuDual, [state.tptL, state.tptR]);
   const pairX = (CW + 0.02) / 2;
   return [
-    { id: 'L', name: '左柜', x: -pairX, ucs: state.ucsL, tpt: state.tptL, gpus: gL },
-    { id: 'R', name: '右柜', x: pairX, ucs: state.ucsR, tpt: state.tptR, gpus: gR },
+    { id: 'L', name: '左柜', x: -pairX, sw: state.swL, ucs: state.ucsL, tpt: state.tptL, gpus: gL },
+    { id: 'R', name: '右柜', x: pairX, sw: state.swR, ucs: state.ucsR, tpt: state.tptR, gpus: gR },
   ];
 }
 
@@ -268,6 +306,25 @@ function ucsTex() {
 }
 const ucsMat = new THREE.MeshStandardMaterial({ map: ucsTex(), metalness: 0.55, roughness: 0.38, emissive: 0x123055, emissiveIntensity: 0.4 });
 ucsMat.userData.shared = true;
+function switchTex() {
+  const [c, x] = mkCanvas(1024, 140);
+  const g = x.createLinearGradient(0, 0, 0, 140); g.addColorStop(0, '#1c3a36'); g.addColorStop(1, '#0d1618');
+  x.fillStyle = g; x.fillRect(0, 0, 1024, 140);
+  x.fillStyle = '#d9fff4'; x.font = 'bold 36px Arial,sans-serif'; x.fillText('交换机', 36, 52);
+  x.fillStyle = '#8fd9c8'; x.font = '22px Arial,sans-serif'; x.fillText('1U · 示意', 180, 50);
+  for (let i = 0; i < 24; i++) {
+    const X = 36 + (i % 12) * 42, Y = i < 12 ? 70 : 100;
+    x.fillStyle = '#071014'; x.fillRect(X, Y, 30, 16);
+    x.fillStyle = i % 3 ? '#3dffc5' : '#8aa0aa'; x.fillRect(X + 4, Y + 5, 8, 6);
+  }
+  return mkTex(c);
+}
+const switchMat = new THREE.MeshStandardMaterial({ map: switchTex(), metalness: 0.45, roughness: 0.4, emissive: 0x083028, emissiveIntensity: 0.35 });
+switchMat.userData.shared = true;
+const gpuBoard = new THREE.MeshStandardMaterial({ color: 0x1f8f45, metalness: 0.15, roughness: 0.5, emissive: 0x0c4a22, emissiveIntensity: 0.35 });
+const gpuChip = new THREE.MeshStandardMaterial({ color: 0x14181c, metalness: 0.6, roughness: 0.35 });
+const gpuGold = new THREE.MeshStandardMaterial({ color: 0xd7c27a, metalness: 0.85, roughness: 0.28 });
+gpuBoard.userData.shared = gpuChip.userData.shared = gpuGold.userData.shared = true;
 const tptMatCache = new Map();
 function tptMat(gpus) {
   if (tptMatCache.has(gpus)) return tptMatCache.get(gpus);
@@ -309,6 +366,29 @@ function rememberMat(m, opacity, transparent) {
   if (!shellMats.includes(m)) shellMats.push(m);
 }
 
+function addTptChassis(holder, h, gpus) {
+  const wall = 0.012;
+  box(holder, DEV_W, 0.012, DEV_D, metalSide, 0, -h / 2 + 0.006, 0, holder);
+  box(holder, wall, h - 0.02, DEV_D * 0.92, metalSide, -DEV_W / 2 + wall / 2, 0, -0.02, holder);
+  box(holder, wall, h - 0.02, DEV_D * 0.92, metalSide, DEV_W / 2 - wall / 2, 0, -0.02, holder);
+  box(holder, DEV_W - wall * 2, h - 0.02, wall, metalSide, 0, 0, -DEV_D / 2 + wall / 2, holder);
+  box(holder, DEV_W, 0.014, 0.02, metalSide, 0, h / 2 - 0.01, DEV_D / 2 - 0.012, holder);
+  box(holder, DEV_W, 0.014, 0.02, metalSide, 0, -h / 2 + 0.01, DEV_D / 2 - 0.012, holder);
+  const innerW = DEV_W - 0.06;
+  const cardH = h - 0.036;
+  const cardD = DEV_D - 0.22;
+  const thick = Math.min(0.012, Math.max(0.005, innerW / Math.max(gpus, 1) * 0.42));
+  for (let i = 0; i < gpus; i++) {
+    const x = gpus === 1 ? 0 : -innerW / 2 + thick / 2 + i * (innerW - thick) / (gpus - 1);
+    const card = box(holder, thick, cardH, cardD, gpuBoard, x, 0.004, -0.03, holder);
+    card.userData.gpu = true;
+    const chip = box(holder, thick + 0.004, cardH * 0.28, cardD * 0.22, gpuChip, x, 0.012, -0.02, holder);
+    chip.userData.gpu = true;
+    const gold = box(holder, thick + 0.002, 0.008, cardD * 0.55, gpuGold, x, -cardH / 2 + 0.012, -0.03, holder);
+    gold.userData.gpu = true;
+  }
+}
+
 function buildCabinet(spec) {
   const root = new THREE.Group(); root.position.x = spec.x; scene.add(root); dyn.push(root);
   const shell = new THREE.Group(); shell.userData.info = {
@@ -345,27 +425,39 @@ function buildCabinet(spec) {
 
   const devs = new THREE.Group(); devs.position.x = spec.x; scene.add(devs); dyn.push(devs);
   const devices = [];
-  let u = rackStart(spec.ucs, spec.tpt);
-  const place = (kind, index, span, gpus) => {
+  const slots = layoutSlots(spec.sw, spec.ucs, spec.tpt);
+  const tptGpus = spec.gpus || [];
+  slots.forEach(slot => {
+    const span = slot.u1 - slot.u0 + 1;
     const h = span * U - GAP;
-    const y = BASE_Y + (u - 1) * U + span * U / 2;
-    const info = kind === 'ucs' ? {
-      tag: '2U · UCS 节点', cn: spec.name + ' · UCS #' + (index + 1), en: 'UCS node',
-      desc: '2U UCS 节点，示意。U' + u + '–U' + (u + span - 1) + '。单柜 2U 不超过 7 台。默认台数待确认。'
+    const y = BASE_Y + (slot.u0 - 1) * U + span * U / 2;
+    const gpus = slot.kind === 'tpt' ? (tptGpus[slot.index] || 0) : 0;
+    const info = slot.kind === 'switch' ? {
+      tag: '1U · 交换机 · 示意', cn: spec.name + ' · 交换机 #' + (slot.index + 1), en: 'Switch',
+      desc: '1U 交换机，示意。排在本柜最顶部，U' + slot.u0 + '。台数、高度和端口规格都未确认，这里不标带宽。'
+    } : slot.kind === 'ucs' ? {
+      tag: '2U · UCS 节点', cn: spec.name + ' · UCS #' + (slot.index + 1), en: 'UCS node',
+      desc: '2U UCS 节点，示意。U' + slot.u0 + '–U' + slot.u1 + '。与相邻服务器之间空 1U。单柜 2U 不超过 7 台。'
     } : {
-      tag: '4U · TPT', cn: spec.name + ' · TPT #' + (index + 1), en: 'TPT server',
-      desc: '4U TPT 服务器，示意。U' + u + '–U' + (u + span - 1) + '。本机示意显卡 ' + gpus + ' 张。显卡数量、型号和每机上限待确认。'
+      tag: '4U · TPT', cn: spec.name + ' · TPT #' + (slot.index + 1), en: 'TPT server',
+      desc: '4U TPT 服务器，示意。U' + slot.u0 + '–U' + slot.u1 + '。机箱内竖插显卡 ' + gpus + ' 张。显卡数量、型号和每机上限待确认。'
     };
-    const holder = new THREE.Group(); holder.position.set(0, y, DEV_Z); holder.userData.info = info; holder.userData.baseY = y;
+    const holder = new THREE.Group();
+    holder.position.set(0, y, DEV_Z);
+    holder.userData.info = info;
+    holder.userData.baseY = y;
+    holder.userData.half = h / 2;
     devs.add(holder);
-    const mat = kind === 'ucs' ? ucsMat : tptMat(gpus);
-    const mesh = box(holder, DEV_W, h, DEV_D, mat, 0, 0, 0, holder);
-    mesh.material = [metalSide, metalSide, metalSide, metalSide, mat, metalSide];
-    devices.push({ kind, index, u0: u, u1: u + span - 1, gpus: gpus || 0, mesh: holder });
-    u += span;
-  };
-  spec.gpus.forEach((g, i) => place('tpt', i, 4, g));
-  for (let i = 0; i < spec.ucs; i++) place('ucs', i, 2, 0);
+    if (slot.kind === 'tpt') addTptChassis(holder, h, gpus);
+    else if (slot.kind === 'switch') {
+      const mesh = box(holder, DEV_W, h, DEV_D, switchMat, 0, 0, 0, holder);
+      mesh.material = [metalSide, metalSide, metalSide, metalSide, switchMat, metalSide];
+    } else {
+      const mesh = box(holder, DEV_W, h, DEV_D, ucsMat, 0, 0, 0, holder);
+      mesh.material = [metalSide, metalSide, metalSide, metalSide, ucsMat, metalSide];
+    }
+    devices.push({ kind: slot.kind, index: slot.index, u0: slot.u0, u1: slot.u1, gpus, mesh: holder });
+  });
   const addLabel = (text, y, color) => {
     const el = document.createElement('div'); el.className = 'glabel';
     el.innerHTML = '<div class="in"><div class="ln"></div><div class="card" style="border-color:' + color + '">' + text + '</div></div>';
@@ -376,6 +468,7 @@ function buildCabinet(spec) {
     if (!rows.length) return 0;
     return rows.reduce((s, d) => s + d.mesh.userData.baseY, 0) / rows.length;
   };
+  if (spec.sw) addLabel(spec.name + ' · 交换机 1U × ' + spec.sw + '（示意）', midY('switch'), '#3dffc5');
   if (spec.tpt) addLabel(spec.name + ' · TPT 4U × ' + spec.tpt, midY('tpt'), '#c9a4ff');
   if (spec.ucs) addLabel(spec.name + ' · UCS 2U × ' + spec.ucs, midY('ucs'), '#3fb6ff');
   return { spec, shell, door, devs, devices, baseX: spec.x };
@@ -423,8 +516,10 @@ function applyExplode(t) {
     c.shell.visible = fade > 0.03;
     c.door.rotation.y = eDoor * THREE.MathUtils.degToRad(state.mode === 'dual' ? 86 : 100);
     c.devs.position.x = c.baseX + sign * lift * 0.25;
-    c.devices.forEach((d, i) => {
-      d.mesh.position.y = d.mesh.userData.baseY + (i - (c.devices.length - 1) / 2) * 0.045 * ease((t - 0.35) / 0.5);
+    const mid = c.devices.reduce((s, d) => s + d.mesh.userData.baseY, 0) / Math.max(1, c.devices.length);
+    const spread = ease((t - 0.35) / 0.5);
+    c.devices.forEach(d => {
+      d.mesh.position.y = d.mesh.userData.baseY + (d.mesh.userData.baseY - mid) * 0.9 * spread;
     });
   });
   const show = t > 0.62 && innerWidth >= 820;
@@ -466,24 +561,21 @@ function mountFields() {
   $('mSingle').classList.toggle('on', !dual);
   $('mDual').classList.toggle('on', dual);
   $('fields').innerHTML = dual
-    ? sliderField('ucsL', '左柜 UCS 节点 · 2U', 0, UCS_MAX, '每柜不超过 7 台 2U') +
+    ? sliderField('swL', '左柜交换机 · 1U', 0, maxSw(state.ucsL, state.tptL), '示意台数。尽头是扣掉左柜服务器和间隔后的剩余 U，不是已确认上限') +
+      sliderField('swR', '右柜交换机 · 1U', 0, maxSw(state.ucsR, state.tptR), '示意台数。尽头是扣掉右柜服务器和间隔后的剩余 U，不是已确认上限') +
+      sliderField('ucsL', '左柜 UCS 节点 · 2U', 0, UCS_MAX, '每柜不超过 7 台 2U') +
       sliderField('ucsR', '右柜 UCS 节点 · 2U', 0, UCS_MAX, '每柜不超过 7 台 2U。双柜总上限待确认') +
-      sliderField('tptL', '左柜 TPT 服务器 · 4U', 0, maxTpt(state.ucsL), '台数待确认，尽头只是左柜剩余可视 U') +
-      sliderField('tptR', '右柜 TPT 服务器 · 4U', 0, maxTpt(state.ucsR), '台数待确认，尽头只是右柜剩余可视 U') +
+      sliderField('tptL', '左柜 TPT 服务器 · 4U', 0, maxTpt(state.ucsL, state.swL), '台数待确认，尽头只是左柜剩余可视 U') +
+      sliderField('tptR', '右柜 TPT 服务器 · 4U', 0, maxTpt(state.ucsR, state.swR), '台数待确认，尽头只是右柜剩余可视 U') +
       sliderField('gpuDual', 'TPT 显卡总数', 0, GPU_MAX, '数量、型号、每机上限待确认。0–16 只是示意范围，按各台 4U 尽量均分')
-    : sliderField('ucs', 'UCS 节点 · 2U', 0, UCS_MAX, '已确认的单柜上限：不超过 7 台，不含 4U TPT') +
-      sliderField('tpt', 'TPT 服务器 · 4U', 0, maxTpt(state.ucs), '台数待确认。尽头是本示意剩余 U 位，不是产品上限') +
+    : sliderField('sw', '交换机 · 1U', 0, maxSw(state.ucs, state.tpt), '示意台数，高度按 1U。尽头是当前剩余可视 U，不是已确认上限') +
+      sliderField('ucs', 'UCS 节点 · 2U', 0, UCS_MAX, '已确认的单柜上限：不超过 7 台，不含 4U TPT') +
+      sliderField('tpt', 'TPT 服务器 · 4U', 0, maxTpt(state.ucs, state.sw), '台数待确认。尽头是本示意剩余 U 位，不是产品上限') +
       sliderField('gpu', 'TPT 显卡', 0, GPU_MAX, '数量、型号、每机上限待确认。0–16 只是示意范围');
   $('fields').querySelectorAll('input').forEach(input => {
     input.addEventListener('input', () => {
-      const key = input.dataset.key;
-      state[key] = Number(input.value);
+      state[input.dataset.key] = Number(input.value);
       clampState();
-      const tptKey = key === 'ucs' ? 'tpt' : key === 'ucsL' ? 'tptL' : key === 'ucsR' ? 'tptR' : '';
-      if (tptKey) {
-        const tpt = $('fields').querySelector('input[data-key="' + tptKey + '"]');
-        if (tpt) tpt.max = String(maxTpt(state[key]));
-      }
       syncInputs();
       rebuild(false);
     });
@@ -493,33 +585,48 @@ function syncInputs() {
   $('fields').querySelectorAll('input').forEach(input => {
     const key = input.dataset.key;
     input.value = state[key];
+    const maxes = {
+      sw: maxSw(state.ucs, state.tpt), tpt: maxTpt(state.ucs, state.sw),
+      swL: maxSw(state.ucsL, state.tptL), tptL: maxTpt(state.ucsL, state.swL),
+      swR: maxSw(state.ucsR, state.tptR), tptR: maxTpt(state.ucsR, state.swR)
+    };
+    if (maxes[key] != null) input.max = String(maxes[key]);
     const min = Number(input.min), max = Number(input.max);
     input.style.setProperty('--p', (max === min ? 0 : (state[key] - min) / (max - min) * 100) + '%');
     const lab = $('v-' + key); if (lab) lab.textContent = state[key];
   });
 }
-function cellsHtml(ucs, tpt) {
+function cellsHtml(sw, ucs, tpt) {
   const marks = Array(RACK_U).fill('');
-  let u = rackStart(ucs, tpt) - 1;
-  for (let i = 0; i < tpt * 4; i++) marks[u++] = 'tpt';
-  for (let i = 0; i < ucs * 2; i++) marks[u++] = 'ucs';
+  const slots = layoutSlots(sw, ucs, tpt);
+  slots.forEach(s => {
+    const cls = s.kind === 'switch' ? 'sw' : s.kind;
+    for (let u = s.u0; u <= s.u1; u++) marks[u - 1] = cls;
+  });
+  const servers = slots.filter(s => s.kind !== 'switch');
+  for (let i = 1; i < servers.length; i++) marks[servers[i - 1].u0 - 2] = 'gap';
   return '<div class="cells">' + marks.map(k => '<i class="' + k + '"></i>').join('') + '</div>';
 }
 function renderHud() {
   const rows = plan();
-  $('maps').innerHTML = rows.map(r => '<div class="map"><div class="nm">' + r.name + '</div>' + cellsHtml(r.ucs, r.tpt) + '</div>').join('');
+  $('maps').innerHTML = rows.map(r => '<div class="map"><div class="nm">' + r.name + '</div>' + cellsHtml(r.sw, r.ucs, r.tpt) + '</div>').join('');
   const ucs = rows.reduce((s, r) => s + r.ucs, 0);
   const tpt = rows.reduce((s, r) => s + r.tpt, 0);
+  const sw = rows.reduce((s, r) => s + r.sw, 0);
+  const remain = rows.reduce((s, r) => s + (RACK_U - usedU(r.sw, r.ucs, r.tpt)), 0);
   const placed = rows.reduce((s, r) => s + r.gpus.reduce((a, b) => a + b, 0), 0);
   const asked = gpuNow();
   $('sum').innerHTML =
+    '<div><span>交换机 1U · 示意</span><b>' + sw + ' 台</b></div>' +
     '<div><span>UCS 节点 2U</span><b>' + ucs + ' 台</b></div>' +
     '<div><span>TPT 服务器 4U</span><b>' + tpt + ' 台</b></div>' +
     '<div><span>TPT 显卡</span><b>' + placed + ' 张在柜内' + (placed !== asked ? ' / 设定 ' + asked : '') + '</b></div>' +
+    '<div><span>剩余可视 U</span><b>' + remain + '</b></div>' +
     (asked && !tpt ? '<div class="warn"><span>显卡还没有 4U 服务器可放</span><b>未放入</b></div>' : '');
   const items = [];
   cabinets.forEach(c => c.devices.slice().sort((a, b) => b.u0 - a.u0).forEach(d => {
-    items.push('<li><span>' + c.spec.name + ' U' + d.u0 + '–U' + d.u1 + '</span><span>' + (d.kind === 'ucs' ? 'UCS 2U' : 'TPT 4U · 显卡 ' + d.gpus) + '</span></li>');
+    const label = d.kind === 'switch' ? '交换机 1U · 示意' : d.kind === 'ucs' ? 'UCS 2U' : 'TPT 4U · 显卡 ' + d.gpus;
+    items.push('<li><span>' + c.spec.name + ' U' + d.u0 + (d.u0 === d.u1 ? '' : '–U' + d.u1) + '</span><span>' + label + '</span></li>');
   }));
   $('occ').innerHTML = items.join('') || '<li><span>柜内没有服务器</span><span>可把滑块调高</span></li>';
   syncInputs();
@@ -530,26 +637,44 @@ function audit() {
   cabinets.forEach(c => {
     const ucs = c.devices.filter(d => d.kind === 'ucs');
     const tpt = c.devices.filter(d => d.kind === 'tpt');
+    const sw = c.devices.filter(d => d.kind === 'switch');
     if (ucs.length > 7) problems.push(c.spec.name + ' UCS > 7');
-    if (ucs.length !== c.spec.ucs || tpt.length !== c.spec.tpt) problems.push(c.spec.name + ' count');
-    if (c.devices.length) {
-      const usedU = c.spec.tpt * 4 + c.spec.ucs * 2;
-      const minU = Math.min(...c.devices.map(d => d.u0));
-      const maxU = Math.max(...c.devices.map(d => d.u1));
-      if (maxU !== RACK_U || minU !== RACK_U - usedU + 1) problems.push(c.spec.name + ' not top-packed');
-    }
-    const used = new Set();
+    if (ucs.length !== c.spec.ucs || tpt.length !== c.spec.tpt || sw.length !== c.spec.sw) problems.push(c.spec.name + ' count');
+    const slots = layoutSlots(c.spec.sw, c.spec.ucs, c.spec.tpt);
+    if (slots.length !== c.devices.length) problems.push('slot count');
     c.devices.forEach(d => {
+      const slot = slots.find(s => s.kind === d.kind && s.index === d.index);
+      if (!slot || slot.u0 !== d.u0 || slot.u1 !== d.u1) problems.push('u mismatch ' + d.kind);
       const span = d.u1 - d.u0 + 1;
+      if (d.u0 < 1 || d.u1 > RACK_U) problems.push('range');
       if (d.kind === 'ucs' && span !== 2) problems.push('ucs span');
       if (d.kind === 'tpt' && span !== 4) problems.push('tpt span');
-      for (let u = d.u0; u <= d.u1; u++) { if (used.has(u) || u < 1 || u > RACK_U) problems.push('u overlap ' + u); used.add(u); }
+      if (d.kind === 'switch' && span !== 1) problems.push('sw span');
+    });
+    if (sw.length && Math.max(...sw.map(d => d.u1)) !== RACK_U) problems.push('switch not top');
+    const servers = c.devices.filter(d => d.kind !== 'switch').sort((a, b) => b.u0 - a.u0);
+    for (let i = 1; i < servers.length; i++) if (servers[i - 1].u0 - servers[i].u1 !== 2) problems.push('gap');
+    if (sw.length && servers.length && sw.reduce((m, d) => Math.min(m, d.u0), 99) - servers[0].u1 !== 1) problems.push('switch-server gap');
+    if (ucs.length && tpt.length && Math.min(...ucs.map(d => d.u0)) <= Math.max(...tpt.map(d => d.u1))) problems.push('order');
+    const used = new Set();
+    c.devices.forEach(d => { for (let u = d.u0; u <= d.u1; u++) { if (used.has(u)) problems.push('overlap'); used.add(u); } });
+    tpt.forEach(d => {
+      const meshes = d.mesh.children.filter(o => o.userData.gpu && o.geometry.parameters.height > 0.05).length;
+      if (meshes !== d.gpus) problems.push('gpu meshes ' + meshes + '/' + d.gpus);
+      const half = d.mesh.userData.half;
+      d.mesh.children.forEach(o => {
+        if (!o.userData.gpu) return;
+        const hh = o.geometry.parameters.height / 2, hw = o.geometry.parameters.width / 2, hd = o.geometry.parameters.depth / 2;
+        if (Math.abs(o.position.y) + hh > half + 0.001) problems.push('gpu y');
+        if (Math.abs(o.position.x) + hw > DEV_W / 2 + 0.001) problems.push('gpu x');
+        if (Math.abs(o.position.z) + hd > DEV_D / 2 + 0.001) problems.push('gpu z');
+      });
     });
     const gpuSum = tpt.reduce((s, d) => s + d.gpus, 0);
     if (gpuSum !== c.spec.gpus.reduce((a, b) => a + b, 0)) problems.push('gpu');
   });
-  const blob = $('fields').innerText + $('sum').innerText + $('occ').innerText + $('maps').innerText;
-  if (/空调|UPS|制冷|不间断电源/.test(blob)) problems.push('forbidden words');
+  const blob = $('fields').innerText + $('sum').innerText + $('occ').innerText;
+  if (/空调|UPS|制冷|不间断电源|25G|Gbps/.test(blob)) problems.push('forbidden words');
   window.__auditProblems = problems;
   document.documentElement.dataset.aopAudit = problems.length ? 'fail' : 'ok';
   if (problems.length) console.error('AOP audit', problems);
@@ -631,7 +756,7 @@ function loop() {
 
 const boot = new URLSearchParams(location.search);
 if (boot.get('mode') === 'dual') state.mode = 'dual';
-['ucs', 'tpt', 'gpu', 'gpuDual', 'ucsL', 'ucsR', 'tptL', 'tptR'].forEach(k => { if (boot.has(k)) state[k] = Number(boot.get(k)); });
+['sw', 'ucs', 'tpt', 'gpu', 'gpuDual', 'swL', 'swR', 'ucsL', 'ucsR', 'tptL', 'tptR'].forEach(k => { if (boot.has(k)) state[k] = Number(boot.get(k)); });
 mountFields();
 rebuild(true);
 if (boot.has('explode')) { progress = clamp(Number(boot.get('explode'))); applyExplode(progress); syncSlider(); framedP = progress; }
@@ -646,9 +771,11 @@ window.__state = () => ({
   gpuAsked: gpuNow(),
   cabinets: cabinets.map(c => ({
     name: c.spec.name,
+    sw: c.devices.filter(d => d.kind === 'switch').length,
     ucs: c.devices.filter(d => d.kind === 'ucs').length,
     tpt: c.devices.filter(d => d.kind === 'tpt').length,
     gpus: c.devices.filter(d => d.kind === 'tpt').map(d => d.gpus),
+    gpuMeshes: c.devices.filter(d => d.kind === 'tpt').map(d => d.mesh.children.filter(o => o.userData.gpu && o.geometry.parameters.height > 0.05).length),
     devices: c.devices.map(d => ({ kind: d.kind, u0: d.u0, u1: d.u1, gpus: d.gpus }))
   })),
   audit: window.__auditProblems || []
