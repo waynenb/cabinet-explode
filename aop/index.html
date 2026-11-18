@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:,">
+<title>中控 SUPCON · UCS+TPT 一体化方案（AOP）</title>
+<style>
+  :root{--accent:#3fb6ff;--accent2:#00e5ff;--tpt:#c9a4ff;--panel:rgba(12,20,34,.78);--line:rgba(80,170,255,.28);}
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;overflow:hidden;color:#dce8f5;
+    font-family:"PingFang SC","Microsoft YaHei","Noto Sans CJK SC","Noto Sans SC","Hiragino Sans GB",system-ui,sans-serif;
+    background:radial-gradient(ellipse at 50% 35%,#1b2638 0%,#0c111b 55%,#05070b 100%);}
+  #app{position:fixed;inset:0}
+  #app canvas{display:block;outline:none}
+  .label-layer{position:absolute;inset:0;pointer-events:none}
+  a{color:var(--accent);text-decoration:none}
+  header{position:fixed;left:18px;top:14px;z-index:6;max-width:min(640px,calc(100vw - 28px));pointer-events:none}
+  header .links{pointer-events:auto;display:flex;gap:14px;margin-bottom:6px;font-size:12px}
+  header .links a{border-bottom:1px solid rgba(63,182,255,.4)}
+  header h1{margin:0;font-size:22px;font-weight:600;letter-spacing:.5px;pointer-events:none}
+  header h1 b{color:var(--accent)}
+  header p{margin:4px 0 0;font-size:12px;color:#8ea4bd}
+  .glass{background:var(--panel);border:1px solid var(--line);border-radius:12px;
+    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 10px 30px rgba(0,0,0,.35)}
+  #config{position:fixed;left:18px;top:108px;width:332px;max-height:calc(100vh - 196px);overflow:auto;z-index:6;padding:14px 14px 12px}
+  #config h2{margin:0 0 8px;font-size:13px;font-weight:600;letter-spacing:.08em;color:#8ea4bd}
+  .modes{display:flex;gap:8px;margin-bottom:8px}
+  .modes button,.row button,#controls button,#bPreset{font:inherit;font-size:13px;color:#dce8f5;background:rgba(255,255,255,.06);
+    border:1px solid rgba(120,180,255,.28);padding:7px 12px;border-radius:8px;cursor:pointer}
+  .modes button{flex:1}
+  .modes button.on,#controls button.on{background:linear-gradient(135deg,#1f8fff,#00c6ff);border-color:transparent;color:#fff}
+  .banner{font-size:12.5px;line-height:1.45;color:#e7f4ff;background:rgba(63,182,255,.12);border:1px solid rgba(63,182,255,.28);border-radius:8px;padding:8px 10px;margin:0 0 10px}
+  .field{margin:0 0 10px}
+  .field .lab{display:flex;justify-content:space-between;gap:8px;font-size:13px}
+  .field .lab b{font-variant-numeric:tabular-nums}
+  .field small{display:block;color:#8ea4bd;font-size:11px;line-height:1.35;margin-top:3px}
+  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:4px;margin-top:6px;
+    background:linear-gradient(90deg,var(--accent) var(--p,0%),rgba(255,255,255,.15) var(--p,0%));outline:none}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(63,182,255,.35);cursor:pointer}
+  input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:#fff;border:0;cursor:pointer}
+  .maps{display:flex;gap:10px;align-items:flex-end;margin:4px 0 8px}
+  .map{flex:1}
+  .map .nm{font-size:11px;color:#8ea4bd;margin-bottom:4px}
+  .cells{display:flex;flex-direction:column-reverse;gap:1px;height:168px;border:1px solid rgba(120,180,255,.2);border-radius:6px;padding:3px;background:rgba(0,0,0,.25)}
+  .cells i{flex:1;border-radius:1px;background:rgba(255,255,255,.06)}
+  .cells i.ucs{background:#3fb6ff}
+  .cells i.tpt{background:#b388ff}
+  .sum{font-size:12.5px;line-height:1.45;margin:0}
+  .sum div{display:flex;justify-content:space-between;gap:8px;padding:3px 0;border-top:1px solid rgba(255,255,255,.06)}
+  .warn{color:#ffd59a}
+  .fine{margin-top:8px;font-size:11.5px;color:#93a4b8;line-height:1.5}
+  .fine summary{cursor:pointer;color:#b7c6d6}
+  #occ{margin:6px 0 0;padding:0;list-style:none;max-height:132px;overflow:auto;font-size:12px}
+  #occ li{display:flex;justify-content:space-between;gap:8px;padding:3px 0;border-top:1px solid rgba(255,255,255,.05)}
+  #controls{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:6;display:flex;align-items:center;gap:8px;
+    padding:10px 12px;flex-wrap:wrap;justify-content:center;width:max-content;max-width:calc(100vw - 16px)}
+  #controls .sl{display:flex;align-items:center;gap:8px;font-size:12px;color:#8ea4bd}
+  #controls input[type=range]{width:160px}
+  #pct{width:36px;text-align:right;color:#dce8f5;font-variant-numeric:tabular-nums}
+  #info{position:fixed;right:18px;top:108px;width:280px;padding:14px;z-index:6}
+  #info.hidden{display:none}
+  #info .tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:20px;background:rgba(63,182,255,.18);color:var(--accent)}
+  #info h3{margin:6px 0 4px;font-size:16px}
+  #info p{margin:0;font-size:12.5px;line-height:1.55;color:#c3d3e4}
+  #info button{position:absolute;right:8px;top:6px;background:none;border:0;color:#8ea4bd;font-size:20px;cursor:pointer}
+  .glabel{width:0;height:0;position:relative}
+  .glabel .in{position:absolute;left:0;top:0;transform:translateY(-50%);display:flex;align-items:center;white-space:nowrap}
+  .glabel .ln{width:36px;height:1px;background:linear-gradient(90deg,rgba(63,182,255,0),var(--accent))}
+  .glabel .card{padding:4px 8px;border-left:2px solid var(--accent);background:linear-gradient(90deg,rgba(15,35,60,.8),rgba(15,35,60,0));font-size:13px}
+  #hint{position:fixed;right:18px;bottom:22px;font-size:11px;color:#6d8199;z-index:4;pointer-events:none;text-align:right}
+  #loading{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;z-index:20;
+    background:#070a10;color:#8ea4bd;font-size:13px;transition:opacity .5s}
+  #loading .sp{width:34px;height:34px;border-radius:50%;border:3px solid rgba(63,182,255,.2);border-top-color:var(--accent);animation:sp 1s linear infinite}
+  @keyframes sp{to{transform:rotate(360deg)}}
+  @media (max-width:820px){
+    header h1{font-size:16px}
+    #config{left:8px;right:8px;top:auto;bottom:74px;width:auto;max-height:34vh}
+    #info{left:8px;right:8px;top:auto;bottom:74px;width:auto;max-height:40vh;overflow:auto}
+    #hint{display:none}
+    #controls input[type=range]{width:110px}
+    #occ{max-height:72px}
+    .cells{height:96px}
+  }
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<div id="app"></div>
+<header>
+  <div class="links">
+    <a href="../index.html">← 三维爆炸图</a>
+    <a href="../site/">← 产品介绍</a>
+  </div>
+  <h1><b>中控 · SUPCON</b> UCS+TPT 一体化方案（AOP）</h1>
+  <p>单机柜 / 双机柜 · 交互示意，不是正式规格</p>
+</header>
+<aside id="config" class="glass">
+  <h2>形态</h2>
+  <div class="modes">
+    <button type="button" id="mSingle" class="on">单机柜</button>
+    <button type="button" id="mDual">双机柜</button>
+  </div>
+  <p class="banner">示意配置 / 可配置，具体数量待确认。</p>
+  <div id="fields"></div>
+  <button type="button" id="bPreset">恢复示意初值</button>
+  <div class="maps" id="maps"></div>
+  <div class="sum" id="sum"></div>
+  <ul id="occ"></ul>
+  <details class="fine" open>
+    <summary>已确认的边界，以及仍待确认的项</summary>
+    <p>已确认：单柜 2U 的 UCS 节点不超过 7 台。这 7 台只数 2U UCS，不把 4U 的 TPT 服务器算进这 7 台。</p>
+    <p>已确认：TPT 服务器都是 4U。单机柜和双机柜的差别，是 UCS 节点数量，以及 TPT 显卡数量。</p>
+    <p>待确认：UCS 的默认台数、双柜 UCS 总上限、TPT 服务器台数、显卡数量、显卡型号、每台服务器的显卡上限。上面的滑块只用于把示意摆进画面。4U 滑块的尽头是本页 36 个可视 U 的剩余空位，不是产品容量。显卡滑块 0–16 也只是示意调节范围。</p>
+    <p>两种形态的柜内都没有空调，也没有 UPS。本页不给出 AOP、TPT 的英文全称。</p>
+  </details>
+</aside>
+<div id="info" class="glass hidden">
+  <button type="button" id="infoClose" aria-label="关闭">×</button>
+  <span class="tag" id="iTag"></span>
+  <h3 id="iName"></h3>
+  <p id="iDesc"></p>
+</div>
+<div id="controls" class="glass">
+  <button type="button" id="bExplode">展开</button>
+  <button type="button" id="bAssemble">合拢</button>
+  <div class="sl"><span>展开</span><input id="slider" type="range" min="0" max="100" step="0.1" value="0"><span id="pct">0%</span></div>
+  <button type="button" id="bReset">复位视角</button>
+</div>
+<div id="hint">左键旋转 · 右键平移 · 滚轮缩放 · 点击设备</div>
+<div id="loading"><div class="sp"></div><div id="loadMsg">正在加载三维场景…</div></div>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
+
+const RACK_U = 36;
+const U = 0.044;
+const GAP = 0.008;
+const BASE_Y = 0.26;
+const UCS_MAX = 7;
+const GPU_MAX = 16;
+const PRESET = { ucs: 4, tpt: 1, gpu: 4, ucsL: 6, ucsR: 4, tptL: 1, tptR: 1, gpuDual: 8 };
+const CW = 0.62, CD = 1.0, CH = 2.0, Y0 = 0.08;
+const DEV_W = 0.50, DEV_D = 0.70;
+const DEV_Z = CD / 2 - 0.09 - DEV_D / 2;
+
+const $ = id => document.getElementById(id);
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const maxTpt = ucs => Math.floor((RACK_U - ucs * 2) / 4);
+const rackStart = (ucs, tpt) => RACK_U - (tpt * 4 + ucs * 2) + 1;
+
+const state = { mode: 'single', ...PRESET };
+function clampState() {
+  const n = (v, a, b) => Math.max(a, Math.min(b, v | 0));
+  state.ucs = n(state.ucs, 0, UCS_MAX);
+  state.tpt = n(state.tpt, 0, maxTpt(state.ucs));
+  state.gpu = n(state.gpu, 0, GPU_MAX);
+  state.gpuDual = n(state.gpuDual, 0, GPU_MAX);
+  state.ucsL = n(state.ucsL, 0, UCS_MAX);
+  state.ucsR = n(state.ucsR, 0, UCS_MAX);
+  state.tptL = n(state.tptL, 0, maxTpt(state.ucsL));
+  state.tptR = n(state.tptR, 0, maxTpt(state.ucsR));
+}
+
+function distribute(total, counts) {
+  const n = counts.reduce((a, b) => a + b, 0);
+  const out = [];
+  if (!n) return counts.map(() => []);
+  const base = Math.floor(total / n);
+  let extra = total % n;
+  counts.forEach(c => {
+    const row = [];
+    for (let i = 0; i < c; i++) row.push(base + (extra-- > 0 ? 1 : 0));
+    out.push(row);
+  });
+  return out;
+}
+
+function gpuNow() { return state.mode === 'dual' ? state.gpuDual : state.gpu; }
+function plan() {
+  if (state.mode === 'single') {
+    const [gpus] = distribute(state.gpu, [state.tpt]);
+    return [{ id: 'S', name: '单机柜', x: 0, ucs: state.ucs, tpt: state.tpt, gpus }];
+  }
+  const [gL, gR] = distribute(state.gpuDual, [state.tptL, state.tptR]);
+  const pairX = (CW + 0.02) / 2;
+  return [
+    { id: 'L', name: '左柜', x: -pairX, ucs: state.ucsL, tpt: state.tptL, gpus: gL },
+    { id: 'R', name: '右柜', x: pairX, ucs: state.ucsR, tpt: state.tptR, gpus: gR },
+  ];
+}
+
+/* renderer */
+const app = document.getElementById('app');
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
+renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 2));
+renderer.setSize(innerWidth, innerHeight);
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.05;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+app.appendChild(renderer.domElement);
+const labelRenderer = new CSS2DRenderer();
+labelRenderer.setSize(innerWidth, innerHeight);
+labelRenderer.domElement.className = 'label-layer';
+app.appendChild(labelRenderer.domElement);
+const scene = new THREE.Scene();
+const pmrem = new THREE.PMREMGenerator(renderer);
+scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+const camera = new THREE.PerspectiveCamera(36, innerWidth / innerHeight, 0.05, 80);
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.08;
+controls.minDistance = 1.4;
+controls.maxDistance = 16;
+controls.maxPolarAngle = Math.PI * 0.495;
+scene.add(new THREE.HemisphereLight(0xb0c8ff, 0x07090d, 0.28));
+const key = new THREE.DirectionalLight(0xffffff, 2.2);
+key.position.set(-3, 6, 4); key.castShadow = true; key.shadow.mapSize.set(1024, 1024);
+scene.add(key);
+const rim = new THREE.DirectionalLight(0x5a9dff, 0.8);
+rim.position.set(4, 1.5, -3);
+scene.add(rim);
+
+const floor = new THREE.Mesh(new THREE.CircleGeometry(6.2, 72), new THREE.MeshStandardMaterial({ color: 0x0e131b, roughness: 0.55, metalness: 0.35 }));
+floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
+
+function mkCanvas(w, h) { const c = document.createElement('canvas'); c.width = w; c.height = h; return [c, c.getContext('2d')]; }
+function mkTex(c) { const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; t.userData.shared = true; return t; }
+const frameMat = new THREE.MeshStandardMaterial({ color: 0x121317, metalness: 0.7, roughness: 0.35 });
+const panelMat = new THREE.MeshStandardMaterial({ color: 0x17191d, metalness: 0.55, roughness: 0.45 });
+const railMat = new THREE.MeshStandardMaterial({ color: 0x3a3d43, metalness: 0.8, roughness: 0.35 });
+frameMat.userData.shared = panelMat.userData.shared = railMat.userData.shared = true;
+
+function sideTex() {
+  const [c, x] = mkCanvas(512, 1024);
+  x.fillStyle = '#14171c'; x.fillRect(0, 0, 512, 1024);
+  x.strokeStyle = '#1d6fe0'; x.lineWidth = 18; x.beginPath(); x.moveTo(0, 200); x.bezierCurveTo(180, 280, 220, 520, 40, 760); x.stroke();
+  x.strokeStyle = '#3cc4ff'; x.lineWidth = 8; x.beginPath(); x.moveTo(0, 280); x.bezierCurveTo(120, 360, 140, 560, 20, 700); x.stroke();
+  x.fillStyle = '#d5dbe2'; x.font = '600 54px Arial,sans-serif'; x.textAlign = 'center'; x.fillText('SUPCON', 300, 280);
+  x.font = '28px sans-serif'; x.fillStyle = '#9eb0c4'; x.fillText('中控', 300, 330);
+  return mkTex(c);
+}
+const sideMap = sideTex();
+const sideMat = new THREE.MeshStandardMaterial({ map: sideMap, metalness: 0.45, roughness: 0.4 });
+sideMat.userData.shared = true;
+
+function ucsTex() {
+  const [c, x] = mkCanvas(1024, 220);
+  const g = x.createLinearGradient(0, 0, 0, 220); g.addColorStop(0, '#3a414c'); g.addColorStop(1, '#1c2128');
+  x.fillStyle = g; x.fillRect(0, 0, 1024, 220);
+  x.fillStyle = '#2f7bff'; x.fillRect(70, 16, 8, 188);
+  x.fillStyle = '#0e1218'; x.fillRect(96, 18, 840, 184);
+  x.strokeStyle = '#8ea0b4'; x.lineWidth = 3;
+  for (let i = 0; i < 18; i++) { x.beginPath(); x.arc(140 + (i % 9) * 86, 70 + Math.floor(i / 9) * 84, 28, 0, 7); x.stroke(); }
+  x.fillStyle = '#d7e7ff'; x.font = 'bold 28px Arial,sans-serif'; x.fillText('UCS', 110, 48);
+  x.font = '18px Arial,sans-serif'; x.fillStyle = '#9fb6d0'; x.fillText('2U', 190, 46);
+  x.fillStyle = '#3dff7a'; x.beginPath(); x.arc(70, 170, 6, 0, 7); x.fill();
+  return mkTex(c);
+}
+const ucsMat = new THREE.MeshStandardMaterial({ map: ucsTex(), metalness: 0.55, roughness: 0.38, emissive: 0x123055, emissiveIntensity: 0.4 });
+ucsMat.userData.shared = true;
+const tptMatCache = new Map();
+function tptMat(gpus) {
+  if (tptMatCache.has(gpus)) return tptMatCache.get(gpus);
+  const [c, x] = mkCanvas(1024, 420);
+  const g = x.createLinearGradient(0, 0, 0, 420); g.addColorStop(0, '#2a2438'); g.addColorStop(1, '#141820');
+  x.fillStyle = g; x.fillRect(0, 0, 1024, 420);
+  x.fillStyle = '#b388ff'; x.fillRect(64, 18, 8, 384);
+  x.fillStyle = '#f2ecff'; x.font = 'bold 32px Arial,sans-serif'; x.fillText('TPT', 90, 54);
+  x.font = '20px Arial,sans-serif'; x.fillStyle = '#c9b6ea'; x.fillText('4U', 180, 52);
+  x.fillStyle = '#d7c6ff'; x.font = '22px Arial,sans-serif'; x.fillText('显卡 × ' + gpus + '（示意）', 250, 52);
+  const cols = Math.min(8, Math.max(gpus, 1));
+  const rows = gpus === 0 ? 0 : Math.ceil(gpus / 8);
+  for (let i = 0; i < gpus; i++) {
+    const col = i % 8, row = Math.floor(i / 8);
+    const bw = Math.min(86, (860 - (cols - 1) * 10) / cols);
+    const X = 96 + col * (bw + 10), Y = 96 + row * 150;
+    x.fillStyle = '#241b33'; x.fillRect(X, Y, bw, 120);
+    x.fillStyle = i % 2 ? '#d7b4ff' : '#8d6bff'; x.fillRect(X + 8, Y + 16, bw - 16, 70);
+    x.fillStyle = '#efe7ff'; x.font = '16px Arial,sans-serif'; x.fillText(String(i + 1), X + 12, Y + 108);
+  }
+  if (!gpus) { x.fillStyle = '#9aa8ba'; x.font = '24px Arial,sans-serif'; x.fillText('显卡未放入（数量待确认）', 96, 200); }
+  const m = new THREE.MeshStandardMaterial({ map: mkTex(c), metalness: 0.5, roughness: 0.4, emissive: 0x2a1848, emissiveIntensity: 0.35 });
+  m.userData.shared = true; tptMatCache.set(gpus, m); return m;
+}
+const metalSide = new THREE.MeshStandardMaterial({ color: 0x8d949e, metalness: 0.8, roughness: 0.32 });
+metalSide.userData.shared = true;
+
+let dyn = [], pickables = [], shellMats = [], cabinets = [];
+let progress = 0, tween = null, framedP = 0, selected = null;
+
+function box(parent, w, h, d, mat, x, y, z, owner) {
+  const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat);
+  m.position.set(x, y, z); m.castShadow = true; m.receiveShadow = true;
+  if (owner) { m.userData.owner = owner; pickables.push(m); }
+  parent.add(m); return m;
+}
+function rememberMat(m, opacity, transparent) {
+  if (m.userData.baseOpacity == null) { m.userData.baseOpacity = opacity; m.userData.baseTransparent = transparent; }
+  if (!shellMats.includes(m)) shellMats.push(m);
+}
+
+function buildCabinet(spec) {
+  const root = new THREE.Group(); root.position.x = spec.x; scene.add(root); dyn.push(root);
+  const shell = new THREE.Group(); shell.userData.info = {
+    tag: '机柜', cn: spec.name, en: 'Cabinet',
+    desc: '示意机柜外壳。沿用现有爆炸图的外观比例，内部按 2U / 4U 相对高度摆放。36 个可视 U 不是已确认的机柜规格。'
+  };
+  root.add(shell);
+  const ph = CH - 0.16, pcy = Y0 + 0.1 + ph / 2;
+  box(shell, CW, 0.08, CD, frameMat, 0, Y0 + 0.04, 0, shell);
+  box(shell, CW, 0.04, CD, frameMat, 0, Y0 + CH - 0.02, 0, shell);
+  [[-1, -1], [-1, 1], [1, -1], [1, 1]].forEach(([sx, sz]) => box(shell, 0.035, CH - 0.08, 0.035, frameMat, sx * (CW / 2 - 0.02), Y0 + (CH - 0.08) / 2, sz * (CD / 2 - 0.02), shell));
+  [-1, 1].forEach(sx => {
+    box(shell, 0.012, ph, CD - 0.08, panelMat, sx * (CW / 2 - 0.01), pcy, 0, shell);
+    const art = box(shell, CD - 0.1, ph, 0.001, sideMat, sx * (CW / 2 + 0.001), pcy, 0, shell);
+    art.rotation.y = Math.PI / 2;
+  });
+  box(shell, CW - 0.06, ph, 0.012, panelMat, 0, pcy, -CD / 2 + 0.01, shell);
+  [-1, 1].forEach(sx => [0.28, -0.28].forEach(z => box(shell, 0.018, RACK_U * U, 0.025, railMat, sx * 0.27, BASE_Y + RACK_U * U / 2, z, shell)));
+  const door = new THREE.Group();
+  door.position.set(CW / 2 - 0.01, Y0 + 0.12, CD / 2);
+  door.userData.info = { tag: '前门', cn: spec.name + ' · 前门', en: 'Door', desc: '玻璃前门，仅作示意。' };
+  shell.add(door);
+  const dw = CW - 0.03, dh = CH - 0.22;
+  box(door, 0.05, dh, 0.02, frameMat, -dw + 0.025, dh / 2, 0.01, door);
+  box(door, dw - 0.05, 0.05, 0.02, frameMat, -dw / 2 + 0.025, dh - 0.025, 0.01, door);
+  box(door, dw - 0.05, 0.08, 0.02, frameMat, -dw / 2 + 0.025, 0.04, 0.01, door);
+  const glassMat = new THREE.MeshPhysicalMaterial({ color: 0xaaccee, metalness: 0, roughness: 0.05, transparent: true, opacity: 0.18, transmission: 0, depthWrite: false });
+  box(door, dw - 0.08, dh - 0.16, 0.008, glassMat, -(dw - 0.08) / 2, (dh - 0.16) / 2 + 0.08, 0.012, door);
+  const plateMat = new THREE.MeshStandardMaterial({ color: 0x0d1b2e, emissive: 0x123a66, emissiveIntensity: 0.7, metalness: 0.4, roughness: 0.35 });
+  box(door, 0.28, 0.08, 0.012, plateMat, -dw * 0.55, dh * 0.72, 0.02, door);
+  rememberMat(frameMat, 1, false); rememberMat(panelMat, 1, false); rememberMat(railMat, 1, false); rememberMat(sideMat, 1, false);
+  rememberMat(glassMat, 0.18, true); rememberMat(plateMat, 1, false);
+  shell.userData.door = door;
+
+  const devs = new THREE.Group(); devs.position.x = spec.x; scene.add(devs); dyn.push(devs);
+  const devices = [];
+  let u = rackStart(spec.ucs, spec.tpt);
+  const place = (kind, index, span, gpus) => {
+    const h = span * U - GAP;
+    const y = BASE_Y + (u - 1) * U + span * U / 2;
+    const info = kind === 'ucs' ? {
+      tag: '2U · UCS 节点', cn: spec.name + ' · UCS #' + (index + 1), en: 'UCS node',
+      desc: '2U UCS 节点，示意。U' + u + '–U' + (u + span - 1) + '。单柜 2U 不超过 7 台。默认台数待确认。'
+    } : {
+      tag: '4U · TPT', cn: spec.name + ' · TPT #' + (index + 1), en: 'TPT server',
+      desc: '4U TPT 服务器，示意。U' + u + '–U' + (u + span - 1) + '。本机示意显卡 ' + gpus + ' 张。显卡数量、型号和每机上限待确认。'
+    };
+    const holder = new THREE.Group(); holder.position.set(0, y, DEV_Z); holder.userData.info = info; holder.userData.baseY = y;
+    devs.add(holder);
+    const mat = kind === 'ucs' ? ucsMat : tptMat(gpus);
+    const mesh = box(holder, DEV_W, h, DEV_D, mat, 0, 0, 0, holder);
+    mesh.material = [metalSide, metalSide, metalSide, metalSide, mat, metalSide];
+    devices.push({ kind, index, u0: u, u1: u + span - 1, gpus: gpus || 0, mesh: holder });
+    u += span;
+  };
+  spec.gpus.forEach((g, i) => place('tpt', i, 4, g));
+  for (let i = 0; i < spec.ucs; i++) place('ucs', i, 2, 0);
+  const addLabel = (text, y, color) => {
+    const el = document.createElement('div'); el.className = 'glabel';
+    el.innerHTML = '<div class="in"><div class="ln"></div><div class="card" style="border-color:' + color + '">' + text + '</div></div>';
+    const lab = new CSS2DObject(el); lab.position.set(DEV_W / 2 + 0.02, y, DEV_Z); devs.add(lab); lab.userData.el = el;
+  };
+  const midY = kind => {
+    const rows = devices.filter(d => d.kind === kind);
+    if (!rows.length) return 0;
+    return rows.reduce((s, d) => s + d.mesh.userData.baseY, 0) / rows.length;
+  };
+  if (spec.tpt) addLabel(spec.name + ' · TPT 4U × ' + spec.tpt, midY('tpt'), '#c9a4ff');
+  if (spec.ucs) addLabel(spec.name + ' · UCS 2U × ' + spec.ucs, midY('ucs'), '#3fb6ff');
+  return { spec, shell, door, devs, devices, baseX: spec.x };
+}
+
+function clearDyn() {
+  const geos = new Set();
+  dyn.forEach(g => {
+    g.traverse(o => {
+      if (o.element && o.element.remove) o.element.remove();
+      if (o.geometry && !geos.has(o.geometry)) { geos.add(o.geometry); o.geometry.dispose(); }
+      [].concat(o.material || []).forEach(m => { if (m && !m.userData?.shared) m.dispose(); });
+    });
+    scene.remove(g);
+  });
+  dyn = []; pickables = []; shellMats = []; cabinets = []; selected = null;
+  $('info').classList.add('hidden');
+}
+
+function rebuild(refit) {
+  clampState();
+  clearDyn();
+  cabinets = plan().map(buildCabinet);
+  applyExplode(progress);
+  renderHud();
+  if (refit) homeCamera(true);
+  audit();
+}
+
+function applyExplode(t) {
+  const eDoor = ease(t / 0.35);
+  const lift = ease((t - 0.18) / 0.4);
+  const fade = 1 - ease((t - 0.22) / 0.35);
+  shellMats.forEach(m => {
+    const base = m.userData.baseOpacity ?? 1;
+    m.opacity = base * fade;
+    const tr = m.userData.baseTransparent || fade < 0.999;
+    if (m.transparent !== tr) { m.transparent = tr; m.needsUpdate = true; }
+    m.depthWrite = !m.userData.baseTransparent && fade > 0.55;
+  });
+  cabinets.forEach(c => {
+    const sign = c.baseX < 0 ? -1 : 1;
+    c.shell.position.y = lift * 0.85;
+    c.shell.position.z = -lift * 0.35;
+    c.shell.visible = fade > 0.03;
+    c.door.rotation.y = eDoor * THREE.MathUtils.degToRad(state.mode === 'dual' ? 86 : 100);
+    c.devs.position.x = c.baseX + sign * lift * 0.25;
+    c.devices.forEach((d, i) => {
+      d.mesh.position.y = d.mesh.userData.baseY + (i - (c.devices.length - 1) / 2) * 0.045 * ease((t - 0.35) / 0.5);
+    });
+  });
+  const show = t > 0.62 && innerWidth >= 820;
+  labelRenderer.domElement.querySelectorAll('.glabel').forEach(el => { el.style.opacity = show ? 1 : 0; });
+}
+function ease(x) { x = clamp(x); return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; }
+
+function focusX() {
+  if (!cabinets.length) return 0;
+  const xs = cabinets.map(c => c.baseX);
+  return (Math.min(...xs) + Math.max(...xs)) / 2;
+}
+function viewDist() {
+  const dual = state.mode === 'dual';
+  const mobile = innerWidth < 820;
+  const aspect = innerWidth / Math.max(innerHeight, 1);
+  const base = mobile ? (dual ? 6.5 : 5.6) : (dual ? 6.5 : 5.5);
+  return base * (1 + progress * 0.22) * Math.max(1, mobile ? 0.72 / aspect : 1);
+}
+function homeCamera(jump) {
+  const mobile = innerWidth < 820;
+  const target = new THREE.Vector3(focusX(), mobile ? 0.55 : 1.05, 0);
+  controls.target.copy(target);
+  if (jump) camera.position.set(target.x + (mobile ? 0 : -0.15), mobile ? 1.05 : 1.85, viewDist());
+  framedP = progress;
+  controls.update();
+}
+
+/* HUD */
+function sliderField(key, label, min, max, hint) {
+  const v = state[key];
+  const p = max === min ? 0 : (v - min) / (max - min) * 100;
+  return '<label class="field"><span class="lab"><span>' + label + '</span><b id="v-' + key + '">' + v + '</b></span>' +
+    '<input data-key="' + key + '" type="range" min="' + min + '" max="' + max + '" step="1" value="' + v + '" style="--p:' + p + '%">' +
+    '<small>' + hint + '</small></label>';
+}
+function mountFields() {
+  const dual = state.mode === 'dual';
+  $('mSingle').classList.toggle('on', !dual);
+  $('mDual').classList.toggle('on', dual);
+  $('fields').innerHTML = dual
+    ? sliderField('ucsL', '左柜 UCS 节点 · 2U', 0, UCS_MAX, '每柜不超过 7 台 2U') +
+      sliderField('ucsR', '右柜 UCS 节点 · 2U', 0, UCS_MAX, '每柜不超过 7 台 2U。双柜总上限待确认') +
+      sliderField('tptL', '左柜 TPT 服务器 · 4U', 0, maxTpt(state.ucsL), '台数待确认，尽头只是左柜剩余可视 U') +
+      sliderField('tptR', '右柜 TPT 服务器 · 4U', 0, maxTpt(state.ucsR), '台数待确认，尽头只是右柜剩余可视 U') +
+      sliderField('gpuDual', 'TPT 显卡总数', 0, GPU_MAX, '数量、型号、每机上限待确认。0–16 只是示意范围，按各台 4U 尽量均分')
+    : sliderField('ucs', 'UCS 节点 · 2U', 0, UCS_MAX, '已确认的单柜上限：不超过 7 台，不含 4U TPT') +
+      sliderField('tpt', 'TPT 服务器 · 4U', 0, maxTpt(state.ucs), '台数待确认。尽头是本示意剩余 U 位，不是产品上限') +
+      sliderField('gpu', 'TPT 显卡', 0, GPU_MAX, '数量、型号、每机上限待确认。0–16 只是示意范围');
+  $('fields').querySelectorAll('input').forEach(input => {
+    input.addEventListener('input', () => {
+      const key = input.dataset.key;
+      state[key] = Number(input.value);
+      clampState();
+      const tptKey = key === 'ucs' ? 'tpt' : key === 'ucsL' ? 'tptL' : key === 'ucsR' ? 'tptR' : '';
+      if (tptKey) {
+        const tpt = $('fields').querySelector('input[data-key="' + tptKey + '"]');
+        if (tpt) tpt.max = String(maxTpt(state[key]));
+      }
+      syncInputs();
+      rebuild(false);
+    });
+  });
+}
+function syncInputs() {
+  $('fields').querySelectorAll('input').forEach(input => {
+    const key = input.dataset.key;
+    input.value = state[key];
+    const min = Number(input.min), max = Number(input.max);
+    input.style.setProperty('--p', (max === min ? 0 : (state[key] - min) / (max - min) * 100) + '%');
+    const lab = $('v-' + key); if (lab) lab.textContent = state[key];
+  });
+}
+function cellsHtml(ucs, tpt) {
+  const marks = Array(RACK_U).fill('');
+  let u = rackStart(ucs, tpt) - 1;
+  for (let i = 0; i < tpt * 4; i++) marks[u++] = 'tpt';
+  for (let i = 0; i < ucs * 2; i++) marks[u++] = 'ucs';
+  return '<div class="cells">' + marks.map(k => '<i class="' + k + '"></i>').join('') + '</div>';
+}
+function renderHud() {
+  const rows = plan();
+  $('maps').innerHTML = rows.map(r => '<div class="map"><div class="nm">' + r.name + '</div>' + cellsHtml(r.ucs, r.tpt) + '</div>').join('');
+  const ucs = rows.reduce((s, r) => s + r.ucs, 0);
+  const tpt = rows.reduce((s, r) => s + r.tpt, 0);
+  const placed = rows.reduce((s, r) => s + r.gpus.reduce((a, b) => a + b, 0), 0);
+  const asked = gpuNow();
+  $('sum').innerHTML =
+    '<div><span>UCS 节点 2U</span><b>' + ucs + ' 台</b></div>' +
+    '<div><span>TPT 服务器 4U</span><b>' + tpt + ' 台</b></div>' +
+    '<div><span>TPT 显卡</span><b>' + placed + ' 张在柜内' + (placed !== asked ? ' / 设定 ' + asked : '') + '</b></div>' +
+    (asked && !tpt ? '<div class="warn"><span>显卡还没有 4U 服务器可放</span><b>未放入</b></div>' : '');
+  const items = [];
+  cabinets.forEach(c => c.devices.slice().sort((a, b) => b.u0 - a.u0).forEach(d => {
+    items.push('<li><span>' + c.spec.name + ' U' + d.u0 + '–U' + d.u1 + '</span><span>' + (d.kind === 'ucs' ? 'UCS 2U' : 'TPT 4U · 显卡 ' + d.gpus) + '</span></li>');
+  }));
+  $('occ').innerHTML = items.join('') || '<li><span>柜内没有服务器</span><span>可把滑块调高</span></li>';
+  syncInputs();
+}
+
+function audit() {
+  const problems = [];
+  cabinets.forEach(c => {
+    const ucs = c.devices.filter(d => d.kind === 'ucs');
+    const tpt = c.devices.filter(d => d.kind === 'tpt');
+    if (ucs.length > 7) problems.push(c.spec.name + ' UCS > 7');
+    if (ucs.length !== c.spec.ucs || tpt.length !== c.spec.tpt) problems.push(c.spec.name + ' count');
+    if (c.devices.length) {
+      const usedU = c.spec.tpt * 4 + c.spec.ucs * 2;
+      const minU = Math.min(...c.devices.map(d => d.u0));
+      const maxU = Math.max(...c.devices.map(d => d.u1));
+      if (maxU !== RACK_U || minU !== RACK_U - usedU + 1) problems.push(c.spec.name + ' not top-packed');
+    }
+    const used = new Set();
+    c.devices.forEach(d => {
+      const span = d.u1 - d.u0 + 1;
+      if (d.kind === 'ucs' && span !== 2) problems.push('ucs span');
+      if (d.kind === 'tpt' && span !== 4) problems.push('tpt span');
+      for (let u = d.u0; u <= d.u1; u++) { if (used.has(u) || u < 1 || u > RACK_U) problems.push('u overlap ' + u); used.add(u); }
+    });
+    const gpuSum = tpt.reduce((s, d) => s + d.gpus, 0);
+    if (gpuSum !== c.spec.gpus.reduce((a, b) => a + b, 0)) problems.push('gpu');
+  });
+  const blob = $('fields').innerText + $('sum').innerText + $('occ').innerText + $('maps').innerText;
+  if (/空调|UPS|制冷|不间断电源/.test(blob)) problems.push('forbidden words');
+  window.__auditProblems = problems;
+  document.documentElement.dataset.aopAudit = problems.length ? 'fail' : 'ok';
+  if (problems.length) console.error('AOP audit', problems);
+  return problems;
+}
+
+/* interaction */
+const raycaster = new THREE.Raycaster(), ndc = new THREE.Vector2();
+function pick(cx, cy) {
+  ndc.set(cx / innerWidth * 2 - 1, -(cy / innerHeight) * 2 + 1);
+  raycaster.setFromCamera(ndc, camera);
+  const hits = raycaster.intersectObjects(pickables, false);
+  for (const h of hits) {
+    const owner = h.object.userData.owner;
+    if (!owner || !owner.userData.info || owner.visible === false) continue;
+    if (owner.parent && owner.parent.visible === false) continue;
+    return owner;
+  }
+  return null;
+}
+function showInfo(owner) {
+  selected = owner;
+  if (!owner) { $('info').classList.add('hidden'); return; }
+  const i = owner.userData.info;
+  $('iTag').textContent = i.tag; $('iName').textContent = i.cn; $('iDesc').textContent = i.desc;
+  $('info').classList.remove('hidden');
+}
+let down = null;
+renderer.domElement.addEventListener('pointerdown', e => { down = [e.clientX, e.clientY]; });
+renderer.domElement.addEventListener('pointerup', e => {
+  if (!down || Math.hypot(e.clientX - down[0], e.clientY - down[1]) > 5) return;
+  showInfo(pick(e.clientX, e.clientY));
+});
+$('infoClose').onclick = () => showInfo(null);
+$('mSingle').onclick = () => { if (state.mode === 'single') return; state.mode = 'single'; mountFields(); rebuild(true); };
+$('mDual').onclick = () => { if (state.mode === 'dual') return; state.mode = 'dual'; mountFields(); rebuild(true); };
+$('bPreset').onclick = () => { Object.assign(state, PRESET); mountFields(); rebuild(false); };
+const slider = $('slider'), pct = $('pct');
+let dragging = false;
+function animateTo(to) { tween = { from: progress, to, start: clock.getElapsedTime(), dur: 0.35 + 1.1 * Math.abs(to - progress) }; }
+$('bExplode').onclick = () => animateTo(1);
+$('bAssemble').onclick = () => animateTo(0);
+$('bReset').onclick = () => homeCamera(true);
+slider.addEventListener('input', () => { tween = null; progress = slider.value / 100; });
+slider.addEventListener('pointerdown', () => dragging = true);
+window.addEventListener('pointerup', () => dragging = false);
+function syncSlider() {
+  if (!dragging) slider.value = (progress * 100).toFixed(1);
+  slider.style.setProperty('--p', progress * 100 + '%');
+  pct.textContent = Math.round(progress * 100) + '%';
+}
+const clock = new THREE.Clock();
+window.addEventListener('resize', () => {
+  camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight); labelRenderer.setSize(innerWidth, innerHeight);
+  homeCamera(true);
+});
+
+function loop() {
+  const t = clock.getElapsedTime();
+  if (tween) {
+    const k = clamp((t - tween.start) / tween.dur);
+    progress = tween.from + (tween.to - tween.from) * k;
+    if (k >= 1) tween = null;
+  }
+  applyExplode(progress); syncSlider();
+  if (progress !== framedP) {
+    const now = progress;
+    progress = framedP; const prev = viewDist();
+    progress = now; const next = viewDist();
+    if (prev) camera.position.sub(controls.target).multiplyScalar(next / prev).add(controls.target);
+    framedP = now;
+  }
+  controls.update();
+  renderer.render(scene, camera);
+  labelRenderer.render(scene, camera);
+  requestAnimationFrame(loop);
+}
+
+const boot = new URLSearchParams(location.search);
+if (boot.get('mode') === 'dual') state.mode = 'dual';
+['ucs', 'tpt', 'gpu', 'gpuDual', 'ucsL', 'ucsR', 'tptL', 'tptR'].forEach(k => { if (boot.has(k)) state[k] = Number(boot.get(k)); });
+mountFields();
+rebuild(true);
+if (boot.has('explode')) { progress = clamp(Number(boot.get('explode'))); applyExplode(progress); syncSlider(); framedP = progress; }
+loop();
+const loading = $('loading'); loading.style.opacity = 0; setTimeout(() => loading.remove(), 600);
+window.__ready = true;
+window.__setMode = m => { state.mode = m === 'dual' ? 'dual' : 'single'; mountFields(); rebuild(true); };
+window.__setCounts = o => { Object.assign(state, o); mountFields(); rebuild(false); };
+window.__setExplode = p => { tween = null; progress = clamp(p); applyExplode(progress); syncSlider(); };
+window.__state = () => ({
+  mode: state.mode,
+  gpuAsked: gpuNow(),
+  cabinets: cabinets.map(c => ({
+    name: c.spec.name,
+    ucs: c.devices.filter(d => d.kind === 'ucs').length,
+    tpt: c.devices.filter(d => d.kind === 'tpt').length,
+    gpus: c.devices.filter(d => d.kind === 'tpt').map(d => d.gpus),
+    devices: c.devices.map(d => ({ kind: d.kind, u0: d.u0, u1: d.u1, gpus: d.gpus }))
+  })),
+  audit: window.__auditProblems || []
+});
+</script>
+<script>
+window.__errors = [];
+window.addEventListener('error', e => { window.__errors.push(String(e.message || e)); const m = document.getElementById('loadMsg'); if (m) m.textContent = '加载失败：' + (e.message || e); console.error(e.error || e.message); });
+</script>
+</body>
+</html>
