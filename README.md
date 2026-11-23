@@ -1,12 +1,12 @@
 # SUPCON Nyx通用控制系统 · 三维爆炸图
 
-交互式 Three.js 演示：中控（SUPCON）Nyx通用控制系统的三维爆炸视图。整页是仓库根目录的 `index.html`，通过 import map 从 jsDelivr 加载 Three.js，不依赖本地构建。
+交互式 Three.js 演示：中控（SUPCON）Nyx通用控制系统的三维爆炸视图。整页是仓库根目录的 [index.html](index.html)，通过 import map 从 jsDelivr 加载 Three.js，不依赖本地构建。
 
 在线地址：<https://waynenb.github.io/cabinet-explode/>
 
-产品介绍：<https://waynenb.github.io/cabinet-explode/site/>
+产品介绍：<https://waynenb.github.io/cabinet-explode/site/>（源文件 [site/index.html](site/index.html)）
 
-UCS+TPT 一体化方案（AOP）：[aop/](aop/)。单机柜 / 双机柜为示意页面，具体数量待确认，柜内不含空调和 UPS。原三维爆炸图与产品介绍仍在上面两个地址。
+UCS+TPT 一体化方案（AOP）：<https://waynenb.github.io/cabinet-explode/aop/>（源文件 [aop/index.html](aop/index.html)）。单机柜 / 双机柜为示意页面，具体数量待确认。可选底部 6U 空调，柜内不含 UPS。
 
 产品介绍支持 `?autoplay=1`（自动播放导览）和 `?lang=en`（英文版，页内也可切换语言）：<https://waynenb.github.io/cabinet-explode/site/?autoplay=1&lang=en>
 
@@ -33,4 +33,4 @@ UCS+TPT 一体化方案（AOP）：[aop/](aop/)。单机柜 / 双机柜为示意
 
 ## 本地预览
 
-用浏览器直接打开 `index.html`（需要能访问 jsDelivr）。根目录的空文件 `.nojekyll` 让 GitHub Pages 按原样发布这些静态文件。
+用浏览器直接打开 [index.html](index.html)（需要能访问 jsDelivr）。根目录的空文件 [.nojekyll](.nojekyll) 让 GitHub Pages 按原样发布这些静态文件。
